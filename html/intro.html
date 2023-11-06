@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>HTML - Introduction</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/dracula.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/vs2015.css">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>
+					<small>Introduction au</small>
+					HTML
+				</h1>
+			</section>
+
+			<section>
+				<section>
+					<h1>Définition</h1>
+				</section>
+
+				<section>
+					<blockquote>HyperText Markup Language</blockquote>
+				</section>
+
+				<section>
+					<p>Le HTML est le langage de balisage conçu pour représenter les pages web.</p>
+
+					<p>Il permet :</p>
+					<ul>
+						<li class="fragment">d'écrire de l'hypertexte</li>
+						<li class="fragment">de structurer sémantiquement une page web</li>
+						<li class="fragment">de mettre en forme du contenu</li>
+						<li class="fragment">de créer des formulaires de saisie ou encore d'inclure des ressources multimédias dont
+							des images, des vidéos, et des programmes informatiques.</li>
+					</ul>
+				</section>
+
+				<section>
+					<p>C'est le langage qui se cache derrière toute page web publiée sur Internet</p>
+				</section>
+
+				<section>
+					<a target="_blank" href="https://wikipedia.org">
+						<img src="images/intro/wikipedia.png" alt="">
+					</a>
+				</section>
+
+				<section>
+					<h3>Fonctionnement</h3>
+					<p>Le navigateur Web (Chrome, Firefox, …) <strong>émet une requête HTTP</strong> vers l'adresse
+						<code>https://wikipedia.org</code>
+					</p>
+					<p class="fragment">Le serveur renvoie la réponse HTTP <strong>au format HTML</strong></p>
+					<p class="fragment">Le navigateur reçoit le HTML et l'affiche à l'utilisateur</p>
+				</section>
+
+				<section>
+					<p>C'est le navigateur Web qui interprête le langage HTML</p>
+					<p class="fragment">On dit que c'est un langage <strong>côté client</strong> (par opposition au serveur)</p>
+				</section>
+
+			</section>
+
+			<section>
+				<section>
+					<h1>Outils</h1>
+				</section>
+
+				<section>
+					<p>Pour développer en HTML, nous allons avoir besoin au minimum …</p>
+
+					<ul>
+						<li class="fragment">d'un <strong>navigateur Web</strong></li>
+						<li class="fragment">d'un <strong>IDE</strong> (environnement de développement)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Navigateur</h3>
+					<p>Pour le navigateur Web, nous en choisirons un <strong>basé sur Webkit (ex: Chrome, Edge)</strong></p>
+					<p>Par ailleurs, leurs outils de développement intégrés sont excellents</p>
+				</section>
+
+				<section>
+					<h3>IDE</h3>
+					<p>Nous choisirons <strong>Visual Studio Code</strong> (souvent abrégé <em>VSCode</em>) qui est la solution la
+						plus populaire à ce jour</p>
+					<img src="images/intro/vscode.png" alt="VSCode">
+				</section>
+
+				<section>
+					<a target="_blank" href="https://code.visualstudio.com/">
+						<code>http://code.visualstudio.com</code><br>
+						Téléchargez et installez VSCode
+					</a>
+				</section>
+
+				<section>
+					<p>Découvrons l'interface ensemble …</p>
+				</section>
+
+				<section>
+					<p>VSCode dispose d'un marketplace qui offre un <em>large choix d'extensions</em> pour apporter des
+						fonctionnalités
+						supplémentaires à l'éditeur</p>
+					<p class="fragment">Une extension souvent utile lorsqu'on développe des pages Web est <strong>Live
+							Server</strong></p>
+					<p class="fragment">Elle permet de lancer un serveur Web local pour afficher nos pages Web</p>
+				</section>
+
+				<section>Maintenant que nous avons les outils, passons à la pratique 👍</section>
+			</section>
+
+			<section>
+				<section>
+					<h1>Organisation</h1>
+				</section>
+
+				<section>
+					<p>Il est important de s'organiser correctement sur sa machine pour ne pas perdre le fil</p>
+					<p class="fragment">Dans le cadre de ce cours, nous travaillerons principalement par <em>dossiers de
+							projet</em></p>
+				</section>
+
+				<section>
+					<p>L'architecture proposée est la suivante :</p>
+					<img src="images/intro/dossiers.png" />
+				</section>
+
+				<section>
+					<p>Nous pourrons ouvrir ces dossiers <em>directement dans VSCode</em> pour profiter d'une
+						expérience
+						de développement complète</p>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h1>Notre 1ère page Web</h1>
+				</section>
+
+				<section>
+					<p>Les pages Web sont des fichiers texte enregistrés avec l'extension <code>.html</code></p>
+
+					<p class="fragment">Par défaut, la page principale d'un site Web se nomme toujours <code>index.html</code></p>
+				</section>
+
+				<section>
+					<ol>
+						<li>Créez le dossier de projet suivant :<br>
+							<code>…/Cours HTML/01 Intro/</code><br><br>
+						</li>
+						<li>Ouvrez ce dossier dans <em>VSCode</em></li>
+					</ol>
+					<img src="images/intro/vscode-ouvrir-dossier.png" alt="">
+					<p><small>(Si l'IDE vous demande de faire confiance au répertoire, cocher la case et choisissez OUI)</small>
+					</p>
+				</section>
+
+				<section>
+					<p>Dans la barre latérale, vous voyez l'arborescence de votre projet. Cliquez sur le bouton « + » pour créer
+						un nouveau fichier nommé <code>index.html</code></p>
+					<video src="images/intro/VSCode HTML.mp4" data-autoplay controls loop></video>
+				</section>
+
+				<section>
+					<p>Écrivez dans le contenu du fichier le code ci-après et sauvegardez</p>
+					<pre><code class="html" data-trim>
+						<h1>Hello World</h1>
+
+						<p>Bienvenue sur ma première page HTML</p>
+					</code></pre>
+				</section>
+
+				<section>
+					<p>Pour charger cette page Web dans le navigateur, nous allons utiliser l'extension <em>Live Server</em>
+						précédemment installée</p>
+				</section>
+
+				<section>
+					<p>Dans le coin inférieur droit de la fenêtre, cliquez sur le bouton <strong>Go Live</strong></p>
+					<p>Cela va démarrer un serveur Web local à l'adresse <code>http://localhost:5500/</code></p>
+					<img src="images/intro/go-live.png" alt="">
+				</section>
+
+				<section>
+					<img src="images/intro/live-server-schema.png" alt="" width="500">
+				</section>
+
+				<section>
+					<small>
+						<code class="fragment strike highlight-red">file:///c:/Documents/Cours HTML/01 Intro/index.html</code>
+					</small>
+
+					<p>À noter qu'il est possible d'ouvrir une page <code>.html</code> directement depuis le navigateur, mais
+						cette approche est déconseillée car le navigateur n'exécute pas la page dans le contexte HTTP, et bloquera
+						de nombreuses fonctionnalités par défaut</p>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h1>Anatomie du langage HTML</h1>
+				</section>
+
+				<section>
+					<h2>Les balises</h2>
+				</section>
+
+				<section>
+					<p>Le langage HTML est composé de <strong>balises</strong></p>
+
+					<p class="fragment">Une balise dispose d'un nom et est encadrée par des <strong>chevrons</strong>
+						<code>&lt;</code> et
+						<code>&gt;</code>
+					</p>
+
+					<div class="fragment">
+						<pre style="font-size: 1.4em"><code class="html r-hstack items-center" data-trim>
+							&lt;div&gt;
+						</code></pre>
+						<p><small>Balise "div"</small></p>
+					</div>
+				</section>
+
+				<section>
+					<p>Les balises sont des marqueurs qui permettent de délimiter des portions de texte afin de
+						<em>définir le sens du contenu</em>
+					</p>
+					<div class="fragment">
+						<p>Dans ce cas là, elles fonctionnent <em>par paires</em></p>
+						<pre style="font-size: 1em"><code class="html r-hstack items-center" data-trim>
+							&lt;p&gt;Paragraphe de texte&lt;/p&gt;
+						</code></pre>
+						<div class="fragment r-hstack justify-between">
+							<small>Balise ouvrante : &lt;p&gt;</small>
+							<small>&lt/p&gt;: Balise fermante</small>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<p>Une balise peut aussi être utilisée seule, pour représenter un élément unique tel qu'une image ou une zone
+						de saisie</p>
+
+					<div class="fragment">
+						<p>On dit alors qu'elle est <em>orpheline</em></p>
+						<pre style="font-size: 1em"><code class="html r-hstack items-center" data-trim>
+							&lt;img&gt;
+						</code></pre>
+					</div>
+				</section>
+
+				<section>
+					<p>Il est possible de les imbriquer les unes dans les autres</p>
+					<pre><code class="html" data-trim>
+						<div>
+							Du texte
+							<div>
+								Encore du texte
+								<p>Toujours du texte</p>
+								<img>
+							</div>
+						</div>
+					</code></pre>
+					<p class="fragment"><small>Remarquez qu'à chaque imbrication, on saute une ligne et on décale le contenu<br>
+							On appelle cela <strong>l'indentation du code</strong></small></p>
+				</section>
+
+				<section>
+					<h2>Les Attributs</h2>
+				</section>
+
+				<section>
+					<p>Nous avons vu que les balises avaient des noms (div, p, img)</p>
+					<p class="fragment">Elles peuvent également avoir <strong>des attributs</strong> qui vont leur préciser des
+						informations supplémentaires</p>
+				</section>
+
+				<section>
+					<p>Les attributs s'écrivent entre les chevrons juste après le nom de la balise</p>
+					<p class="fragment">Ils disposent d'un <em>nom</em> et <em>d'une valeur</em></p>
+					<pre data-id="code-animation" style="font-size: 1.2em" class="fragment"><code class="html r-hstack items-center" data-trim>
+						&lt;balise attribut="valeur"&gt;
+					</code></pre>
+				</section>
+
+				<section>
+					<p>Une balise peut avoir une infinité d'attributs</p>
+					<pre data-id="code-animation" style="font-size: 0.75em"><code class="html r-hstack items-center" data-trim>
+						&lt;balise attribut1="valeur" attribut2="valeur"&gt;
+					</code></pre>
+				</section>
+
+				<section>
+					<p>Voici un exemple concret avec la balise d'image pour laquelle on peut configurer le nom du fichier à
+						afficher</p>
+					<pre class="fragment" style="font-size: 0.8em"><code class="html r-hstack items-center" data-trim>
+						<img src="image.png" alt="Paysage d'hiver">
+					</code></pre>
+					<div class="fragment r-hstack justify-between">
+						<small>Balise "IMG" </small>
+						<small class="fragment">Attribut "SRC" valant "image.png"</small>
+						<small class="fragment">Attribut "ALT" valant "Paysage d'hiver"</small>
+					</div>
+				</section>
+
+				<section>
+					<p>Maintenant que nous sommes au fait de la syntaxe des balises, nous allons en découvrir plusieurs ensemble …
+					</p>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h1>Balises HTML</h1>
+				</section>
+
+				<section>
+					<p>Il existe un grand nombre de balises HTML dans la spécification du langage, et il est difficile de toutes
+						les connaitre par coeur</p>
+					<p class="fragment">Nous démarrerons en abordant les balises les plus courantes que l'on est amené à utiliser
+						dans une page Web</p>
+				</section>
+
+				<section>
+					<h2>Les titrages</h2>
+				</section>
+
+				<section>
+					<p>Une page Web, comme tout document, propose du contenu textuel hiérarchisé avec des titres</p>
+					<pre><code class="html" data-trim contenteditable spellcheck="false">
+						<h1>Titre de niveau 1</h1>
+					</code></pre>
+				</section>
+
+				<section>
+					<p>Le langage prévoit jusqu'à 6 niveaux de titre<br>
+						(jusqu'à "H6")</p>
+					<pre><code class="html" data-trim contenteditable spellcheck="false">
+						<h1>Titre de niveau 1</h1>
+						<h2>Titre de niveau 2</h2>
+						<h3>Titre de niveau 3</h3>
+						<h4>Titre de niveau 4</h4>
+						<h5>Titre de niveau 5</h5>
+						<h6>Titre de niveau 6</h6>
+					</code></pre>
+					<p class="fragment">
+						Essayez-les dans votre page <code>index.html</code> et observez le résultat dans le navigateur …
+					</p>
+				</section>
+
+				<section>
+					<p>Notez que les éléments s'affichent par défaut les uns au dessus des autres de façon verticale, comme des
+						blocs</p>
+					<p class="fragment">C'est le comportement des <strong>balises de type bloc</strong></p>
+				</section>
+
+				<section>
+					<h2>Les paragraphes</h2>
+				</section>
+
+				<section>
+					<p>La balise de paragraphe <code>&lt;p&gt;</code> est une autre balise de <em>type bloc</em> qui permet de
+						délimiter un bloc
+						de texte</p>
+					<pre><code class="html" data-trim contenteditable spellcheck="false" data-line-numbers="3-6">
+						<h1>Commande n°123456</h1>
+
+						<p>Veuillez trouver ci-dessous les informations relatives à
+							votre commande</p>
+
+						<p>Numéro de commande : 123456</p>
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Les liens</h2>
+				</section>
+
+				<section>
+					<p>La balise de lien <code>&lt;a&gt;</code> permet d'établir des liens entre différentes pages Web</p>
+					<p class="fragment">Les liens indiquent au navigateur d'effectuer une nouvelle requête HTTP pour changer de
+						page</p>
+					<p class="fragment">Cette balise ne produit pas de retour à la ligne et s'affiche "en ligne" à la suite du
+						contenu</p>
+					<p class="fragment">C'est une balise <strong>de type inline</strong></p>
+				</section>
+
+				<section>
+					<pre><code class="html" data-trim contenteditable spellcheck="false">
+						<p>
+							Vous pouvez consulter les
+							<a href="cgu.html">conditions générales de vente</a>
+						</p>
+					</code></pre>
+					<p>Ce code HTML représente un paragraphe contenant un lien qui redirige vers la
+						page
+						<code>cgu.html</code>
+					</p>
+					<p class="fragment">On appelle cela un <em>lien relatif</em>, car il redirige vers une page interne du site
+						Web</p>
+				</section>
+
+				<section>
+					<pre><code class="html" data-trim contenteditable spellcheck="false">
+						<p>
+							Rendez-vous sur le <a href="https://www.google.fr">moteur de
+								recherche Google</a>
+						</p>
+					</code></pre>
+					<p>Ce code affiche un lien qui redirige vers Google</p>
+					<p class="fragment">On appelle cela un <em>lien absolu</em>, car il redirige vers une page externe au site Web
+					</p>
+				</section>
+
+				<section>
+					<h2>Images</h2>
+				</section>
+
+				<section>
+					<p>La balise d'image <code>&lt;img&gt;</code> permet d'afficher une image dans une page Web</p>
+					<p class="fragment">C'est une balise <em>orpheline</em>, et qui est également de type <em>inline</em></p>
+				</section>
+
+				<section>
+					<pre><code class="html" data-trim contenteditable spellcheck="false">
+						<img src="hiver.png" alt="Paysage d'hiver">
+					</code></pre>
+					<p class="fragment">L'attribut <code>src</code> indique le chemin vers le fichier image à afficher</p>
+					<p class="fragment">L'attribut <code>alt</code> indique le texte alternatif à afficher si l'image ne peut pas
+						être chargée</p>
+				</section>
+
+				<section>
+					<p>Vous devez <strong>toujours</strong> préciser l'attribut "ALT" pour les images de contenu en HTML</p>
+					<p class="fragment">C'est une bonne pratique pour l'accessibilité des personnes malvoyantes qui utilisent des
+						lecteurs d'écran</p>
+					<p class="fragment"><small>(Ne pas préciser cet attribut indique que l'image n'a aucune importance pour le
+							contenu)</small></p>
+				</section>
+
+				<section>
+					<h2>Listes</h2>
+				</section>
+
+				<section>
+					<p>Le langage HTML permet de créer des listes de 2 types :</p>
+					<ul>
+						<li>Les listes à puces</li>
+						<li>Les listes numérotées</li>
+					</ul>
+				</section>
+
+				<section>
+					<h4>Listes à puces</h4>
+					<pre><code class="html" data-trim contenteditable spellcheck="false">
+						<p>Nos compétences :</p>
+
+						<ul>
+							<li>HTML</li>
+							<li>CSS</li>
+							<li>JavaScript</li>
+						</ul>
+					</code></pre>
+					<p class="fragment">La balise <code>&lt;ul&gt;</code> désigne une <em>liste non ordonnée</em></p>
+					<p class="fragment">Les balises <code>&lt;li&gt;</code> designent les items de la liste</p>
+					<p class="fragment">Ce sont toutes deux des balises de type <em>bloc</em></p>
+				</section>
+
+				<section>
+					<h4>Listes numérotées</h4>
+					<pre><code class="html" data-trim contenteditable spellcheck="false">
+						<p>Recette :</p>
+
+						<ol>
+							<li>Préchauffer le four à 180°C</li>
+							<li>Mélanger les ingrédients</li>
+							<li>Enfourner pendant 30 minutes</li>
+						</ol>
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Commentaires</h2>
+				</section>
+
+				<section>
+					<p>Les commentaires sont des annotations que l'on peut ajouter dans le code HTML. Ils ne sont pas interprétés
+						par le navigateur et permettent de documenter le code</p>
+				</section>
+
+				<section>
+					<p>Les commentaires sont délimités par les marqueurs spéciaux <code
+									style="font-variant-ligatures: none;">&lt;!--</code> et <code
+									style="font-variant-ligatures: none;">--&gt;</code></p>
+					<p class="fragment">Tout ce qui se trouve entre ces marqueurs sera ignoré par le navigateur Web</p>
+				</section>
+
+				<section>
+					<pre><code class="html" data-trim contenteditable spellcheck="false" style="font-variant-ligatures: none;">
+						<p>Voici un paragraphe de texte</p>
+
+						<!-- <p>Ce paragraphe est commenté et n'apparaîtra pas</p> -->
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Anatomie d'un document HTML</h2>
+				</section>
+
+				<section>
+					<p>Écrire des balises HTML dans un fichier texte ne suffit pas à en faire une page Web</p>
+					<p>Il faut également <strong>respecter une structure</strong> bien précise</p>
+					<p>Voici comment combiner des balises pour créer un document HTML valide</p>
+				</section>
+
+				<section data-auto-animate>
+					<pre data-id="code-animation"><code class="html" data-trim contenteditable spellcheck="false" data-line-numbers="|2,10|3-6|7-9">
+						&lt;!DOCTYPE html&gt;
+						&lt;html&gt;
+							&lt;head&gt;
+
+
+							&lt;/head&gt;
+							&lt;body&gt;
+
+							&lt;/body&gt;
+						&lt;/html&gt;
+					</code></pre>
+				</section>
+
+				<section data-auto-animate>
+					<pre data-id="code-animation"><code class="html" data-trim contenteditable spellcheck="false" data-line-numbers="|4-5|8">
+						&lt;!DOCTYPE html&gt;
+						&lt;html&gt;
+							&lt;head&gt;
+								<meta charset="utf-8">
+								<title>Ma page test</title>
+							&lt;/head&gt;
+							&lt;body&gt;
+								<p>Voici ma page web</p>
+							&lt;/body&gt;
+						&lt;/html&gt;
+					</code></pre>
+				</section>
+
+				<section>
+					<p>Le "DOCTYPE" est une instruction qui indique au navigateur que le document est au format HTML</p>
+					<p>Il est obligatoire pour que le navigateur puisse interpréter le code correctement</p>
+				</section>
+
+				<section>
+					<p><code>&lt;html&gt;</code> est le contenant de tout le code de la page. C'est l'élément racine du document
+					</p>
+					<p class="fragment"><code>&lt;head&gt;</code> est un conteneur pour les informations relatives à la page et
+						qui ne seront pas
+						affichées à l'écran (mots clés, description, …)</p>
+					<p class="fragment">
+						<code>&lt;body&gt;</code> est le conteneur de tout le contenu visible de la page (texte, images, …)
+					</p>
+				</section>
+
+				<section>
+					<p><code>&lt;meta charset="utf-8"&gt;</code> est une balise qui indique au navigateur que le document est
+						encodé en UTF-8</p>
+					<p class="fragment"><code>&lt;title&gt;</code> est une balise qui indique le titre de la page, celui qui
+						s'affiche dans l'onglet du navigateur dans lequel la page est chargée et qui est utilisé pour décrire la
+						page lorsque vous la marquez ou l'ajoutez aux favoris.</p>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h1>TP</h1>
+				</section>
+
+				<section>
+					<h2>Créez votre page de présentation en HTML</h2>
+				</section>
+
+				<section>
+					<p>À ce stade, vous avez une idée de ce à quoi ressemble le langage et la structure d'un document HTML valide
+					</p>
+					<p>Vous connaissez aussi la notion de balises <em>bloc</em> et <em>inline</em></p>
+				</section>
+
+				<section>
+					<p>Vous allez créer une page Web nommée <code>about.html</code> faisant votre présentation personnelle, et
+						qui devra contenir les éléments suivants :</p>
+					<ul style="font-size: 0.8em">
+						<li class="fragment">Un titre de niveau 1 avec votre nom et prénom</li>
+						<li class="fragment">Une image de vous</li>
+						<li class="fragment">Un paragraphe de présentation de votre parcours d'études</li>
+						<li class="fragment">Une liste de vos diplômes déjà obtenus (quels qu'ils soient)</li>
+						<li class="fragment">Un paragraphe expliquant l'une de vos passions (ex: musique), avec au moins un lien
+							absolu</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Correction type</h2>
+				</section>
+
+				<section>
+					<p>Afin de compléter et consolider les éléments vus ensemble, vous allez maintenant lire la page suivante du
+						MDN (Mozilla Developers Network)</p>
+					<p><a href="https://developer.mozilla.org/fr/docs/Learn/HTML/Introduction_to_HTML/Getting_started"
+							 target="_blank"><strong>Commencer avec le HTML</strong></a></p>
+				</section>
+			</section>
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script src="plugin/zoom/zoom.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom]
+		});
+
+		Reveal.configure({
+			pdfSeparateFragments: false,
+		})
+	</script>
+</body>
+
+</html>

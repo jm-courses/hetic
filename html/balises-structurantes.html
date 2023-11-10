@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>HTML - Balises structurantes sémantiques</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/dracula.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/vs2015.css">
+	<link rel="stylesheet" href="custom-styles.css">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>
+					Balises Structurantes
+				</h1>
+			</section>
+
+			<section>
+				<section>
+					<h1>Introduction</h1>
+				</section>
+
+				<section>
+					<p>Le rôle du HTML n'est pas de mettre en forme, mais d'apporter une signification sémantique au contenu</p>
+				</section>
+
+				<section>
+					<pre><code class="html" data-trim contenteditable spellcheck="false">
+						<h1>Ceci est un titre de premier niveau</h1>
+					</code></pre>
+					<p>Cet élément <code>&lt;h1&gt;</code> donne au texte qu'il contient le rôle de <em>titre de premier niveau</em></p>
+					<p class="fragment">
+						Par défaut, il se verra attribué une mise en forme particulière, mais surtout : sa valeur sémantique sera utilisée par les moteurs de recherche ou lecteurs d'écran pour classifier le contenu comme étant important !
+					</p>
+				</section>
+
+				<section>
+					<p>Il existe en HTML des balises sémantiques <strong>structurants</strong>, qui permettent d'apporter un sens aux grands blocs d'une page Web</p>
+					<blockquote class="fragment">D'après vous, quels sont ces blocs ?</blockquote>
+				</section>
+
+				<section>
+					<p>Voyons ensemble les balises HTML pour ces grands blocs …</p>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h1><code>&lt;header&gt;</code></h1>
+				</section>
+
+				<section>
+					<p>L'élément <code>&lt;header&gt;</code> indique une section d'introduction du document entier (en-tête de page), d'un article ou d'une autre section.</p>
+
+					<pre><code class="html" data-trim contenteditable spellcheck="false" data-line-numbers="1,4">
+						<header>
+							<h1>Bienvenue sur mon site</h1>
+							<img src="logo.png" alt="Logo Site">
+						</header>
+					</code></pre>
+				</section>
+
+				<section>
+					<h2 class="emoji">⚠</h2>
+					<p>Il ne faut pas le confondre avec <code>&lt;head&gt;</code> qui marque l'en-tête du <strong>document HTML lui-même</strong></p>
+				</section>
+
+				<section>
+					<img src="images/structure/layout.svg" width="500" alt="">
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h1><code>&lt;main&gt;</code></h1>
+				</section>
+
+				<section>
+					<p>L'élément <code>&lt;main&gt;</code> représente le contenu majoritaire du corps du document. <br>
+						Le contenu principal de la zone est constitué de contenu directement en relation, ou qui étend le sujet principal du document ou de la fonctionnalité principale d'une application.</p>
+
+					<pre><code class="html" data-trim contenteditable spellcheck="false" data-line-numbers="2,8">
+						&lt;body&gt;
+							<main>
+								<h1>Navigateurs populaires</h1>
+								<p>Chrome est le plus utilisé avec 60% de parts</p>
+								<p>Firefox est le deuxième avec 15% de parts</p>
+								<p>Edge est le troisième avec 5% de parts</p>
+							</main>
+						&lt;/body&gt;
+						</main>
+					</code></pre>
+				</section>
+
+				<section>
+					<h2 class="emoji">⚠</h2>
+					<p>Un document ne peut pas avoir plus d'un seul élément <code>&lt;main&gt;</code> sans attribut <code>hidden</code></p>
+				</section>
+
+				<section>
+					<img src="images/structure/layout.svg" width="500" alt="">
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h1><code>&lt;footer&gt;</code></h1>
+				</section>
+
+				<section>
+					<p>L'élément <code>&lt;footer&gt;</code> indique une section de conclusion du document entier (pied de page), d'une section ou d'un article</p>
+					<pre><code class="html" data-trim contenteditable spellcheck="false" data-line-numbers="1,3">
+						<footer>
+							<p>Mentions légales / Copyright</p>
+						</footer>
+					</code></pre>
+				</section>
+
+				<section>
+					<img src="images/structure/layout.svg" width="500" alt="">
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h1><code>&lt;nav&gt;</code></h1>
+				</section>
+
+				<section>
+					<p>L'élément <code>&lt;nav&gt;</code> représente une section possédant des liens de navigation principaux (au sein du document ou vers d'autres pages).</p>
+
+					<pre><code class="html" data-trim contenteditable spellcheck="false" data-line-numbers="1,6">
+						<nav>
+							<ul>
+								<li><a href="#">Accueil</a></li>
+								<li><a href="#">Contact</a></li>
+							</ul>
+						</nav>
+					</code></pre>
+				</section>
+
+				<section>
+					<img src="images/structure/layout.svg" width="500" alt="">
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h1><code>&lt;article&gt;</code></h1>
+				</section>
+
+				<section>
+					<p>L'élément <code>&lt;article&gt;</code> représente une section de contenu <strong>indépendante</strong>, pouvant être extraite individuellement du document ou syndiquée (flux RSS ou équivalent), sans pénaliser sa compréhension</p>
+
+					<pre><code class="html" data-trim contenteditable spellcheck="false" data-line-numbers="1,5">
+						<article>
+							<h1>[Évènement] Fête nationale aux Champs-Élysées</h1>
+							<p>Le 14 juillet, la fête nationale est célébrée
+								aux Champs-Élysées …</p>
+						</article>
+					</code></pre>
+				</section>
+
+				<section>
+					<img src="images/structure/layout.svg" width="500" alt="">
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h1><code>&lt;section&gt;</code></h1>
+				</section>
+
+				<section>
+					<p>L'élément <code>&lt;section&gt;</code> représente une section générique regroupant un même sujet, une même fonctionnalité, de préférence avec un en-tête, ou bien section d'application web</p>
+
+					<pre><code class="html" data-trim contenteditable spellcheck="false" data-line-numbers="1,11">
+						<section>
+							<h1>La page des sports</h1>
+							<article>
+								<h1>Coupe du monde</h1>
+								<p>La coupe du monde de football …</p>
+							</article>
+							<article>
+								<h1>Coupe Davis</h1>
+								<p>La coupe Davis de tennis …</p>
+							</article>
+						</section>
+					</code></pre>
+				</section>
+
+				<section>
+					<img src="images/structure/layout.svg" width="500" alt="">
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h1><code>&lt;aside&gt;</code></h1>
+				</section>
+
+				<section>
+					<p>L'élément <code>&lt;aside&gt;</code> représente une section dont le contenu est un complément par rapport à ce qui l'entoure, qui n'est pas forcément en lien direct avec le contenu mais qui peut apporter des informations supplémentaires</p>
+
+					<pre><code class="html" data-trim contenteditable spellcheck="false" data-line-numbers="1,8">
+						<aside>
+							<h1>À propos de l'auteur</h1>
+							<figure>
+								<img src="auteur.jpg" alt="Auteur">
+								<figcaption>John Smith</figcaption>
+							</figure>
+							<p>John Smith est un auteur contemporain ...</p>
+						</aside>
+					</code></pre>
+				</section>
+
+				<section>
+					<img src="images/structure/layout.svg" width="500" alt="">
+				</section>
+			</section>
+
+			<section>
+				<h1>Bonus</h1>
+				<p>Éléments structurants de plus petit niveau</p>
+			</section>
+
+			<section>
+				<section>
+					<h2><code>&lt;figure&gt;</code></h2>
+				</section>
+
+				<section>
+					<p>L'élément HTML <code>&lt;figure&gt;</code> représente un contenu autonome, éventuellement accompagné d'une légende facultative (spécifiée avec l'élément <code>&lt;figcaption&gt;</code>)</p>
+					<p>La figure, sa légende et son contenu sont référencés comme une seule unité</p>
+
+					<pre><code class="html" data-trim contenteditable spellcheck="false">
+						<figure>
+							<img src="/elephant.jpg" alt="Elephant dans la savane" />
+							<figcaption>Un élephant dans la savane</figcaption>
+						</figure>
+					</code></pre>
+				</section>
+
+				<section>
+					<p>On l'utilise généralement pour une image, une illustration, un diagramme, un fragment de code ou autre qui est référencé depuis le flux principal du document</p>
+				</section>
+
+				<section>
+					<p>Autre exemple</p>
+					<pre><code class="html" data-trim contenteditable spellcheck="false">
+						<figure>
+							<figcaption>
+								Fonction JavaScript permettant d'obtenir un nombre aléatoire
+							</figcaption>
+							&lt;pre&gt;
+								function getRandomInt(min, max) {
+									return Math.floor(Math.random() * (max - min + 1)) + min;
+								}
+							&lt;/pre&gt;
+						</figure>
+					</code></pre>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2><code>&lt;details&gt;</code></h2>
+				</section>
+
+				<section data-auto-animate>
+					<p>L'élément HTML <code>&lt;details&gt;</code> est utilisé comme un outil permettant de révéler une information. Un résumé ou un intitulé peuvent être fournis grâce à un élément <code>&lt;summary&gt;</code></p>
+
+					<pre data-id="details-summary"><code class="html" data-trim contenteditable spellcheck="false" data-line-numbers>
+						&lt;details&gt;
+							<summary>Qu'est-ce que le HTML ?</summary>
+							<p>Le HTML est un langage de balisage permettant de
+								structurer le contenu d'une page Web</p>
+						&lt;/details&gt;
+					</code></pre>
+				</section>
+
+				<section data-auto-animate>
+					<p>Un widget <code>&lt;details&gt;</code> peut être dans l'un des deux états suivants : <em>ouvert</em> ou <em>fermé (par défaut)</em></p>
+					<p>Lorsqu'il est <em>fermé</em>, seul le bloc <code>&lt;summary&gt;</code> est visible</p>
+					<pre data-id="details-summary"><code class="html" data-trim contenteditable spellcheck="false" data-line-numbers="2">
+						&lt;details&gt;
+							<summary>Qu'est-ce que le HTML ?</summary>
+							<p>Le HTML est un langage de balisage permettant de
+								structurer le contenu d'une page Web</p>
+						&lt;/details&gt;
+					</code></pre>
+				</section>
+
+				<section data-auto-animate>
+					<p>L'attribut <code>open</code> permet d'afficher le widget dans l'état <em>ouvert</em> par défaut</p>
+					<pre data-id="details-summary"><code class="html" data-trim contenteditable spellcheck="false" data-line-numbers="1,5">
+						&lt;details open&gt;
+							<summary>Qu'est-ce que le HTML ?</summary>
+							<p>Le HTML est un langage de balisage permettant de
+								structurer le contenu d'une page Web</p>
+						&lt;/details&gt;
+					</code></pre>
+				</section>
+			</section>
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script src="plugin/zoom/zoom.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom]
+		});
+
+		Reveal.configure({
+			pdfSeparateFragments: false,
+		})
+	</script>
+</body>
+
+</html>

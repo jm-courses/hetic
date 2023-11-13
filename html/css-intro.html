@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>CSS - Introduction</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/dracula.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/vs2015.css">
+	<link rel="stylesheet" href="custom-styles.css">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>
+					<small>Introduction au</small>
+					CSS
+				</h1>
+			</section>
+
+			<section>
+				<section>
+					<h1>Définition</h1>
+				</section>
+
+				<section>
+					<blockquote>Cascading Style Sheets</blockquote>
+				</section>
+
+				<section>
+					<p>Les CSS (feuilles de style) sont le code utilisé pour <strong>mettre en forme une page web</strong></p>
+
+					<p>Tout comme HTML, il ne s'agit pas d'un langage de programmation mais plutôt de déclaration de styles</p>
+				</section>
+
+				<section>
+					<p>Grâce à CSS, on peut donc d'appliquer des styles sur <strong>différents éléments HTML sélectionnés dans le document</strong></li>
+				</section>
+
+				<section>
+					<p>Par exemple, ce code permet de sélectionner tous les <code>&lt;p&gt;</code> du document et leur appliquer une couleur de texte en rouge</p>
+
+					<pre><code class="css" data-trim contenteditable spellcheck="false">
+						p {
+							color: red;
+						}
+					</code></pre>
+					<p class="fragment"><small>Nous reviendrons dans un instant sur la syntaxe du CSS …</small></p>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h1>Liaison à la page Web</h1>
+				</section>
+
+				<section>
+					<p>On écrit généralement les CSS dans des fichiers portant l'extension <code>.css</code> (exemple : <code>styles.css</code>)</p>
+					<p class="fragment">C'est la méthode recommandée de séparer les fichiers <code>.css</code> des fichiers <code>.html</code></p>
+				</section>
+
+				<section>
+					<p>Il faut ensuite lier la page HTML au fichier <code>.css</code> créé</p>
+					<p class="fragment"><strong>C'est dans le fichier HTML que l'on va indiquer d'inclure le CSS</strong></p>
+				</section>
+
+				<section>
+					<pre><code class="html" data-trim contenteditable spellcheck="false" data-line-numbers="|7">
+						&lt;!DOCTYPE html&gt;
+						&lt;html lang="fr"&gt;
+						&lt;head&gt;
+							<meta charset="utf-8">
+							<title>Titre de la page Web</title>
+
+							<link rel="stylesheet" href="styles.css">
+						&lt;/head&gt;
+						&lt;body&gt;
+							…
+						&lt;/body&gt;
+						&lt;/html&gt;
+					</code></pre>
+					<p class="fragment">La balise &lt;link&gt; se place dans l'en-tête du document et déclare ici que cette page HTML fait appel au fichier de style <code>styles.css</code></p>
+				</section>
+
+				<section>
+					<img src="images/css/requests.png" width="700">
+				</section>
+
+				<section>
+					<h3>Exercice</h3>
+					<p>Ouvrez un nouveau dossier de travail <code>/Intro CSS/</code> dans VSCode et créez une page HTML contenant un titre et un paragraphe, puis créez un fichier de style pour y placer le code suivant :</p>
+					<pre><code class="css" data-trim contenteditable spellcheck="false">
+						p {
+							color: red;
+						}
+					</code></pre>
+					<p>Liez ensuite le fichier CSS à votre page avec la balise :</p>
+					<pre><code class="html" data-trim contenteditable spellcheck="false">
+						<link rel="stylesheet" href="styles.css">
+					</code></pre>
+					<p>Le paragraphe devrait s'afficher en rouge</p>
+				</section>
+
+				<section>
+					<h3>Correction</h3>
+				</section>
+
+				<section>
+					<pre><code class="html" data-trim contenteditable spellcheck="false" data-line-numbers="7-9">
+						&lt;!DOCTYPE html&gt;
+						&lt;html lang="fr"&gt;
+						&lt;head&gt;
+							<meta charset="utf-8">
+							<title>Titre de la page Web</title>
+
+							<link rel="stylesheet" href="styles.css">
+							<link rel="stylesheet" href="theme.css">
+							<link rel="stylesheet" href="layout.css">
+						&lt;/head&gt;
+						&lt;body&gt;
+							…
+						&lt;/body&gt;
+						&lt;/html&gt;
+					</code></pre>
+					<p>On peut inclure autant de feuilles CSS que l'on souhaite</p>
+				</section>
+
+				<section>
+					<p>À noter qu'il est aussi possible d'écrire du CSS directement dans la page Web, mais cette méthode n'est pas recommandée car elle empêche la <strong>réutilisation des styles dans les différentes pages HTML</strong></p>
+				</section>
+
+				<section>
+					<pre data-id="link-rel"><code class="html" data-trim contenteditable spellcheck="false" data-line-numbers="7-9">
+						&lt;!DOCTYPE html&gt;
+						&lt;html lang="fr"&gt;
+						&lt;head&gt;
+							<meta charset="utf-8">
+							<title>Titre de la page Web</title>
+
+							<style>
+								/* Code CSS ici */
+							</style>
+						&lt;/head&gt;
+						&lt;body&gt;
+							…
+						&lt;/body&gt;
+						&lt;/html&gt;
+					</code></pre>
+					<p><small>On l'utilise en pratique pour déclarer des styles additionnels spécifiquement pour cette page</small></p>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h1>Anatomie du langage CSS</h1>
+				</section>
+
+				<section>
+					<p>Les CSS déclare des <strong>ensembles de règles</strong> dont la syntaxe est bien précise</p>
+					<p class="fragment">Analysons la structure de cet ensemble …</p>
+				</section>
+
+				<section data-transition="none">
+					<img src="images/css/structure.png" width="800" alt="">
+				</section>
+
+				<section data-transition="none">
+					<img src="images/css/structure-explained.png" width="800" alt="">
+				</section>
+
+				<section>
+					<p>Chaque ensemble de règles, à l'exception du sélecteur, doit être entre accolades <code>{}</code></p>
+				</section>
+
+				<section>
+					<h2>Sélecteur</h2>
+					<p>Le sélecteur permet de sélectionner les éléments sur lesquels appliquer le style souhaité</p>
+					<pre><code class="css" data-trim contenteditable spellcheck="false">
+						p {
+							color: red;
+						}
+
+						h1 {
+							color: blue;
+						}
+					</code></pre>
+					<p><small>Tous les <code>&lt;p&gt;</code> seront en rouge, et tous les <code>&lt;h1&gt;</code> seront en bleu</small></p>
+				</section>
+
+				<section>
+					<h2>Déclaration</h2>
+					<p>La déclaration est une règle simple qui détermine les <em>propriétés</em> de l'élément que l'on veut mettre en forme</p>
+					<p><span class="emoji">⚠</span> Une déclaration se termine toujours par un « <code>;</code> »</p>
+					<pre><code class="css" data-trim contenteditable spellcheck="false">
+						h1 {
+							color: blue;
+							font-size: 42px;
+							text-decoration: underline;
+						}
+					</code></pre>
+					<p><small>Trois déclarations de règle indiquant que les <code>&lt;h1&gt;</code> sont bleus, soulignés et ont une taille de 42 pixels</small></p>
+				</section>
+
+				<section data-auto-animate>
+					<h2>Propriété</h2>
+					<p>La propriété est la partie gauche de la déclaration (avant les deux points <code>:</code>)</p>
+					<p>Il en existe un très grand nombre !</p>
+					<pre data-id="props-css"><code data-trim contenteditable spellcheck="false">
+							font-family
+							font-style
+							font-size
+							color
+							margin
+							padding
+							border
+							…
+					</code></pre>
+				</section>
+
+				<section data-auto-animate>
+					<h2>Valeur de propriété</h2>
+					<p>La valeur de propriété est la partie droite de la déclaration (après les deux points <code>:</code>)</p>
+					<p>Elle dépend de la propriété elle-même</p>
+					<pre data-id="props-css"><code data-trim contenteditable spellcheck="false">
+							font-family: Arial, sans-serif;
+							font-style: italic;
+							font-size: 18px;
+							color: gray;
+							margin: 8px;
+							padding: 8px;
+							border: 1px solid silver;
+							…
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Commentaires</h2>
+					<p>Comme en HTML, il est possible d'annoter le code CSS avec des commentaires pour le développeur</p>
+					<p class="fragment">On utilise les délimiteurs <code>/*</code> et <code>*/</code>. Tout ce qui se trouve entre est ignoré</p>
+					<pre class="fragment"><code class="css" data-trim contenteditable spellcheck="false">
+						/* Ceci est un commentaire CSS */
+						p {
+							color: red;
+							/* text-decoration: underline; */
+						}
+					</code></pre>
+				</section>
+
+				<section>
+					<p>Pour styliser des éléments HTML, il faut donc :</p>
+					<ol>
+						<li class="fragment">sélectionner le·s élément·s concerné·s</li>
+						<li class="fragment">leur déclarer des règles de style</li>
+					</ol>
+					<p class="fragment">Avant de voir les différentes règles possibles, commençons par quelques sélecteurs basiques …</p>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h1>Les sélecteurs</h1>
+				</section>
+
+				<section>
+					<p>Un sélecteur permet de cibler un groupe de balises HTML</p>
+				</section>
+
+				<section>
+					<p>Le plus simple est le sélecteur d'élément</p>
+					<pre><code class="css" data-trim contenteditable spellcheck="false">
+						section {
+
+						}
+					</code></pre>
+					<p class="fragment">Les règles présentes dans cet ensemble seront appliquées à <strong>toutes les balises de <code>&lt;section&gt;</code></strong></p>
+				</section>
+
+				<section>
+					<p>On peut cibler plusieurs balises HTML en utilisant la virgule</p>
+					<pre><code class="css" data-trim contenteditable spellcheck="false">
+						h1, h2, h3 {
+
+						}
+					</code></pre>
+					<p class="fragment">Ici, l'ensemble cible les balises <code>&lt;h1&gt;</code>, <code>&lt;h2&gt;</code> et <code>&lt;h3&gt;</code></p>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2>Sélecteur de parenté</h2>
+				</section>
+
+				<section data-auto-animate>
+					<p>On peut sélectionner des éléments de façon plus spécifique via leur <em>liens de parenté</em></p>
+
+					<p>Admettons le HTML suivant :</p>
+					<pre data-id="css-parent"><code class="html" data-trim contenteditable spellcheck="false">
+						<h1>Titre de page</h1>
+						<article>
+							<h1>Titre d'article</h1>
+							<p>Contenu d'article</p>
+						</article>
+					</code></pre>
+
+					<p>Comment peut-on faire pour sélectionner en CSS le <code>&lt;h1&gt;</code> de l'article uniquement ?</p>
+				</section>
+
+				<section data-auto-animate>
+					<pre data-id="css-parent"><code class="html" data-trim contenteditable spellcheck="false">
+						<h1>Titre de page</h1>
+						<article>
+							<h1>Titre d'article</h1>
+							<p>Contenu d'article</p>
+						</article>
+					</code></pre>
+
+					<pre><code class="css" data-trim contenteditable spellcheck="false">
+						article h1 {
+
+						}
+					</code></pre>
+					<p class="fragment">L'espace «<code>&nbsp;</code>» entre <code>article</code> et <code>h1</code> signifie que l'on sélectionne tous les titre de niveau 1 se trouvant dans un article, <strong>à quelque niveau que ce soit</strong></p>
+				</section>
+
+				<section>
+					<p>Il existe d'autres variantes du même genre comme les sélecteurs suivants :</p>
+					<pre><code class="css" data-trim contenteditable spellcheck="false" data-line-numbers="1,2|4,5|7,8">
+						article > h1
+						/* Tous les &lt;h1&gt; se trouvant DIRECTEMENT dans un article */
+
+						header + section
+						/* Toutes les &lt;section&gt; qui SUIVENT DIRECTEMENT un header */
+
+						header ~ section
+						/* Toutes les &lt;section&gt; qui se trouvent APRÈS un header */
+					</code></pre>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2>Sélecteur par attributs</h2>
+				</section>
+
+				<section data-auto-animate>
+					<p>Comme son nom l'indique, cette sélection permet de cibler des balises en fonction de leurs attributs</p>
+
+					<p class="fragment">Imaginons que nous souhaitions sélectionner toutes les <code>&lt;img&gt;</code> qui disposent d'un attribut <code>alt</code></p>
+
+					<pre class="fragment" data-id="css-attribute"><code class="html" data-trim contenteditable spellcheck="false" data-line-numbers="2,3">
+						<img src="fond.jpg">
+						<img src="chat.jpg" alt="Chat dormant sur le lit">
+						<img src="chien.jpg" alt="Chien jouant dans l'herbe">
+					</code></pre>
+				</section>
+
+				<section data-auto-animate>
+					<pre class="fragment" data-id="css-attribute"><code class="html" data-trim contenteditable spellcheck="false" data-line-numbers="2,3">
+						<img src="fond.jpg">
+						<img src="chat.jpg" alt="Chat dormant sur le lit">
+						<img src="chien.jpg" alt="Chien jouant dans l'herbe">
+					</code></pre>
+
+					<pre><code class="css" data-trim contenteditable spellcheck="false">
+						img[alt] {
+
+						}
+					</code></pre>
+
+					<p class="fragment">Les crochets <code>[ ]</code> en CSS désignent la sélection par attribut</p>
+				</section>
+
+				<section>
+					<p>On peut même être plus précis et sélectionner des attributs par leur valeur</p>
+
+					<pre><code class="css" data-trim contenteditable spellcheck="false" data-line-numbers="1,2|4,5">
+						a[href='#']
+						/* Tous les liens avec un attribut href égal à '#' */
+
+						a[target='_blank']
+						/* Tous les liens avec un attribut target égal à '_blank' */
+					</code></pre>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2>Sélecteur par classe</h2>
+				</section>
+
+				<section data-auto-animate>
+					<p>Une classe CSS est un nom que l'on donne à un élément HTML pour le cibler plus facilement</p>
+					<p class="fragment">On utilise l'attribut HTML <code>class</code></p>
+					<pre class="fragment" data-id="css-class"><code class="html" data-trim contenteditable spellcheck="false">
+						<a href="#" class="button-danger">Supprimer</a>
+					</code></pre>
+					<p class="fragment">Comment cibler cet élément en CSS ?</p>
+				</section>
+
+				<section data-auto-animate>
+					<pre data-id="css-class"><code class="html" data-trim contenteditable spellcheck="false">
+						<a href="#" class="button-danger">Supprimer</a>
+					</code></pre>
+					<pre><code class="css" data-trim contenteditable spellcheck="false">
+						.button-danger {
+
+						}
+					</code></pre>
+					<p class="fragment">Un nom de classe en CSS commence <strong>toujours par un point</strong></p>
+				</section>
+
+				<section>
+					<p>Une classe a pour vocation d'être <strong>réutilisable et modulaire</strong></p>
+					<p>Évitez les noms de classe du style <code>.partie1</code> ou <code>.rouge</code></p>
+				</section>
+
+				<section id="css-class-syntax">
+					<h4>Règles de syntaxe</h4>
+					<p class="fragment">Un nom de classe doit <strong>toujours</strong> commencer par une lettre</p>
+					<p class="fragment">Il peut ensuite contenir des lettres, des chiffres, des tirets et des underscores (mais pas d'espaces)</p>
+					<pre class="fragment"><code class="css" data-trim contenteditable spellcheck="false">
+						.badge 				✅
+						.badge big 		❌
+						.badge-big 		✅
+						.badge_big 		✅
+						.1-badge 			❌
+						.badge-1 			✅
+					</code></pre>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2>Sélecteur par ID</h2>
+				</section>
+
+				<section>
+					<p>Un sélecteur par ID s'utilise de la même façon qu'une classe, sauf qu'on utilise l'attribut HTML <code>id="…"</code> et en CSS le signe <code>#</code> au lieu du point</p>
+					<p class="fragment">La principale différence est qu'un ID ne peut être utilisé qu'une seule fois par document</p>
+					<pre class="fragment"><code class="html" data-trim contenteditable spellcheck="false">
+						<section id="jumbotron">…</section>
+						<section id="jumbotron">…</section>
+						❌ Erreur : deux éléments ont le même ID !
+					</code></pre>
+					<p class="fragment"><small>(Dans cet exemple, on devrait plutôt utiliser une classe)</small></p>
+				</section>
+
+				<section data-auto-animate>
+					<p>On choisit généralement un ID pour désigner un élément unique dans le document</p>
+					<pre data-id="css-id"><code class="html" data-trim contenteditable spellcheck="false">
+						<article id="a-propos">…</article>
+					</code></pre>
+				</section>
+
+				<section data-auto-animate>
+					<pre data-id="css-id"><code class="html" data-trim contenteditable spellcheck="false">
+						<article id="a-propos">…</article>
+					</code></pre>
+					<pre><code class="css" data-trim contenteditable spellcheck="false">
+						#a-propos {
+
+						}
+					</code></pre>
+				</section>
+
+				<section>
+					<p>Un ID a pour vocation d'être <strong>unique et explicite</strong></p>
+					<p>Évitez les noms du style <code>#section1</code> ou <code>#partieB</code></p>
+					<p class="fragment">S'appliquent les mêmes <a href="#/css-class-syntax">règles de syntaxe que les classes</a></p>
+				</section>
+
+				<section>
+					<h3>Sélection plus précise</h3>
+					<p>Il est possible de combiner la sélection d'élément avec les classes et les IDs</p>
+					<pre><code class="css" data-trim contenteditable spellcheck="false">
+						a.button {
+							/* Tous les liens &lt;a&gt; avec la classe "button" */
+						}
+
+						section#about-us {
+							/* Toutes les sections &lt;section&gt; avec l'ID "about-us" */
+						}
+					</code></pre>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2>CSS Diner<br><small>Jeu des sélecteurs</small></h2>
+					<p><a href="https://flukeout.github.io/" target="_blank">https://flukeout.github.io/</a></p>
+					<aside class="notes">
+						<p>Faire du niveau 1 au niveau 11</p>
+						<p>Puis du niveau 27 au niveau 29</p>
+					</aside>
+				</section>
+
+				<section>
+					<p>Retrouvez plus de détails sur cet article <a href="https://developer.mozilla.org/fr/docs/Learn/CSS/Building_blocks/Selectors/Type_Class_and_ID_Selectors#s%C3%A9lecteur_de_type" target="_blank"><strong>du MDN à propos des sélecteurs CSS basiques</strong></a></p>
+				</section>
+
+				<section>
+					<p>Voyons maintenant quelques <em>propriétés</em> courantes en CSS pour appliquer des styles …</p>
+				</section>
+			</section>
+
+			<section>
+				<h1>Propriétés CSS courantes</h1>
+			</section>
+
+			<section>
+				<section>
+					<h2>Couleur de texte</h2>
+					<p>La propriété <code>color</code> permet de définir la couleur du texte affiché</p>
+					<p class="fragment">Elle prend une <em>couleur</em> comme valeur</p>
+				</section>
+
+				<section>
+					<p>Les valeurs de couleurs en CSS sont représentées de différentes manières</p>
+					<pre><code class="css" data-trim contenteditable spellcheck="false">
+						p { color: red; }
+						p { color: #ff0000; }
+						p { color: rgb(255, 0, 0); }
+						p { color: hsl(0, 100%, 50%); }
+						p { color: rgba(255, 0, 0, 1); }
+						p { color: hsla(0, 100%, 50%, 1); }
+					</code></pre>
+					<p class="fragment">
+						<a href="https://fffuel.co/cccolor/" target="_blank">fffuel.co/cccolor</a>
+					</p>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2>Taille de texte</h2>
+					<p>La propriété <code>font-size</code> permet de définir la taille du texte affiché</p>
+					<p class="fragment">Elle prend une <em>mesure de distance</em> comme valeur</p>
+				</section>
+
+				<section>
+					<p>Il existe de nombreuses types de mesures en CSS</p>
+					<pre><code class="css" data-trim contenteditable spellcheck="false">
+						p { font-size: 18px; }
+						p { font-size: 1.2em; }
+						p { font-size: 1.2rem; }
+						p { font-size: 1.2%; }
+						p { font-size: 1.5vw; }
+						p { font-size: 1.5vh; }
+						p { font-size: 1.5vmin; }
+						p { font-size: 1.5vmax; }
+					</code></pre>
+					<p class="fragment">
+						<a href="https://katydecorah.com/css-ruler/" target="_blank">katydecorah.com/css-ruler</a>
+					</p>
+				</section>
+			</section>
+
+			<section>
+				<section data-auto-animate>
+					<h2>Police de caractères</h2>
+					<p data-id="font-family-desc">La propriété <code>font-family</code> permet de définir la police de caractères utilisée</p>
+					<pre data-id="font-family"><code class="css" data-trim contenteditable spellcheck="false">
+						p {
+							font-family: Calibri;
+						}
+					</code></pre>
+				</section>
+
+				<section data-auto-animate>
+					<p data-id="font-family-desc">On peut définir une liste de polices séparées par des virgules pour gérer le <em>fallback</em></p>
+					<pre data-id="font-family"><code class="css" data-trim contenteditable spellcheck="false">
+						p {
+							font-family: Calibri, Arial, sans-serif;
+						}
+					</code></pre>
+					<p class="fragment"><small>Dans ce cas, si la police "Calibri" n'est pas disponible, on utilisera la police "Arial" à la place</small></p>
+				</section>
+
+				<section data-auto-animate>
+					<p data-id="font-family-desc">Notez que les noms de polices contenant des espaces doivent être encadrés par des guillemets</p>
+					<pre data-id="font-family"><code class="css" data-trim contenteditable spellcheck="false">
+						article {
+							font-family: "Times New Roman", serif;
+						}
+					</code></pre>
+				</section>
+
+				<section>
+					<p>Il est possible d'utiliser des polices personnalisées grâce à la règle CSS <code>&#64;font-face</code> que nous découvrirons plus tard</p>
+				</section>
+			</section>
+
+			<section>
+				<h2>Alignement de texte</h2>
+				<p>La propriété <code>text-align</code> permet de définir l'alignement du texte</p>
+				<pre class="fragment"><code class="css" data-trim contenteditable spellcheck="false">
+					p { text-align: center; }
+					p { text-align: left; }
+					p { text-align: right; }
+					p { text-align: justify; }
+				</code></pre>
+			</section>
+
+			<section>
+				<section>
+					<h2>Dimensions de blocs</h2>
+					<p>Jusqu'à présent, nous avons vu des propriétés qui s'appliquent au texte</p>
+					<p class="fragment">Il existe aussi des propriétés qui s'appliquent aux éléments de type <em>bloc</em> comme les <code>&lt;div&gt;</code> ou les <code>&lt;section&gt;</code></p>
+				</section>
+
+				<section>
+					<p>Par défaut, un élément de type <em>bloc</em> va créer un bloc occupant la largeur totale qu'il lui est possible de prendre dans son contexte d'affichage</p>
+					<p class="fragment">On peut agir sur ces dimensions grâce aux propriétés <code>width</code> et <code>height</code></p>
+				</section>
+
+				<section>
+					<pre><code class="html" data-trim contenteditable spellcheck="false">
+						<div class="avatar">
+							<img src="https://i.pravatar.cc" alt="Photo utilisateur">
+						</div>
+					</code></pre>
+					<pre><code class="css" data-trim contenteditable spellcheck="false">
+						.avatar {
+							width: 150px;
+							height: 150px;
+						}
+					</code></pre>
+					<p class="fragment"><small>Testons ce code ensemble …</small></p>
+				</section>
+
+				<section>
+					<p>Les dimensions semblent être appliquées au conteneur <code>&lt;div class="avatar"&gt;</code>, mais pas à l'image …</p>
+					<p class="fragment">L'image est un élément spécial qui n'est pas affecté par défaut par rapport à la taille de son parent. Il faut donc lui préciser une règle de style à part</p>
+				</section>
+
+				<section>
+					<pre><code class="html" data-trim contenteditable spellcheck="false">
+						<div class="avatar">
+							<img src="https://i.pravatar.cc" alt="Photo utilisateur">
+						</div>
+					</code></pre>
+					<pre><code class="css" data-trim contenteditable spellcheck="false" data-line-numbers="6-9">
+						.avatar {
+							width: 150px;
+							height: 150px;
+						}
+
+						.avatar img {
+							max-width: 100%;
+							max-height: 100%;
+						}
+					</code></pre>
+					<p class="fragment"><small>Les propriétés <code>max-width</code> et <code>max-height</code> limitent la taille <strong>maximale</strong> d'un élément, alors que <code>width</code> et <code>height</code> indiquent des dimensions strictes</small></p>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2>Les bordures</h2>
+					<p>La propriété <code>border</code> permet de définir une bordure autour d'un élément</p>
+					<p class="fragment">Une bordure est décomposée en 3 sous-propriétés :</p>
+					<ol>
+						<li class="fragment">une taille</li>
+						<li class="fragment">un style</li>
+						<li class="fragment">une couleur</li>
+					</ol>
+				</section>
+
+				<section>
+					<pre><code class="css" data-trim contenteditable spellcheck="false">
+						.avatar {
+							border-width: 5px; /* taille */
+							border-style: solid; /* style */
+							border-color: #007090; /* couleur */
+						}
+					</code></pre>
+					<p class="fragment">On utilise généralement la propriété condensée <code>border</code> pour rassembler ces éléments en 1 ligne :</p>
+					<pre class="fragment"><code class="css" data-trim contenteditable spellcheck="false">
+						.avatar {
+							border: 5px solid #007090;
+						}
+					</code></pre>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2>Les marges</h2>
+					<p>On peut définir deux types de marges sur des éléments de type <em>bloc</em> :</p>
+					<ol>
+						<li class="fragment">les marges internes (<code>padding</code>)</li>
+						<li class="fragment">les marges externes (<code>margin</code>)</li>
+					</ol>
+				</section>
+
+				<section>
+					<pre><code class="html" data-trim contenteditable spellcheck="false">
+						<div class="avatar">
+							<img src="https://i.pravatar.cc" alt="Photo utilisateur">
+						</div>
+					</code></pre>
+					<pre><code class="css" data-trim contenteditable spellcheck="false" data-line-numbers="3,4">
+						.avatar {
+							/* … */
+							padding: 5px;
+							margin: 50px;
+						}
+					</code></pre>
+				</section>
+
+				<section data-auto-animate>
+					<p>Vu qu'il y a 4 côtés pour un éléments, on peut choisir de définir les 4 marges séparément :</p>
+					<pre data-id="margin-multiple"><code class="css" data-trim contenteditable spellcheck="false" data-line-numbers="3-6">
+						.avatar {
+							/* … */
+							margin-left: 25px;
+							margin-right: 25px;
+							margin-top: 50px;
+							margin-bottom: 50px;
+						}
+					</code></pre>
+				</section>
+
+				<section data-auto-animate>
+					<p>On peut aussi le faire de façon condensée en séparant les différentes marges par des espaces :</p>
+					<pre data-id="margin-multiple"><code class="css" data-trim contenteditable spellcheck="false" data-line-numbers="3-6">
+						.avatar {
+							/* … */
+							margin: 50px 25px 50px 25px;
+						}
+					</code></pre>
+					<p class="fragment"><small><code>margin: &lt;haut&gt; &lt;droite&gt; &lt;bas&gt; &lt;gauche&gt;</code><br>
+						(moyen mémo-technique : « <em>dans le sens des aiguilles d'une montre</em> »)</small></p>
+				</section>
+
+				<section data-auto-animate>
+					<p>On peut même regrouper par axe vertical et horizontal, dans ce cas il y aura 2 valeurs :</p>
+					<pre data-id="margin-multiple"><code class="css" data-trim contenteditable spellcheck="false" data-line-numbers="3-6">
+						.avatar {
+							/* … */
+							margin: 50px 25px;
+						}
+					</code></pre>
+					<p class="fragment"><small><code>margin: &lt;vertical&gt; &lt;horizontal&gt;</code></small></p>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2>Le modèle de boîtes</h2>
+					<p>Dans le modèle standard, lorsqu'on spécifie les dimensions et marges d'un élément de type <em>bloc</em>, elles s'additionnent pour former la taille totale de l'élément</p>
+				</section>
+
+				<section>
+					<img src="images/css/box-model.png" alt="">
+					<pre><code class="css" data-trim contenteditable spellcheck="false">
+						.avatar {
+							width: 150px;
+							height: 150px;
+							border: 5px solid #007090;
+							padding: 5px;
+							margin: 50px;
+						}
+					</code></pre>
+				</section>
+
+				<section>
+					<p>Au besoin, il est possible de modifier ce modèle de boîte via la propriété <code>box-sizing</code></p>
+					<p class="fragment">Pour plus de détails, allez consulter l'article suivant sur le MDN :
+						<a href="https://developer.mozilla.org/fr/docs/Learn/CSS/Building_blocks/The_box_model" target="_blank"><strong>Le modèle de boîte</strong></a>
+					</p>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2>Les arrière-plans</h2>
+				</section>
+
+				<section>
+					<p>La propriété <code>background</code> permet de définir un arrière-plan à un élément</p>
+					<p>Tout comme les bordures ou les marges, elle se décline en sous-propriétés</p>
+				</section>
+
+				<section>
+					<p>L'utilisation la plus simple est la couleur d'arrière-plan, que l'on définit avec la propriété <code>background-color</code> qui prend une valeur de couleur</p>
+					<pre><code class="css" data-trim contenteditable spellcheck="false">
+						section {
+							background-color: orange;
+						}
+					</code></pre>
+				</section>
+
+				<section data-auto-animate>
+					<p>On peut aussi choisir une image d'arrière plan avec la propriété <code>background-image</code> qui prend comme valeur la <em>fonction url()</em></p>
+					<pre><code class="css" data-trim contenteditable spellcheck="false">
+						section {
+							background-image: url('images/fond.png');
+						}
+					</code></pre>
+					<p class="fragment" data-id="bg-url-path"><span class="emoji">⚠</span> Il est important de noter que le chemin vers le fichier image est <strong>relatif à l'emplacement du fichier <code>.css</code></strong></p>
+				</section>
+
+				<section data-auto-animate>
+					<p data-id="bg-url-path"><span class="emoji">⚠</span> Il est important de noter que le chemin vers le fichier image est <strong>relatif à l'emplacement du fichier <code>.css</code></strong></p>
+					<p>Si on considère l'arborescence suivante …</p>
+					<pre><code class="text" data-trim contenteditable spellcheck="false">
+						index.html
+						├── styles/
+						│   └── global.css
+						└── images/
+								└── fond.png
+					</code></pre>
+					<div class="fragment">
+						<p>… il faudra alors préciser le chemin comme ceci :</p>
+						<pre><code class="css" data-trim contenteditable spellcheck="false">
+							background-image: url('../images/fond.png');
+						</code></pre>
+					</div>
+				</section>
+
+				<section>
+					<p>On peut choisir si l'image de fond doit se répéter ou non avec <code>background-repeat</code></p>
+					<pre><code class="css" data-trim contenteditable spellcheck="false" data-line-numbers="3">
+						section {
+							background-image: url('images/fond.png');
+							background-repeat: no-repeat; /* repeat-x | repeat-y */
+						}
+					</code></pre>
+				</section>
+
+				<section>
+					<p>On peut aussi choisir de repositionner l'image de fond grâce à <code>background-position</code></p>
+					<pre><code class="css" data-trim contenteditable spellcheck="false" data-line-numbers="3">
+						section {
+							background-image: url('images/fond.png');
+							background-position: right center;
+						}
+					</code></pre>
+					<p><small>Ici, l'image sera positionnée dans le bloc à droite, et centrée verticalement</small></p>
+				</section>
+
+				<section>
+					<p>La propriété <code>background-attachment</code> définit si la position de l'image d'arrière-plan est fixée dans la zone d'affichage ou si celle-ci défile de façon normale</p>
+					<pre><code class="css" data-trim contenteditable spellcheck="false" data-line-numbers="3">
+						section {
+							background-image: url('images/fond.png');
+							background-attachment: fixed; /* scroll */
+						}
+					</code></pre>
+				</section>
+
+				<section>
+					<p>La propriété <code>background-size</code> définit la taille des images d'arrière-plan pour l'élément. La taille de l'image peut être contrainte, complètement ou partiellement afin de conserver ses proportions.</p>
+					<pre><code class="css" data-trim contenteditable spellcheck="false" data-line-numbers="3">
+						section {
+							background-image: url('images/fond.png');
+							background-size: cover; /* contain */
+						}
+					</code></pre>
+				</section>
+
+				<section>
+					<p>Pour toutes ces propriétés, on peut utiliser la version condensée :</p>
+					<pre><code class="css" data-trim contenteditable spellcheck="false" data-line-numbers="2,3">
+						section {
+							background: orange url('images/fond.png') center/cover
+							            no-repeat fixed;
+						}
+					</code></pre>
+					<p><small>Il est toutefois déconseillé de l'utiliser avec trop de valeurs, afin d'éviter les difficultés de relecture</small></p>
+				</section>
+			</section>
+
+			<section>
+				<p>Toutes ces propriétés peuvent avoir des subtilités et comporter des déclinaisons de syntaxes</p>
+				<p>Il n'est pas possible de tout mémoriser, cependant lorsque vous souhaitez en utiliser une, <strong>vous devrez aller vous documenter</strong></p>
+				<p class="fragment">La méthode consiste à <a href="https://developer.mozilla.org/fr/docs/Web" target="_blank">rechercher sur le site du MDN</a> la propriété en question</p>
+			</section>
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script src="plugin/zoom/zoom.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom]
+		});
+
+		Reveal.configure({
+			pdfSeparateFragments: false,
+		})
+	</script>
+</body>
+
+</html>

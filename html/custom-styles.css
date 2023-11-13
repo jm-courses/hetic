@@ -1,3 +1,12 @@
 .reveal .emoji {
   font-family: apple color emoji, segoe ui emoji, noto color emoji, android emoji, emojisymbols, emojione mozilla, twemoji mozilla, segoe ui symbol;
 }
+
+.reveal a[target="_blank"]::before {
+  content: "🔗";
+  font-size: 0.8em;
+  vertical-align: super;
+  position: relative;
+  top: 0.4em;
+  margin-right: 0.2em;
+}

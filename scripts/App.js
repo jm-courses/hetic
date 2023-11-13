@@ -38,5 +38,24 @@ export default {
           </ol>
         </Col>
       </AccordionItem>
+
+      <AccordionItem title="Jour 2 - Structure HTML et introduction au CSS">
+        <Card
+          title="Balises structurantes HTML"
+          description="La sémantique en HTML et les balises structurantes"
+          img="thumbs/balises-structurantes.png"
+          pdf="pdfs/HTML - Balises structurantes sémantiques.pdf"
+          url="html/balises-structurantes.html"
+        />
+
+        <Card
+          title="CSS Introduction"
+          description="Introduction à la syntaxe CSS, aux sélecteurs et propriétés basiques"
+          img="thumbs/intro-css.png"
+          pdf="pdfs/CSS - Introduction.pdf"
+          url="html/css-intro.html"
+        />
+
+        <Col />
     </div>`,
 };

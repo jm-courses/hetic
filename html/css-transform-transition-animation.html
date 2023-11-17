@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>CSS - Transformations, transitions et animations</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/dracula.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/vs2015.css">
+	<link rel="stylesheet" href="custom-styles.css">
+
+	<style>
+		.reveal .slides .blue2green {
+			background-color: rgba(0, 100, 200, .8);
+			color: #000;
+		}
+		.reveal .slides .blue2green:hover {
+			background-color: rgba(0, 200, 100, .8);
+			color: #000;
+		}
+		.reveal .slides .blue2green.animate {
+			-webkit-transition: background-color 1s;
+			transition: background-color 1s;
+		}
+
+		.reveal .slides .marginleft {
+			-webkit-transition: margin-left 1s;
+			transition: margin-left 1s;
+		}
+		.reveal .slides .marginleft:hover {
+			margin-left: 200px;
+		}
+
+		.reveal .slides .square {
+			width: 100px;
+			height: 100px;
+			background-color: rgba(0, 100, 255, .7);
+			-webkit-animation: rebond 3s linear infinite;
+			animation: rebond 3s linear infinite;
+		}
+
+		@-webkit-keyframes rebond {
+			0% { margin-left: 0; }
+			50% { margin-left: 900px; }
+			100% { margin-left: 0; }
+		}
+		@keyframes rebond {
+			0% { margin-left: 0; }
+			50% { margin-left: 900px; }
+			100% { margin-left: 0; }
+		}
+	</style>
+</head>
+
+<body>
+	<div class="reveal">
+
+		<div class="slides">
+			<section>
+				<h1>
+					CSS<br>
+					<small>Transformations, transitions et animations</small>
+				</h1>
+			</section>
+
+			<section>
+				<h2>Transformations 2D et 3D</h2>
+				<p><a target="_blank" href="https://docs.google.com/presentation/d/10LZt22KD52RqyJuoAX03BOHxp-_xxW_QIG4chojoPnk/edit#slide=id.p">https://docs.google.com/presentation/d/10LZt22KD52RqyJuoAX03BOHxp-_xxW_QIG4chojoPnk/edit#slide=id.p</a></p>
+			</section>
+
+			<section>
+				<h1>Transitions</h1>
+				<div><a href="http://www.w3.org/TR/css3-transitions/">http://www.w3.org/TR/css3-transitions/</a></div>
+			</section>
+
+			<section>
+				<section>
+					<p>Une transition en CSS permet d'interpoler les valeurs de propriétés d'un élément depuis un état 1 vers un état 2</p>
+					<p class="fragment">Pour définir une transition, il faut renseigner les propriétés à animer et la durée de la transition</p><br>
+					<div class="fragment">
+						<p><i>Exemple :</i></p>
+						<a href="#" class="blue2green">Changement de couleur en :hover sans transition</a><br><br>
+						<a href="#" class="blue2green animate">Changement de couleur en :hover AVEC transition</a><br><br>
+					</div>
+					<a href="#" class="fragment marginleft animate">Transition sur le <code>margin-left</code></a>
+				</section>
+				<section>
+					<p>La propriété CSS pour faire des transitions est :<br>
+						<code class="fragment">transition</code></p><br>
+					<div class="fragment">
+						(À préfixer ! <a href="http://shouldiprefix.com/#transitions">http://shouldiprefix.com/#transitions</a>)<br>
+						<code class="align-left">-webkit-transition<br>
+						-moz-transition<br>
+						-ms-transition<br>
+						-o-transition<br>
+						transition</code>
+					</div>
+				</section>
+				<section>
+					<h2>Syntaxe</h2>
+					<p><code>transition: propriété durée fonctionTiming délai</code></p>
+					<div class="fragment">
+						<a href="https://developer.mozilla.org/fr/docs/CSS/transition">https://developer.mozilla.org/fr/docs/CSS/transition</a>
+					</div>
+				</section>
+				<section>
+					<p>Exemple d'utilisation sur un lien :</p>
+					<pre><code class="css" contenteditable data-trim>
+						a {
+							background-color: rgba(0, 100, 200, .8);
+							color: #000;
+							
+							/* Lorsque l'état de &lt;a&gt; changera,
+								effectuer une transition de 1 seconde
+								sur la propriété "background-color" */
+							transition: background-color 1s;
+						}
+
+						a:hover {
+							background-color: rgba(0, 200, 100, .8);
+							color: #000;
+						}
+					</code></pre>
+					<div class="fragment">
+						<small>Résultat :</small><br>
+						<a href="#" class="blue2green animate">Mon lien</a><br><br>
+					</div>
+				</section>
+				<section>
+					<img src="images/transforms/easing.png" alt="">
+				</section>
+				<section>
+					<h2>Try it yourself !</h2>
+
+					<p>Créez plusieurs liens et essayez de les animer de différentes façons en jouant avec les états :hover, :active, ...</p>
+					<p class="fragment">Les possibilités sont infinies !<br>
+						<code>margin, padding, color, width, font-size, box-shadow, border-radius, ...</code></p>
+				</section>
+			</section>
+
+
+
+
+			<section>
+				<h1>Animations</h1>
+				<div><a href="http://www.w3.org/TR/css3-animations/">http://www.w3.org/TR/css3-animations/</a></div>
+			</section>
+
+			<section>
+				<section>
+					<p>Les animations permettent de faire des choses plus poussées que les transitions.</p>
+					<p>Par exemple, on peut faire boucler une animation à l'infini.</p>
+
+					<div class="fragment">
+						<div class="square"></div>
+					</div><br>
+					
+					<p class="fragment">Pour définir une animation, il faut d'abord <br>
+						<strong><ins>définir son comportement</ins></strong> !</p>
+					<p class="fragment">Le comportement régit la façon dont va réagir l'objet animé depuis un état 0% vers un état 100%</p>
+				</section>
+				<section>
+					<p>Un comportement se définit à l'aide du mot-clé <code>@keyframes</code></p>
+					<p class="fragment"><small>(À préfixer par <code>@-webkit-keyframes</code> pour Chrome)</small></p>
+				</section>
+				<section>
+					<pre><code class="contenteditable" data-trim>
+						@keyframes rebond
+						{
+							0%   { margin-left: 0; }
+							50%  { margin-left: 900px; }
+							100% { margin-left: 0; }
+						}
+					</code></pre>
+				</section>
+			</section>
+			<section>
+				<section>
+					<p>Une fois le comportement défini, on peut l'utiliser pour animer n'importe quel élément HTML.</p>
+				</section>
+				<section>
+					<p>La propriété CSS pour utiliser des animations est :<br>
+						<code class="fragment">animation</code></p><br>
+					<div class="fragment">
+						(À préfixer pour Chrome ! <a href="http://shouldiprefix.com/#animation">http://shouldiprefix.com/#animation</a>)<br>
+						<code class="align-left">-webkit-animation<br>
+						animation</code>
+					</div>
+				</section>
+				<section>
+					<h2>Syntaxe</h2>
+					<p><code>animation: nom durée fonctionTiming délai répétitions direction</code></p>
+					<div class="fragment">
+						<a href="https://developer.mozilla.org/fr/docs/CSS/animation">https://developer.mozilla.org/fr/docs/CSS/animation</a>
+					</div>
+				</section>
+				<section>
+					<p>Exemple d'utilisation sur une &lt;div&gt; carrée :</p>
+					<pre><code class="css" contenteditable data-trim>
+						.carre {
+							width: 100px;
+							height: 100px;
+							background-color: rgba(0, 100, 255, .7);
+							
+							-webkit-animation: rebond 3s linear infinite;
+							animation: rebond 3s linear infinite;
+						}
+					</code></pre>
+					<div class="fragment">
+						<small>Résultat :</small><br>
+						<div class="fragment">
+							<div class="square"></div>
+						</div><br>
+					</div>
+				</section>
+				<section>
+					<h2>Try it yourself !</h2>
+
+					<p>Créez plusieurs éléments, puis définissez un comportement pour animer vos éléments de différentes façons.</p>
+					<p class="fragment">Les possibilités sont infinies !<br>
+						<code>margin, padding, color, width, font-size, box-shadow, border-radius, ...</code></p>
+				</section>
+			</section>
+
+			<section>
+				<h1>THE END</h1>
+			</section>
+
+		</div>
+
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script src="plugin/zoom/zoom.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom]
+		});
+
+		Reveal.configure({
+			pdfSeparateFragments: false,
+		})
+	</script>
+</body>
+
+</html>

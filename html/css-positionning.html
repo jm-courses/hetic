@@ -51,128 +51,151 @@
 			</section>
 
 			<section>
+				<section id="flottant">
+					<h1>Le flottant</h1>
+				</section>
 				<section>
-					<h2>Le flottant</h2>
-					<div>Le flottant permet de sortir un élément du flux de la page et de le positionner à gauche (ou à droite) de
-						son bloc parent.</div>
-					<pre><code class="html" data-trim>
-						<article>
-							<img src="illustration.jpg" alt="Illustration d'article">
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							Natus, incidunt commodi dicta veritatis repellat fugiat quisquam
-							iste! [...]</p>
-						</article>
-					</code></pre>
-
-					<pre><code class="css" data-trim>
-						article > img {
-							float: right;
-							margin-left: 0.5rem;
-						}
-					</code></pre>
+					<p>Un flottant indique qu'un élément doit être retiré du flux normal et doit être placé sur le côté droit ou gauche <strong>de son conteneur</strong></p>
+					<div class="fragment r-hstack items-start">
+						<div class="r-vstack flex-1">
+							<pre><code class="html" data-trim>
+								<article>
+									<img src="logo.jpg" alt="">
+									<p>Lorem ipsum dolor ...</p>
+								</article>
+							</code></pre>
+							<pre><code class="css" data-trim>
+								article img {
+									float: right;
+								}
+							</code></pre>
+						</div>
+						<div class="flex-1">
+							<img src="images/positionning/floatright.png">
+						</div>
+					</div>
+					<p class="fragment"><small>Lorsqu'un élément est positionné en <q>flottant</q>, il sort du flux de la page,
+						mais le contenu autour continue de tenir compte de sa présence.</small></p>
 				</section>
 
-				<section>
-					<h2>Rendu</h2>
-					<figure>
-						<img src="images/positionning/floatright.png">
-					</figure>
-					<div class="fragment">
-						Lorsqu'un élément est positionné en <q>flottant</q>, il sort du flux de la page,
-						mais le contenu autour continue de tenir compte de sa présence.
+				<section data-auto-animate>
+					<h3>Souci de débordement</h3>
+					<p>Parfois, on souhaiterait pouvoir stopper l'écoulement après un élément précis</p>
+
+					<div class="r-hstack items-start">
+						<div class="flex-1">
+							<pre data-id="float-clear-snippet"><code class="html" data-trim>
+								<article>
+									<img src="logo.jpg" alt="">
+									<p>Lorem ipsum dolor ...</p>
+								</article>
+
+								<h2>Subtitle #2</h2>
+								<p>Lorem ipsum dolor ...</p>
+							</code></pre>
+						</div>
+						<figure class="flex-1">
+							<img data-id="float-clear-img" src="images/positionning/floatrightnoclear.png">
+						</figure>
+					</div>
+				</section>
+
+				<section data-auto-animate>
+					<h3>Souci de débordement</h3>
+					<p>La règle <code>clear</code> permet de stopper un écoulement</p>
+
+					<div class="r-hstack items-start">
+						<div class="r-vstack flex-1">
+							<pre data-id="float-clear-snippet"><code class="html" data-trim>
+								<article>
+									<img src="logo.jpg" alt="">
+									<p>Lorem ipsum dolor ...</p>
+								</article>
+
+								<h2 class="clearfix">Subtitle</h2>
+								<p>Lorem ipsum dolor ...</p>
+							</code></pre>
+							<pre><code class="css" data-trim>
+								.clearfix {
+									clear: both; ✅
+								}
+							</code></pre>
+						</div>
+						<figure class="flex-1">
+							<img data-id="float-clear-img" src="images/positionning/floatrightclear.png">
+						</figure>
 					</div>
 				</section>
 
 				<section>
-					<h2>Problème</h2>
-
-					<pre><code class="html" data-trim>
-						<article>
-							<img src="illustration.jpg" alt="Illustration d'article">
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							Natus, incidunt commodi dicta veritatis repellat fugiat quisquam
-							iste! [...]</p>
-						</article>
-
-						<h2>Subtitle #2</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.&lt;/p>
-					</code></pre>
-					<figure class="fragment">
-						<img src="images/positionning/floatrightnoclear.png">
-					</figure>
-				</section>
-
-				<section>
-					<h2>Solution</h2>
-
-					<pre><code class="css" data-trim>
-						h2 {
-							clear: right; /* Accepte également 'left' ou 'both' */
-						}
-					</code></pre>
-					<figure class="fragment">
-						<img src="images/positionning/floatrightclear.png">
-					</figure>
-				</section>
-
-				<section>
-					<h2>Conclusion : float</h2>
-					<p>Le flottant n'est pas vraiment adapté pour la mise en page,<br>
-						cependant il reste utilisable pour certains cas précis.</p>
-					<p>L'important est de bien comprendre son fonctionnement.</p>
+					<h2>Conclusion</h2>
+					<p>Un flottant permet de disposer un élément à gauche ou droite dans le but que le contenu qui le suit s'écoule autour.</p>
+					<p class="fragment">On ne doit pas s'en servir pour de la mise en page !<br>
+					(d'autres modules sont là pour ça : <em>Flexbox</em>, <em>Grid</em>)</p>
 				</section>
 			</section>
 
 			<section>
-				<section>
-					<h2>Inline-Block</h2>
-					<div>Le mode de rendu 'inline-block' est un mix des propriétés du 'block' et du 'inline'</div>
-					<div class="fragment">L'avantage est qu'il permet de placer<br>
-						des éléments côte-à-côte (inline),<br>
-						mais en ayant la possibilité de les dimensionner (block)</div>
+				<section id="inline-block">
+					<h1>Inline-Block</h1>
 				</section>
 
 				<section>
-					<pre><code class="html" data-trim>
-						<div class="column">
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit ...
+					<p>Le mode de rendu <em>inline-block</em> est un mix des propriétés du <em>block</em> et du <em>inline</em>.</p>
+					<p class="fragment">Il permet de placer des éléments côte-à-côte (inline), mais en ayant la possibilité de les dimensionner (block)</p>
+				</section>
+
+				<section>
+					<div class="r-hstack items-start">
+						<div class="flex-1 r-vstack justify-start">
+							<pre><code class="html" data-trim>
+								<div class="column">
+									Lorem ipsum dolor ...
+								</div>
+								<div class="column">
+									Lorem ipsum dolor ...
+								</div>
+								<div class="column">
+									Lorem ipsum dolor ...
+								</div>
+							</code></pre>
+							<pre><code class="css" data-trim>
+								.column {
+									display: inline-block;
+									width: 300px;
+								}
+							</code></pre>
 						</div>
-						<div class="column">
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit ...
-						</div>
-						<div class="column">
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit ...
-						</div>
-					</code></pre>
-					<pre><code class="css" data-trim>
+						<figure class="flex-1">
+							<img src="images/positionning/inlineblock.png">
+						</figure>
+					</div>
+					<p class="fragment"><small>Par défaut, les éléments s'affichent sur la <em>baseline</em></small></p>
+				</section>
+
+				<section data-auto-animate>
+					<h3>Alignement vertical</h3>
+					<p>La valeur <code>inline-block</code> de la propriété <em>display</em> permet l'utilisation d'une autre propriété pour <strong>centrer verticalement les éléments</strong></p>
+					<pre class="fragment"><code class="css" data-trim data-line-numbers="4">
 						.column {
 							display: inline-block;
 							width: 300px;
-						}
-					</code></pre>
-					<figure>
-						<img src="images/positionning/inlineblock.png">
-					</figure>
-					<div class="fragment"><small>Par défaut, les éléments s'affichent sur la <em>baseline</em></small></div>
-				</section>
-
-				<section>
-					<div>Le fait d'avoir utilisé 'inline-block' permet d'appliquer une autre propriété normalement reservée aux
-						cellules de tableau.</div>
-					<pre class="fragment"><code class="css" data-trim>
-						.column {
-							vertical-align: top;
-							/* Accepte également 'middle', 'bottom' et 'baseline' (par défaut) */
+							vertical-align: top; /* "middle", "bottom" ou "baseline" */
 						}
 					</code></pre>
 					<figure class="fragment">
-						<img src="images/positionning/inlineblocktop.png">
+						<img src="images/positionning/inlineblocktop.png" height="220">
 					</figure>
+				</section>
+
+				<section data-auto-animate>
+					<h3>Alignement vertical</h3>
+					<p><code>vertical-align</code> ne fonctionne qu'avec <code>display:&nbsp;inline-block</code></p>
+					<p><small>(Sans cela il n'a aucun effet)</small></p>
 				</section>
 			</section>
 
-			<section>
-				<h2>Positionnement relatif, absolu et fixe</h2>
+			<!-- <section>
 				<div class="fragment">
 					Il est possible de positionner des éléments plus précisemment<br>
 					grâce à la propriété <code>position</code>
@@ -185,17 +208,36 @@
 					<code>left</code>
 				</div>
 				<div class="fragment">Ces propriétés peuvent prendre des valeurs en pixels, pourcents, em, rem, ...</div>
-			</section>
+			</section> -->
 
 			<section>
+				<section id="relative">
+					<h1>Relatif</h1>
+				</section>
+
 				<section>
-					<h2>Positionnement 'relatif'</h2>
-					<div>Permet de positionner un élément par rapport à son emplacement d'origine</div>
+					<p>Un positionnement relatif permet de déplacer un élément par rapport à sa position initiale</p>
+					<p class="fragment">On utilise la propriété suivante :<br>
+					<code>position: relative;</code></p>
+				</section>
+
+				<section>
+					<p>La propriété <code>position</code> s'accompagne de 4 autres propriétés pour aider au positionnement :</p>
+					<ul>
+						<li><code>top</code></li>
+						<li><code>right</code></li>
+						<li><code>bottom</code></li>
+						<li><code>left</code></li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Exemple</h3>
 					<pre><code class="html" data-trim>
 						<p>Pas de doute, <strong>ce texte est important</strong>
 							si on veut comprendre correctement le positionnement.</p>
 					</code></pre>
-					<pre><code class="css" data-trim>
+					<pre><code class="css" data-trim data-line-numbers="4-6">
 						strong {
 							background-color: red;
 							color: yellow;
@@ -204,91 +246,171 @@
 							top: 10px;
 						}
 					</code></pre>
-					<figure class="fragment">
+					<figure>
 						<img src="images/positionning/positionrelative.jpg" alt="" title="Image tirée d'OpenClassRooms">
 					</figure>
-					<div class="fragment"><small>On l'utilise généralement pour faire des ajustements.</small></div>
+					<p class="fragment"><small>On l'utilise généralement pour faire de légers ajustements.</small></p>
+				</section>
+			</section>
+
+			<section>
+				<section id="absolute">
+					<h1>Absolu</h1>
 				</section>
 
 				<section>
-					<h2>Positionnement 'absolu'</h2>
-					<div>Permet de positionner un élément n'importe où dans la page</div>
-					<pre><code class="css" data-trim>
-						div {
-							background-color: yellow;
-							border: thick solid red;
-							position: absolute;
-						}
-					</code></pre>
-					<figure class="fragment">
-						<img src="images/positionning/positionabsolute.png" alt="" height="400" title="Image tirée d'OpenClassRooms">
-					</figure>
+					<p>Un élément positionné en absolue est <strong>retiré du flux de la page et peut être placé n'importe où</strong></p>
+					<p class="fragment">Il est très utile par exemple pour créer des <em>popups</em> qui se placent par dessus les autres éléments de la page</p>
 				</section>
 
 				<section>
-					<div>Autre exemple</div>
-					<pre class="ib vm"><code class="html" data-trim>
-						<nav>
-						<ul>
-							<li>Home</li>
-							<li>Folio</li>
-							<li>References</li>
-							<li>Contact</li>
-						</ul>
-						</nav>
-
-						<h2>Subtitle #2</h2>
-						<p>Lorem ipsum dolor sit amet, ...</p>
-						<p>Lorem ipsum dolor sit amet, ...</p>
-					</code></pre>
-					<pre class="ib vm"><code class="css" data-trim>
-						nav {
-							position: absolute;
-							bottom: 0;
-							right: 0;
-							border: 1px solid black;
-						}
-					</code></pre>
-					<figure class="fragment">
-						<img src="images/positionning/positionabsolutebottomright.png" alt="">
-					</figure>
-				</section>
-
-				<section>
-					<h2>Positionnement 'fixe'</h2>
-					<div>Exactement la même chose que le positionnement absolu,<br>
-						<span class="fragment">hormis le fait que le menu reste fixe à l'écran lors du scroll.</span>
+					<div class="r-hstack">
+						<div class="flex-1">
+							<pre><code class="html" data-trim contenteditable spellcheck="false">
+								<div class="popup">
+									<h1>Oh wait!</h1>
+									<p>Je suis une popup ...</p>
+								</div>
+							</code></pre>
+							<pre><code class="css" data-trim contenteditable spellcheck="false" data-line-numbers="5-7">
+								.popup {
+									background-color: silver;
+									padding: 8px;
+									border: 1px solid gray;
+									position: absolute;
+									top: 100px;
+									left: 10%;
+									width: 80%;
+								}
+							</code></pre>
+						</div>
+						<div class="flex-1">
+							<img src="images/positionning/absolute.png" alt="">
+						</div>
 					</div>
-					<pre><code class="css" data-trim>
-						nav {
-							position: fixed;
-							bottom: 0;
-							right: 0;
-							border: 1px solid black;
-						}
-					</code></pre>
-					<figure class="fragment">
-						<img src="images/positionning/positionfixed.png" alt="">
-					</figure>
+				</section>
+
+				<section>
+					<p>Une nouvelle fois, les propriétés <code>top, left, bottom, right</code> agissent sur la position de l'élément</p>
+					<img src="images/positionning/positionabsolute.png" alt="" height="400" title="Image tirée d'OpenClassRooms">
+				</section>
+
+				<section>
+					<p><span class="emoji">💡</span></p>
+					<p>Par défaut, un élément positionné en absolu se positionne <strong>par rapport à son plus proche parent positionné en absolu ou relatif</strong></p>
+					<p class="fragment">Sinon, il se positionne par rapport au <code>&lt;body&gt;</code></p>
+				</section>
+
+				<section>
+					<h3>Exemple</h3>
+					<div class="r-hstack">
+						<div class="flex-1">
+							<pre><code class="html" data-trim contenteditable spellcheck="false" data-line-numbers="4">
+								<div class="popup">
+									<h1>Hi there!</h1>
+									<p>Contenu de la popup ...</p>
+									<a class="close">❌</a>
+								</div>
+							</code></pre>
+							<pre><code class="css" data-trim contenteditable spellcheck="false" data-line-numbers="7-9">
+								.popup {
+									position: absolute;
+									…
+								}
+
+								.popup .close {
+									position: absolute;
+									top: 0;
+									right: 0;
+								}
+							</code></pre>
+						</div>
+						<div class="flex-1">
+							<img src="images/positionning/absolute-close.png" alt="">
+						</div>
+					</div>
+				</section>
+			</section>
+
+			<section>
+				<section id="fixed">
+					<h1>Fixe</h1>
+				</section>
+
+				<section>
+					<p>Un élément positionné en fixe fonctionne de la même manière qu'un élément absolu hormis le fait que le menu <strong>reste fixe à l'écran lors du scroll</strong></p>
+					<div class="r-hstack">
+						<div class="flex-1">
+							<pre><code class="css" data-trim>
+								.popup {
+									position: fixed;
+									…
+								}
+							</code></pre>
+						</div>
+						<div class="flex-1">
+							<img src="images/positionning/fixed.png" alt="">
+						</div>
+					</div>
+				</section>
+			</section>
+
+			<section>
+				<section id="sticky">
+					<h1>Sticky</h1>
+				</section>
+
+				<section>
+					<p>Ce style de positionnement est un mélange de <em>relative</em> et <em>fixed</em></p>
+					<p>L'élément est considéré comme positionné de façon relative, jusqu'à ce qu'un seuil soit franchi <strong>lors du scroll</strong></p>
+					<p>À partir de ce seuil, l'élément est positionné de façon fixe</p>
+				</section>
+
+				<section>
+					<p>Ce mode de positionnement peut être très pratique pour proposer un menu horizontal toujours visible à l'écran</p>
+				</section>
+
+				<section>
+					<div class="r-hstack">
+						<div class="flex-1">
+							<pre><code class="html" data-trim contenteditable spellcheck="false">
+								<nav>
+									<a href="#">Accueil</a>
+									<a href="#">À propos</a>
+									<a href="#">Contact</a>
+								</nav>
+
+								<main>
+									…
+								</main>
+							</code></pre>
+							<pre><code class="css" data-trim contenteditable spellcheck="false">
+								nav {
+									position: sticky;
+									top: 0;
+								}
+							</code></pre>
+						</div>
+						<div class="flex-1">
+							<img src="images/positionning/sticky.gif" alt="">
+						</div>
+					</div>
 				</section>
 			</section>
 
 			<section>
 				<section>
-					<h2>Ordre d'affichage : le z-index</h2>
-					<p>La propriété <code>z-index</code> s'applique uniquement aux éléments positionnés en
-						<code>relative</code>, <code>absolute</code> et <code>fixed</code></p>
-					<p class="fragment">Il permet de préciser un ordre d'affichage des éléments, <br>un peu comme des calques
-						Photoshop.</p>
+					<h1>z-index</h1>
+					<p>Les positionnements que nous avons vus (<em>relatif</em>, <em>absolu</em>, <em>fixe</em> et <em>sticky</em>) permettent d'utiliser la propriété <code>z-index</code> pour gérer <strong>l'ordre d'affichage</strong></p>
 				</section>
 
 				<section>
-					<pre class="ib vt"><code class="css">
+					<pre><code class="css" data-trim contenteditable spellcheck="false">
 						#bloc-orange { z-index: 1; }
 						#bloc-blue { z-index: 2; }
 						#bloc-red { z-index: 3; }
 					</code></pre>
-					<figure class="ib vt">
+					<figure>
 						<img src="images/positionning/zindex.png" alt="" title="Image tirée d'OpenClassRooms">
 					</figure>
 					<div>La propriété prend une valeur numérique qui sert de référence pour l'ordre d'affichage.</div>
@@ -296,244 +418,10 @@
 			</section>
 
 			<section>
-				<section>
-					<h2>Retour sur le positionnement absolu</h2>
-					<blockquote cite="http://fr.openclassrooms.com/informatique/cours/apprenez-a-creer-votre-site-web-avec-html5-et-css3/les-positionnements-absolu-fixe-et-relatif">
-						Une petite précision technique qui a son importance : le positionnement absolu ne se fait pas forcément
-						toujours par rapport au coin en haut à gauche de la fenêtre ! Si vous positionnez en absolu un bloc A qui se
-						trouve dans un autre bloc B, lui-même positionné en absolu (ou fixe ou relatif), alors votre bloc A se
-						positionnera par rapport au coin supérieur gauche du bloc B. Faites le test, vous verrez !</blockquote>
-					<small><a href="http://fr.openclassrooms.com/informatique/cours/apprenez-a-creer-votre-site-web-avec-html5-et-css3/les-positionnements-absolu-fixe-et-relatif">Citation
-							du cours HTML5/CSS3 d'OpenClassRooms</a></small>
-				</section>
-
-				<section>
-					<pre class="ib vt"><code class="html" data-trim>
-						<div class="bloc-B">
-						Je suis le bloc B
-						<div class="bloc-A">
-							Je suis le bloc A
-						</div>
-						</div>
-					</code></pre>
-					<pre class="ib vt"><code class="css" data-trim>
-						.bloc-B {
-							background-color: red;
-							position: absolute;
-							top: 20px;
-							left: 20px;
-							width: 200px;
-							height: 200px;
-						}
-
-						.bloc-A {
-						background-color: orange;
-						position: absolute;
-						top: 20px;
-						left: 20px;
-						width: 170px;
-						height: 170px;
-						}
-					</code></pre>
-					<figure>
-						<img src="images/positionning/positiondependencies.png" alt="">
-					</figure>
-				</section>
-			</section>
-
-			<section id="flexbox" data-background="rgb(242, 139, 114)">
-				<section>
-					<h2>Flexbox module</h2>
-					<p>Nouveau contexte d'affichage et d'alignement de blocs</p>
-					<div><img src="images/positionning/flex.jpg"></div>
-				</section>
-
-				<section>
-					<p><b>float:</b> left | right</p>
-					<p><b>display:</b> block | inline | inline-block | table</p>
-					<p><b>position:</b> relative | absolute | fixed</p>
-				</section>
-
-				<section>
-					<h2><b>display:</b> flex</h2>
-
-					<aside class="notes">
-						Flexbox est un nouveau mode de positionnement, introduit via la propriété display, permettant de créer un contexte général d'affichage sur un parent et d'en faire hériter ses enfants :
-					</aside>
-				</section>
-
-				<section>
-					<h2>Avantages</h2>
-					<ul>
-						<li>Distribution en <b>ligne</b> ou en <b>colonne</b></li>
-						<li>Alignements <b>horizontaux</b> et <b>verticaux</b></li>
-						<li>Gestion des espacements<br>
-							<small>(beat that, table!)</small></li>
-						<li>Ordre d'affichage des éléments<br>
-							<small>(indépendamment de leur position dans le DOM)</small></li>
-					</ul>
-				</section>
-				
-				<section>
-					<h3 class="code">justify-content</h3><br>
-					<h3 class="code">align-items</h3>
-					<div><img src="images/positionning/flexbox-axes.png" alt=""></div>
-				</section>
-
-				<section>
-					<h3 class="code">justify-content</h3>
-					<div><img src="images/positionning/04.PNG" alt=""></div>
-				</section>
-
-				<section>
-					<h3 class="code">align-items</h3>
-					<div><img src="images/positionning/05.PNG" alt=""></div>
-				</section>
-
-				<section>
-					<h3 class="code">flex</h3><h3>(sur les enfants)</h3>
-					<div><img src="images/positionning/06.PNG" alt=""></div>
-				</section>
-
-				<section>
-					<h3 class="code">order</h3><h3>(sur les enfants)</h3>
-					<div><img src="images/positionning/07.PNG" alt=""></div>
-				</section>
-
-				<section>
-					<h3>En savoir plus sur le module flexbox</h3>
-					<h4><a target="_blank" href="http://www.alsacreations.com/tuto/lire/1493-css3-flexbox-layout-module.html">CSS3 Flexbox Layout module</a></h4>
-				</section>
-
-				<section>
-					<h2>Can I Use it ?</h2>
-					<p class="ciu_embed" data-feature="flexbox" data-periods="future_1,current,past_1,past_2">
-						<a href="http://caniuse.com/#feat=flexbox">Can I Use Flexbox?</a>
-					</p>
-					<!-- <figure><a href="http://caniuse.com/#feat=flexbox" target="_blank"><img src="images/positionning/caniuse-flex.png" alt="Can I Use Flexbox"></figure></a> -->
-				</section>
-
-				<section>
-					<h2>Flexbox Froggy!</h2>
-					<p>Jeu intéractif pour apprendre les bases de Flexbox</p>
-					<a href="http://flexboxfroggy.com/#fr" target="_blank">
-						<img src="images/positionning/flexboxfroggy.png" alt="Flexbox Froggy">
-					</a>
-				</section>
-
-				<!--<section>
-					<pre class="big"><code class="css" data-trim data-noescape="true" spellcheck="false" contenteditable>
-parent {
-display: flex;
-}
-					</code></pre>
-					<div><img src="images/positionning/display-flex.png" class="noborder"></div>
-					<p>Affichage sur une ligne (par défaut)</p>
-				</section>
-
-				<section>
-					<pre class="big"><code class="css" data-trim data-noescape="true" spellcheck="false" contenteditable>
-parent {
-display: flex;
-flex-direction: column;
-}
-					</code></pre>
-					<div><img src="images/positionning/flex-direction-column.png" class="noborder"></div>
-					<p>Affichage sur une colonne grâce à <span class="code">flex-direction</span></p>
-				</section>
-
-				<section>
-					<pre class="big"><code class="css" data-trim data-noescape="true" spellcheck="false" contenteditable>
-parent {
-display: flex;
-flex-direction: column-reverse;
-}
-					</code></pre>
-					<div><img src="images/positionning/flex-direction-column-reverse.png" class="noborder"></div>
-					<p>Affichage sur une colonne en ordre inverse</p>
-				</section>
-
-				<section>
-					<pre class="big"><code class="css" data-trim data-noescape="true" spellcheck="false" contenteditable>
-parent {
-display: flex;
-flex-wrap: nowrap;
-}
-					</code></pre>
-					<div><img src="images/positionning/flex-nowrap.png" class="noborder"></div>
-					<p>Les éléments sont toujours sur une ligne et peuvent déborder</p>
-				</section>
-
-				<section>
-					<pre class="big"><code class="css" data-trim data-noescape="true" spellcheck="false" contenteditable>
-parent {
-display: flex;
-flex-wrap: wrap;
-}
-					</code></pre>
-					<div><img src="images/positionning/flex-wrap.png" class="noborder"></div>
-					<p>Les éléments passent à la ligne s'il débordent</p>
-				</section>
-
-				<section>
-					<div><img src="images/positionning/flex-space-around.png" class="noborder"></div>
-					<p>Affichage avec des espaces autour</p>
-				</section>
-
-				<section>
-					<div><img src="images/positionning/flex-space-between.png" class="noborder"></div>
-					<p>Affichage avec des espaces entre</p>
-				</section>-->
-			</section>
-
-			<section id="grid" data-background="rgb(41, 207, 244)">
-				<section>
-					<h2>Grid module</h2>
-					<p>Diviser l'espace en zones sous forme de lignes et colonnes, comme pour un tableau</p>
-					<figure>
-						<img src="images/positionning/grid.jpg">
-					</figure>
-				</section>
-
-				<section>
-					<h3 class="code">grid-columns</h3><br>
-					<h3 class="code">grid-rows</h3>
-					<div><img src="images/positionning/grid2.png" alt=""></div>
-				</section>
-
-				<section>
-					<h3 class="code">grid-column-align</h3><br>
-					<h3 class="code">grid-row-align</h3>
-					<div><img src="images/positionning/grid06.jpg" alt=""></div>
-				</section>
-
-				<section>
-					<h2>Can I Use it ?</h2>
-					<p class="ciu_embed" data-feature="css-grid" data-periods="future_1,current,past_1,past_2">
-						<a href="http://caniuse.com/#feat=css-grid">Can I Use CSS-Grid?</a>
-					</p>
-					<!-- <figure><a href="http://caniuse.com/#feat=css-grid" target="_blank"><img src="images/positionning/caniuse-grid.png" alt="Can I Use Grid"></figure></a> -->
-				</section>
-
-				<section>
-					<h3>En savoir plus sur le module grid</h3>
-					<h4><a target="_blank" href="http://www.alsacreations.com/article/lire/1388-css3-grid-layout.html">CSS3 Grid Layout</a></h4>
-					<br>
-					<h3>... et aussi :</h3>
-					<h4><a target="_blank" href="http://matparisot.fr/css-grid-un-controle-total-sur-votre-mise-en-page/">CSS Grid un contrôle total sur votre mise en page</a></h4>
-				</section>
-
-				<section>
-					<h2>Grid Garden!</h2>
-					<p>Jeu intéractif pour apprendre les bases de Grid</p>
-					<a href="http://cssgridgarden.com/#fr" target="_blank">
-						<img src="images/positionning/gridgarden.png" alt="Grid Garden">
-					</a>
-				</section>
-			</section>
-
-			<section>
-				<h1>The end</h1>
+				<h2>Learn Layout</h2>
+				<img src="images/positionning/learnlayout.png" alt="">
+				<p>Apprendre les positionnements en CSS</p>
+				<a href="https://fr.learnlayout.com/" target="_blank">fr.learnlayout.com</a>
 			</section>
 
 		</div>

@@ -10,3 +10,7 @@
   top: 0.4em;
   margin-right: 0.2em;
 }
+
+.reveal .flex-1 {
+  flex: 1;
+}

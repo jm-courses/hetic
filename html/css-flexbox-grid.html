@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>CSS - Flexbox et Grid</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/dracula.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/vs2015.css">
+	<link rel="stylesheet" href="custom-styles.css">
+
+	<style>
+		.slides section .ib {
+			display: inline-block;
+			width: auto;
+			overflow: hidden;
+		}
+		.slides section .ib.vt { vertical-align: top; }
+		.slides section .ib.vm { vertical-align: middle; }
+		.slides section .ib.vb { vertical-align: bottom; }
+
+		.slides section .ib > code { overflow: hidden; }
+	</style>
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>
+					Flexbox <small>et</small> Grid
+				</h1>
+			</section>
+
+			<section id="flexbox" data-background="rgb(242, 139, 114)">
+				<section>
+					<h2>Flexbox module</h2>
+					<p>Nouveau contexte d'affichage et d'alignement de blocs</p>
+					<div><img src="images/positionning/flex.jpg"></div>
+				</section>
+
+				<section>
+					<p><b>float:</b> left | right</p>
+					<p><b>display:</b> block | inline | inline-block | table</p>
+					<p><b>position:</b> relative | absolute | fixed</p>
+				</section>
+
+				<section>
+					<h2><b>display:</b> flex</h2>
+
+					<aside class="notes">
+						Flexbox est un nouveau mode de positionnement, introduit via la propriété display, permettant de créer un contexte général d'affichage sur un parent et d'en faire hériter ses enfants :
+					</aside>
+				</section>
+
+				<section>
+					<h2>Avantages</h2>
+					<ul>
+						<li>Distribution en <b>ligne</b> ou en <b>colonne</b></li>
+						<li>Alignements <b>horizontaux</b> et <b>verticaux</b></li>
+						<li>Gestion des espacements<br>
+							<small>(beat that, table!)</small></li>
+						<li>Ordre d'affichage des éléments<br>
+							<small>(indépendamment de leur position dans le DOM)</small></li>
+					</ul>
+				</section>
+				
+				<section>
+					<h3 class="code">justify-content</h3><br>
+					<h3 class="code">align-items</h3>
+					<div><img src="images/positionning/flexbox-axes.png" alt=""></div>
+				</section>
+
+				<section>
+					<h3 class="code">justify-content</h3>
+					<div><img src="images/positionning/04.PNG" alt=""></div>
+				</section>
+
+				<section>
+					<h3 class="code">align-items</h3>
+					<div><img src="images/positionning/05.PNG" alt=""></div>
+				</section>
+
+				<section>
+					<h3 class="code">flex</h3><h3>(sur les enfants)</h3>
+					<div><img src="images/positionning/06.PNG" alt=""></div>
+				</section>
+
+				<section>
+					<h3 class="code">order</h3><h3>(sur les enfants)</h3>
+					<div><img src="images/positionning/07.PNG" alt=""></div>
+				</section>
+
+				<section>
+					<h3>En savoir plus sur le module flexbox</h3>
+					<h4><a target="_blank" href="http://www.alsacreations.com/tuto/lire/1493-css3-flexbox-layout-module.html">CSS3 Flexbox Layout module</a></h4>
+				</section>
+
+				<section>
+					<h2>Can I Use it ?</h2>
+					<p class="ciu_embed" data-feature="flexbox" data-periods="future_1,current,past_1,past_2">
+						<a href="http://caniuse.com/#feat=flexbox">Can I Use Flexbox?</a>
+					</p>
+					<!-- <figure><a href="http://caniuse.com/#feat=flexbox" target="_blank"><img src="images/positionning/caniuse-flex.png" alt="Can I Use Flexbox"></figure></a> -->
+				</section>
+
+				<section>
+					<h2>Flexbox Froggy!</h2>
+					<p>Jeu intéractif pour apprendre les bases de Flexbox</p>
+					<a href="http://flexboxfroggy.com/#fr" target="_blank">
+						<img src="images/positionning/flexboxfroggy.png" alt="Flexbox Froggy">
+					</a>
+				</section>
+
+				<!--<section>
+					<pre class="big"><code class="css" data-trim data-noescape="true" spellcheck="false" contenteditable>
+parent {
+display: flex;
+}
+					</code></pre>
+					<div><img src="images/positionning/display-flex.png" class="noborder"></div>
+					<p>Affichage sur une ligne (par défaut)</p>
+				</section>
+
+				<section>
+					<pre class="big"><code class="css" data-trim data-noescape="true" spellcheck="false" contenteditable>
+parent {
+display: flex;
+flex-direction: column;
+}
+					</code></pre>
+					<div><img src="images/positionning/flex-direction-column.png" class="noborder"></div>
+					<p>Affichage sur une colonne grâce à <span class="code">flex-direction</span></p>
+				</section>
+
+				<section>
+					<pre class="big"><code class="css" data-trim data-noescape="true" spellcheck="false" contenteditable>
+parent {
+display: flex;
+flex-direction: column-reverse;
+}
+					</code></pre>
+					<div><img src="images/positionning/flex-direction-column-reverse.png" class="noborder"></div>
+					<p>Affichage sur une colonne en ordre inverse</p>
+				</section>
+
+				<section>
+					<pre class="big"><code class="css" data-trim data-noescape="true" spellcheck="false" contenteditable>
+parent {
+display: flex;
+flex-wrap: nowrap;
+}
+					</code></pre>
+					<div><img src="images/positionning/flex-nowrap.png" class="noborder"></div>
+					<p>Les éléments sont toujours sur une ligne et peuvent déborder</p>
+				</section>
+
+				<section>
+					<pre class="big"><code class="css" data-trim data-noescape="true" spellcheck="false" contenteditable>
+parent {
+display: flex;
+flex-wrap: wrap;
+}
+					</code></pre>
+					<div><img src="images/positionning/flex-wrap.png" class="noborder"></div>
+					<p>Les éléments passent à la ligne s'il débordent</p>
+				</section>
+
+				<section>
+					<div><img src="images/positionning/flex-space-around.png" class="noborder"></div>
+					<p>Affichage avec des espaces autour</p>
+				</section>
+
+				<section>
+					<div><img src="images/positionning/flex-space-between.png" class="noborder"></div>
+					<p>Affichage avec des espaces entre</p>
+				</section>-->
+			</section>
+
+			<section id="grid" data-background="rgb(41, 207, 244)">
+				<section>
+					<h2>Grid module</h2>
+					<p>Diviser l'espace en zones sous forme de lignes et colonnes, comme pour un tableau</p>
+					<figure>
+						<img src="images/positionning/grid.jpg">
+					</figure>
+				</section>
+
+				<section>
+					<h3 class="code">grid-columns</h3><br>
+					<h3 class="code">grid-rows</h3>
+					<div><img src="images/positionning/grid2.png" alt=""></div>
+				</section>
+
+				<section>
+					<h3 class="code">grid-column-align</h3><br>
+					<h3 class="code">grid-row-align</h3>
+					<div><img src="images/positionning/grid06.jpg" alt=""></div>
+				</section>
+
+				<section>
+					<h2>Can I Use it ?</h2>
+					<p class="ciu_embed" data-feature="css-grid" data-periods="future_1,current,past_1,past_2">
+						<a href="http://caniuse.com/#feat=css-grid">Can I Use CSS-Grid?</a>
+					</p>
+					<!-- <figure><a href="http://caniuse.com/#feat=css-grid" target="_blank"><img src="images/positionning/caniuse-grid.png" alt="Can I Use Grid"></figure></a> -->
+				</section>
+
+				<section>
+					<h3>En savoir plus sur le module grid</h3>
+					<h4><a target="_blank" href="http://www.alsacreations.com/article/lire/1388-css3-grid-layout.html">CSS3 Grid Layout</a></h4>
+					<br>
+					<h3>... et aussi :</h3>
+					<h4><a target="_blank" href="http://matparisot.fr/css-grid-un-controle-total-sur-votre-mise-en-page/">CSS Grid un contrôle total sur votre mise en page</a></h4>
+				</section>
+
+				<section>
+					<h2>Grid Garden!</h2>
+					<p>Jeu intéractif pour apprendre les bases de Grid</p>
+					<a href="http://cssgridgarden.com/#fr" target="_blank">
+						<img src="images/positionning/gridgarden.png" alt="Grid Garden">
+					</a>
+				</section>
+			</section>
+
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script src="plugin/zoom/zoom.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom]
+		});
+
+		Reveal.configure({
+			pdfSeparateFragments: false,
+		})
+	</script>
+</body>
+
+</html>

@@ -30,6 +30,24 @@
 		.slides .float-right { float: right; margin-left: .5rem; }
 
 		.slides label { cursor: pointer; }
+
+		.slides .result {
+			background-color: rgba(255,255,255,0.1);
+			border: thin dashed silver;
+			padding: 20px;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			font-size: 0.8em;
+		}
+		.slides .result :is(
+			input,
+			textarea,
+			button
+		) {
+			font-size: 24px;
+		}
 	</style>
 </head>
 
@@ -38,173 +56,154 @@
 			<div class="slides">
 
 				<section>
-					<h1><br>Formulaires</h1>
+					<h1>Formulaires</h1>
 				</section>
 
 				<section>
-					<p>Les formulaires permettent à vos visiteurs de saisir des informations, appuyer sur des boutons, ... etc.</p>
-					<p class="fragment">Cependant le traitement des données saisies devra se faire dans un autre langage.</p>
-					<p class="fragment"><br>En attendant, l'affichage de ces éléments de formulaire se fait bel et bien en HTML !</p>
+					<p>Les formulaires permettent aux visiteurs de saisir des informations, appuyer sur des boutons, …</p>
+					<p class="fragment">L'affichage des zones de saisie se fait grâce à des balises HTML</p>
+					<p class="fragment"><span class="emoji">⚠️</span> Le traitement des données se fera dans un autre langage (PHP, JavaScript, Python, C#, …)</p>
 				</section>
 
 				<section>
 					<section>
-						<h2>Insérer un formulaire</h2>
-						<p>L'ajout d'un formulaire se fait avec la balise &nbsp; <code>&lt;form&gt;</code>.</p>
+						<h2>Déclarer un formulaire</h2>
+						<p>On utilise la balise <code>&lt;form&gt;</code> pour déclarer un ensemble de champs de saisie</p>
 
-						<pre><code class="html" data-trim>
-&lt;h2>Veuillez vous identifier :&lt;/h2&gt;
+						<pre><code class="html" data-trim contenteditable spellcheck="false">
+							<h2>Veuillez vous identifier :</h2>
 
-&lt;form&gt;&lt;!-- Début du formulaire --&gt;
-    
-    &lt;!-- Contenu de mon formulaire ici --&gt;
-
-&lt;/form&gt;&lt;!-- Fin du formulaire --&gt;
+							<form>
+								<!-- CONTENU DU FORMULAIRE -->
+							</form>
 						</code></pre>
 					</section>
 
-					<section>
-						<p>&Agrave; cette balise &nbsp; <code>&lt;form&gt;</code> &nbsp; s'ajoute 2 attributs :</p>
+					<section data-auto-animate>
+						<p>La balise <code>&lt;form&gt;</code> s'accompagne généralement de 2 attributs <code>method</code> et <code>action</code></p>
 
-						<ol>
-							<li class="fragment"><mark>method</mark><i>, qui aura pour valeur :</i>
-								<ul>
-									<li>get</li>
-									<li>post</li>
-								</ul>
-							</li>
-							<li class="fragment"><mark>action</mark><i>, qui aura pour valeur :</i>
-								<ul>
-									<li>l'URL cible qui recevra les données</li>
-								</ul>
-							</li>
-						</ol>
+						<pre data-id="form-method"><code class="html" data-trim contenteditable spellcheck="false">
+							<form method="post" action="traitement.php">
+								…
+							</form>
+						</code></pre>
+
+						<p class="fragment">
+							<code>method</code> peut prendre les valeur <code>get</code> (par défaut) ou <code>post</code> et désigne le verbe HTTP que le navigateur devra employer lors de la soumission du formulaire
+						</p>
+
+						<p class="fragment">
+							<code>action</code> désigne l'URL cible qui recevra les données (ex: PHP, Node.js, …)
+						</p>
+					</section>
+
+					<section data-auto-animate>
+						<p>Pour un formulaire d'inscription, de connexion ou de contact, on utilise assez souvent <code>"post"</code></p>
+
+						<pre data-id="form-method"><code class="html" data-trim contenteditable spellcheck="false">
+							<form method="post" action="traitement.php">
+								…
+							</form>
+						</code></pre>
 
 						<div class="fragment">
-							<p><small class="ib vb">Exemple :</small></p>
-							<pre><code class="html" data-trim>
-&lt;form method="post" action="cible.php"&gt;
-    ...
-&lt;/form&gt;
+							<p>Pour un formulaire de recherche, on préfère <code>"get"</code></p>
+
+							<pre><code class="html" data-trim contenteditable spellcheck="false">
+								<form action="search.php">
+									…
+								</form>
 							</code></pre>
+							<p><small>(par défaut, donc pas besoin de le préciser)</small></p>
 						</div>
 					</section>
 				</section>
 
-				<section>
-					<h1>Elements simples</h1>
+				<section data-auto-animate>
+					<h1>Balises</h1>
 				</section>
 
 				<section>
 					<section>
 						<h2>Zones de texte</h2>
 
-						<pre><code class="html" data-trim>
-&lt;input type="text" name="prenom"&gt;
+						<pre><code class="html" data-trim contenteditable spellcheck="false">
+							<input type="text" name="prenom">
 						</code></pre>
 
-						<div>
-							Résultat :<br>
-							<input type="text" name="prenom"><br>
-							<br>
+						<div class="result">
+							<input type="text" name="prenom">
 						</div>
 
-						<p class="fragment">L'attribut &nbsp; <code>name</code> &nbsp; permet d'indiquer le nom du champs pour le traitement côté serveur.</p>
+						<p>L'attribut <code>name</code> nomme explicitement un champs pour le traitement</p>
 					</section>
 
-					<section>
-						<h2>Bonnes pratiques : le label</h2>
-						<p>Le label permet d'indiquer un texte donnant une information sur le champs.</p>
-						<pre><code class="html" data-trim>
-&lt;form method="post" action="cible.php"&gt;
-    
-    &lt;label for="prenom"&gt;Indiquez votre prénom :&lt;/label&gt;
-    &lt;input type="text" name="prenom" id="prenom"&gt;
+ 					<section>
+						<h2>Label</h2>
+						<p>Utiliser un label est une <strong>bonne pratique</strong> pour associer le champs à un intitulé</p>
+						<pre><code class="html" data-trim contenteditable spellcheck="false" data-line-numbers="3-4">
+							<form method="post" action="traitement.php">
 
-&lt;/form&gt;
+								<label for="prenom">Indiquez votre prénom :</label>
+								<input type="text" name="prenom" id="prenom">
+
+							</form>
 						</code></pre>
-						<div>
-							Résultat :<br>
-							<label for="prenom"><small class="ib vm">Indiquez votre prénom :</small></label>
-    						<input type="text" name="prenom" id="prenom">
-							<br>
-							<br>
+
+						<div class="result">
+							<label for="prenom">Indiquez votre prénom :</label>
+    					<input type="text" name="prenom" id="prenom">
 						</div>
 					</section>
 
 					<section>
 						<h2>Attributs supplémentaires</h2>
 
-						<ul>
-							<li class="fragment roll-in"><code>value</code></li>
-							<li class="fragment roll-in"><code>size</code></li>
-							<li class="fragment roll-in"><code>maxlength</code></li>
-							<li class="fragment roll-in"><code>placeholder</code></li>
-						</ul>
+						<p><code>value</code>, <code>size</code>, <code>maxlength</code>, <code>placeholder</code></p>
 
-						<pre class="fragment"><code class="html" data-trim>
-&lt;form method="post" action="cible.php"&gt;
-    
-  &lt;label for="nom"&gt;Indiquez votre nom :&lt;/label&gt;
-  &lt;input type="text" name="nom" id="nom"
-         maxlength="15" size="50" placeholder="Exemple : DUPONT"&gt;
+						<pre><code class="html" data-trim contenteditable spellcheck="false" data-line-numbers="4-5">
+							<form method="post" action="traitement.php">
 
-&lt;/form&gt;
+								<label for="nom">Indiquez votre nom :</label>
+								&lt;input type="text" name="nom" id="nom"
+								  maxlength="15" size="50" placeholder="Exemple : DUPONT"&gt;
+
+							</form>
 						</code></pre>
 
-						<div class="fragment">
-							Résultat :<br>
-							<label for="nom"><small class="ib vm">Indiquez votre nom :</small></label>
-    						<input type="text" name="nom" id="nom" maxlength="15" size="50" placeholder="Exemple : DUPONT">
-							<br>
-							<br>
+						<div class="result">
+							<label for="nom">Indiquez votre nom :</label>
+    					<input type="text" name="nom" id="nom" maxlength="15" size="50" placeholder="Exemple : DUPONT">
 						</div>
 					</section>
 
 					<section>
 						<h2>Mot de passe</h2>
 
-						<figure class="ib vt">
-							<img src="images/forms/password.jpg" height="200">
-						</figure>
+						<p>Le type <code>password</code> indique une zone de saisie pour les mots de passe</p>
 
-						<div class="ib vt" style="width: 500px">
-							<pre><code class="html" data-trim>
-&lt;input type="password" name="mdp"&gt;
-							</code></pre>
+						<pre><code class="html" data-trim contenteditable spellcheck="false">
+							<input type="password">
+						</code></pre>
 
-							<div>
-								Résultat :<br>
-								<input type="password" name="mdp"><br>
-								<br>
-							</div>
+						<div class="result">
+							<input type="password">
 						</div>
 					</section>
 
 					<section>
-						<h2>Multi-ligne</h2>
+						<h2>Zone de saisie</h2>
 
-						<pre><code class="html" data-trim>
-&lt;label for="html-cool"&gt;
-  Pourquoi HTML5, c'est cool ?!
-&lt;/label&gt;
-&lt;br&gt;
+						<p>Une zone de saisie multi-ligne est définie par la balise <code>&lt;textarea&gt;</code></p>
+						<p><span class="emoji">⚠️</span> Ce n'est pas une balise orpheline !</p>
 
-&lt;textarea name="html-cool" id="html-cool" rows="10" cols="50"&gt;
-  Parce qu'on peut faire plein de choses en peu de lignes de code !
-&lt;/textarea&gt;
+						<pre><code class="html" data-trim contenteditable spellcheck="false">
+							<textarea rows="5" cols="30"></textarea>
 						</code></pre>
+						<p><small>(Les attributs <code>rows</code> et <code>cols</code> définissent les colonnes et lignes)</small></p>
 
-						<div>
-							Résultat :<br>
-							<label for="html-cool">
-							  <small class="ib vm">Pourquoi HTML5, c'est cool ?!</small>
-							</label>
-							<br>
-
-							<textarea name="html-cool" id="html-cool" rows="10" cols="50">
-							  Parce qu'on peut faire plein de choses en peu de lignes de code !
-							</textarea>
+						<div class="result">
+							<textarea rows="5" cols="30"></textarea>
 						</div>
 					</section>
 				</section>
@@ -215,30 +214,28 @@
 
 						<p>On peut également trouver d'autres types d'éléments que des zones de texte :</p>
 						<ul>
-							<li class="fragment roll-in">cases à cocher : <input type="checkbox"></li>
-							<li class="fragment roll-in">boutons radios : <input type="radio"></li>
-							<li class="fragment roll-in">listes déroulantes : <select><option>Salade</option><option>Tomates</option><option>Oignons</option></select></li>
+							<li class="fragment">cases à cocher : <input type="checkbox"></li>
+							<li class="fragment">boutons radios : <input type="radio"></li>
+							<li class="fragment">listes déroulantes : <select><option>Salade</option><option>Tomates</option><option>Oignons</option></select></li>
 						</ul>
 					</section>
 
 					<section>
 						<h2>Les cases à cocher</h2>
 
-						<pre><code class="html" data-trim>
-&lt;form method="post" action="cible.php"&gt;
-    
-  &lt;input type="checkbox" name="newsletter" id="newsletter"&gt;
-  &lt;label for="newsletter"&gt;Recevoir la newsletter ?&lt;/label&gt;
-  &lt;br&gt;
+						<pre><code class="html" data-trim contenteditable spellcheck="false" data-line-numbers="3,6">
+							<form method="post" action="traitement.php">
 
-  &lt;input type="checkbox" name="magazine" id="magazine" checked&gt;
-  &lt;label for="magazine"&gt;S'abonner à "tartanpion magazine" ?&lt;/label&gt;
+								<input type="checkbox" name="newsletter" id="newsletter">
+								<label for="newsletter">Recevoir la newsletter ?</label>
 
-&lt;/form&gt;
+								&lt;input type="checkbox" name="magazine" id="magazine" checked&gt;
+								<label for="magazine">S'abonner à "tartanpion magazine" ?</label>
+
+							</form>
 						</code></pre>
 
-						<div>
-							Résultat :<br>
+						<div class="result">
 							<div style="text-align: left; width: 350px; margin: 0 auto;">
 								<input type="checkbox" name="newsletter" id="newsletter">
 								<label for="newsletter"><small class="ib vm">Recevoir la newsletter ?</small></label><!--
@@ -252,63 +249,51 @@
 
 					<section>
 						<h2>Les boutons radios</h2>
-						
-						<p class="ib vm"><small>Elles permettent de faire <strong>un seul choix</strong> parmi une liste de possibilités.<br>
-							Elles doivent être organisées en groupes.</small></p>
 
-						<pre><code class="html" data-trim>
-&lt;form method="post" action="cible.php"&gt;
-    
- &lt;p&gt;Soit 0, 1, 1, 2, 3, 5, 8, 13, 21, N. Que vaut 'n' ?&lt;/p&gt;
+						<p>Permettent de faire <strong>un seul choix</strong> parmi une liste de possibilités. Elles sont regroupées par <code>name</code>.</p>
 
- &lt;input type="radio" name="suite" id="r1" value="28"&gt;
- &lt;label for="r1"&gt;28&lt;/label&gt;
+						<pre><code class="html" data-trim contenteditable spellcheck="false" data-line-numbers="3-4,6-7,9-10">
+								<p>Type de régime ?</p>
 
- &lt;input type="radio" name="suite" id="r2" value="34"&gt;
- &lt;label for="r2"&gt;34&lt;/label&gt;
+								<input type="radio" name="regime" id="r1" value="vegetarien">
+								<label for="r1">Végétarien</label>
 
- &lt;input type="radio" name="suite" id="r3" value="36"&gt;
- &lt;label for="r3"&gt;36&lt;/label&gt;
+								<input type="radio" name="regime" id="r2" value="flexitarien">
+								<label for="r2">Flexitarien</label>
 
-&lt;/form&gt;
+								<input type="radio" name="regime" id="r3" value="carnivore">
+								<label for="r3">Carnivore</label>
 						</code></pre>
 
-						<div>
-							Résultat :<br>
-							
-							<p><small class="ib vm">Soit 0, 1, 1, 2, 3, 5, 8, 13, 21, N. Que vaut 'n' ?</small></p>
+						<div class="result">
+							<div>
+								<input type="radio" name="regime" id="r1" value="vegetarien">
+								<label for="r1">Végétarien</label>
 
-							<input type="radio" name="suite" id="r1" value="28">
-							<label for="r1"><small class="ib vm">28</small></label>
+								<input type="radio" name="regime" id="r2" value="flexitarien">
+								<label for="r2">Flexitarien</label>
 
-							<input type="radio" name="suite" id="r2" value="34">
-							<label for="r2"><small class="ib vm">34</small></label>
-
-							<input type="radio" name="suite" id="r3" value="36">
-							<label for="r3"><small class="ib vm">36</small></label>
+								<input type="radio" name="regime" id="r3" value="carnivore">
+								<label for="r3">Carnivore</label>
+							</div>
 						</div>
 					</section>
 
-					<section>
-						<h2>Les listes déroulantes (1/2)</h2>
-
-						<pre><code class="html" data-trim>
-&lt;form method="post" action="cible.php"&gt;
-    
-  &lt;label for="dest"&gt;Choisissez votre destination :&lt;/label&gt;
-  &lt;select name="dest" id="dest"&gt;
-    &lt;option value="FRA"&gt;France&lt;/option&gt;
-    &lt;option value="ITA"&gt;Italie&lt;/option&gt;
-    &lt;option value="ESP"&gt;Espagne&lt;/option&gt;
-    &lt;option value="ALL"&gt;Allemagne&lt;/option&gt;
-  &lt;/select&gt;
-
-&lt;/form&gt;
+					<section data-auto-animate>
+						<h2>Les listes déroulantes</h2>
+						<p>Affiche des boîtes de dialogue sélectionnables</p>
+						<pre data-id="select-field"><code class="html" data-trim contenteditable spellcheck="false">
+							<label for="dest">Choisissez votre destination :</label>
+							<select name="dest" id="dest">
+								<option value="FRA">France</option>
+								<option value="ITA">Italie</option>
+								<option value="ESP">Espagne</option>
+								<option value="ALL">Allemagne</option>
+							</select>
 						</code></pre>
 
-						<div>
-							Résultat :<br>
-							<label for="dest-1"><small class="ib vm">Choisissez votre destination :</small></label>
+						<div class="result" data-id="select-field-result">
+							<label for="dest-1">Choisissez votre destination :</label>
 							<select name="dest-1" id="dest-1">
 								<option value="FRA">France</option>
 								<option value="ITA">Italie</option>
@@ -318,34 +303,26 @@
 						</div>
 					</section>
 
-					<section>
-						<h2>Les listes déroulantes (2/2)</h2>
+					<section data-auto-animate>
+						<p>On peut créer des groupes au sein de la liste avec <code>&lt;optgroup&gt;</code></p>
 
-						<p>On peut également créer des groupes au sein de la liste</p>
-
-						<pre><code class="html" data-trim>
-&lt;form method="post" action="cible.php"&gt;
-    
-  &lt;label for="dest"&gt;Choisissez votre destination :&lt;/label&gt;
-  &lt;select name="dest" id="dest"&gt;
-    &lt;optgroup label="Europe"&gt;
-      &lt;option value="FRA"&gt;France&lt;/option&gt;
-      &lt;option value="ITA"&gt;Italie&lt;/option&gt;
-      &lt;option value="ESP"&gt;Espagne&lt;/option&gt;
-      &lt;option value="ALL"&gt;Allemagne&lt;/option&gt;
-    &lt;/optgroup&gt;
-    &lt;optgroup label="USA"&gt;
-      &lt;option value="FLO"&gt;Floride&lt;/option&gt;
-      &lt;option value="CAL"&gt;Californie&lt;/option&gt;
-    &lt;/optgroup&gt;
-  &lt;/select&gt;
-
-&lt;/form&gt;
+						<pre data-id="select-field"><code class="html" data-trim contenteditable spellcheck="false">
+							<label for="dest">Choisissez votre destination :</label>
+							<select name="dest" id="dest">
+								<optgroup label="Europe">
+									<option value="FRA">France</option>
+									<option value="ITA">Italie</option>
+									<option value="ESP">Espagne</option>
+									<option value="ALL">Allemagne</option>
+								</optgroup>
+								<optgroup label="USA">
+									<option value="FLO">Floride</option>
+									<option value="CAL">Californie</option>
+								</optgroup>
+							</select>
 						</code></pre>
 
-						<div>
-							Résultat :<br>
-
+						<div class="result" data-id="select-field-result">
 							<label for="dest-2"><small class="ib vm">Choisissez votre destination :</small></label>
 							<select name="dest-2" id="dest-2">
 								<optgroup label="Europe">
@@ -362,45 +339,75 @@
 						</div>
 					</section>
 				</section>
-				
+
 				<section>
 					<h1>Elements de validation</h1>
 				</section>
 
 				<section>
 					<section>
-						<div>Il existe des éléments de type "bouton" pour donner un côté intéractif à un formulaire.</div>
+						<p>Il existe des éléments de type <em>bouton</em> pour donner un côté intéractif à un formulaire.</p>
 					</section>
 
-					<section>
+					<section data-auto-animate>
 						<h2>Boutons de validation</h2>
 
-						<pre><code class="html" data-trim>
-&lt;form method="post" action="cible.php"&gt;
-  &lt;label for="nom"&gt;Entrez votre nom&lt;/label&gt;
-  &lt;input type="text" name="nom" id="nom"&gt;
+						<pre data-id="button-type"><code class="html" data-trim contenteditable spellcheck="false" data-line-numbers="8-9">
+							<form method="post" action="traitement.php">
+								<label for="nom">Entrez votre nom</label>
+								<input type="text" name="nom" id="nom">
 
-  &lt;label for="prenom"&gt;Entrez votre prénom&lt;/label&gt;
-  &lt;input type="text" name="prenom" id="prenom"&gt;
+								<label for="prenom">Entrez votre prénom</label>
+								<input type="text" name="prenom" id="prenom">
 
-  &lt;input type="submit" name="valid" value="Envoyer le formulaire"&gt;
-  &lt;input type="reset" name="reinit" value="Réinitialiser le formulaire"&gt;
-&lt;/form&gt;
+								<input type="submit" value="Envoyer le formulaire">
+								<input type="reset" value="Réinitialiser le formulaire">
+							</form>
 						</code></pre>
 
-						<div>
-							Résultat :<br>
+						<div class="result" data-id="button-type-result">
+							<form method="post" action="traitement.php">
+							  <label for="nom2">Entrez votre nom</label>
+							  <input type="text" name="nom" id="nom2">
+								<br>
 
-							<form method="post" action="cible.php">
-							  <label for="nom"><small class="ib vm">Entrez votre nom</small></label>
-							  <input type="text" name="nom" id="nom">
-
-							  <label for="prenom"><small class="ib vm">Entrez votre prénom</small></label>
-							  <input type="text" name="prenom" id="prenom">
+							  <label for="prenom2">Entrez votre prénom</label>
+							  <input type="text" name="prenom" id="prenom2">
 							  <br>
 
-							  <input type="submit" name="valid" value="Envoyer le formulaire">
-							  <input type="reset" name="reinit" value="Réinitialiser le formulaire">
+							  <input type="submit" value="Envoyer le formulaire">
+							  <input type="reset" value="Réinitialiser le formulaire">
+							</form>
+						</div>
+					</section>
+
+					<section data-auto-animate>
+						<p>On peut aussi utiliser la balise <code>&lt;button&gt;</code> avec l'attribut <code>type</code></p>
+						<pre data-id="button-type"><code class="html" data-trim contenteditable spellcheck="false" data-line-numbers="8-9">
+							<form method="post" action="traitement.php">
+								<label for="nom">Entrez votre nom</label>
+								<input type="text" name="nom" id="nom">
+
+								<label for="prenom">Entrez votre prénom</label>
+								<input type="text" name="prenom" id="prenom">
+
+								<button type="submit">Envoyer le formulaire</button>
+								<button type="reset">Réinitialiser le formulaire</button>
+							</form>
+						</code></pre>
+
+						<div class="result" data-id="button-type-result">
+							<form method="post" action="traitement.php">
+							  <label for="nom2">Entrez votre nom</label>
+							  <input type="text" name="nom" id="nom2">
+								<br>
+
+							  <label for="prenom2">Entrez votre prénom</label>
+							  <input type="text" name="prenom" id="prenom2">
+							  <br>
+
+							  <input type="submit" value="Envoyer le formulaire">
+							  <input type="reset" value="Réinitialiser le formulaire">
 							</form>
 						</div>
 					</section>
@@ -414,24 +421,20 @@
 					</section>
 
 					<section>
-						<pre><code class="html" data-trim>
-&lt;input type="button" id="mon-btn" name="mon-btn" value="Mon bouton"&gt;
+						<p>Les balises <code>&lt;input type="button"&gt;</code> et <code>&lt;button&gt;</code> déclarent un bouton générique n'ayant aucune action par défaut</p>
+						<pre><code class="html" data-trim contenteditable spellcheck="false">
+							<input type="button" value="Mon bouton">
 
-&lt;button id="btn-customisable" name="btn-customisable"&gt;
-  &lt;!-- On peut mettre ici n'importe quoi --&gt;
-  &lt;h4&gt;Cliquez !&lt;/h4&gt;
-  &lt;img src="btn.png" alt="Sign In"&gt;
-&lt;/button&gt;
+							<button>
+								<h4>Cliquez !</h4>
+								<img src="btn.png" alt="Sign In">
+							</button>
 						</code></pre>
 
-						<div>
-							Résultat :<br>
-							<br>
-
-							<input class="ib vm" type="button" id="mon-btn" name="mon-btn" value="Mon bouton">
+						<div class="result">
+							<input class="ib vm" type="button" id="mon-btn" name="mon-btn" value="Mon bouton"><br>
 
 							<button class="ib vm" id="btn-customisable" name="btn-customisable">
-							  <!-- On peut mettre ici n'importe quoi -->
 							  <h4 style="color: black; position: relative; top: 20px;">Cliquez !</h4>
 							  <img src="images/forms/btn.png" alt="Sign In">
 							</button>
@@ -439,55 +442,54 @@
 				</section>
 
 				<section>
-					<h1>Elements HTML5</h1>
-				</section>
-
-				<section>
-						<h2>Article</h2>
-						<img src="https://cdn.alsacreations.net/css/img/logo-alsacreations.svg" alt="Alsacréations" width="200" style="vertical-align: middle; border:0; background-color: white; padding: 0.2em;">
-						<a href="https://www.alsacreations.com/tuto/lire/1372-formulaires-html5-nouveaux-types-champs-input.html">Formulaires HTML5 : nouveaux types de champs</a>
-
-						<pre><code class="html" data-trim>
-&lt;input type="tel"&gt;
-&lt;input type="url"&gt;
-&lt;input type="email"&gt;
-&lt;input type="search"&gt;
-&lt;input type="datetime"&gt;
-&lt;input type="number"&gt;
-&lt;input type="range"&gt;
-&lt;input type="color"&gt;
-...
-						</code></pre>
-					<!-- <section>
-						<h2>Type Email</h2>
-
-						<pre><code class="html" data-trim>
-&lt;label for="mail"&gt;Entrez votre adresse email :&lt;/label&gt;
-&lt;input type="email" id="mail" name="mail"&gt;
-						</code></pre>
-
-						<p>Utilisé pour les terminaux mobiles</p>
+					<section>
+						<h1>Types input modernes</h1>
 					</section>
 
 					<section>
-						<h2>Les attributs supplémentaires</h2>
+						<h2>Récapitulatif</h2>
+						<p>Les balises suivantes désignent des champs de formulaire :<br>
+							<code>&lt;input&gt; &lt;textarea&gt; &lt;select&gt; &lt;button&gt;</code></p>
+						<p class="fragment">
+							La balise &lt;input&gt; dispose de nombreux types :<br>
+							<code>text, password, radio, checkbox, button, reset</code>
+						</p>
+					</section>
 
-						<p>L'arrivée de HTML5 permet d'utiliser de nouveaux attributs pour
-							réguler et contrôler de manière simple les informations que l'utilisateur
-							peut saisir.</p>
-						<br>
+					<section>
+							<p>Depuis HTML5, de nombreux autres types sont arrivés, notamment pour répondre à la nature diverse des informations collectées sur le Web</p>
+							<pre><code class="html" data-trim contenteditable spellcheck="false">
+								<input type="email">
+								<input type="number">
+								<input type="url">
+								<input type="tel">
+								<input type="search">
+								<input type="datetime">
+								<input type="range">
+								<input type="color">
+								…
+							</code></pre>
+							<a target="_blank" href="https://www.alsacreations.com/tuto/lire/1372-formulaires-html5-nouveaux-types-champs-input.html">Formulaires HTML5 : nouveaux types de champs</a>
+					</section>
 
-						<p class="fragment grow">Cela n'empêche qu'il faudra <strong>toujours</strong> contrôler les données côté serveur ! (avec PHP ou un autre langage)</p>
-					</section> -->
+					<section>
+						<h2>Champs requis</h2>
+						<p>L'attribut <code>required</code> permet de forcer l'utilisateur à remplir un certain champs avant de pouvoir valider le formulaire.</p>
+						<pre><code class="html" data-trim contenteditable spellcheck="false" data-line-numbers="2,5">
+							<label for="email">Email</label>
+							&lt;input type="email" id="email" required&gt;
 
-					<!-- <section>
-						<h2>Attribut "required"</h2>
-						<p>L'attribut required permet de forcer l'utilisateur à remplir un certain champs avant de pouvoir valider le formulaire.</p>
-					</section> -->
+							<label for="password">Mot de passe</label>
+							&lt;input type="password" id="password" required&gt;
+						</code></pre>
+						<p><span class="emoji">⚠️</span> Il doit être considéré comme une option d'ergonomie et non une sécurité !</p>
+					</section>
 				</section>
 
 				<section>
-					<h1>The end</h1>
+					<h2>Documentation détaillées</h2>
+					<p><a href="https://developer.mozilla.org/fr/docs/Learn/Forms" target="_blank" rel="noopener noreferrer">Formulaires web</a></p>
+					<p><a href="https://developer.mozilla.org/fr/docs/Learn/Forms/Your_first_form" target="_blank" rel="noopener noreferrer">Mon premier formulaire HTML</a></p>
 				</section>
 
 			</div>

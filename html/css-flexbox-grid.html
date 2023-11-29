@@ -38,21 +38,22 @@
 				</h1>
 			</section>
 
-			<section id="flexbox" data-background="rgb(242, 139, 114)">
+			<section id="flexbox">
 				<section>
-					<h2>Flexbox module</h2>
-					<p>Nouveau contexte d'affichage et d'alignement de blocs</p>
-					<div><img src="images/positionning/flex.jpg"></div>
+					<h2>Flexbox Module</h2>
+					<p>Contexte d'affichage et d'alignement de blocs</p>
+					<p>Proposé en 2009 et recommandé à partir de 2012</p>
+					<div><img src="images/positionning/flex.jpg" height="300"></div>
 				</section>
 
 				<section>
 					<p><b>float:</b> left | right</p>
 					<p><b>display:</b> block | inline | inline-block | table</p>
-					<p><b>position:</b> relative | absolute | fixed</p>
+					<p><b>position:</b> relative | absolute | fixed | sticky</p>
 				</section>
 
 				<section>
-					<h2><b>display:</b> flex</h2>
+					<h2><strong>display:</strong> <em>flex</em></h2>
 
 					<aside class="notes">
 						Flexbox est un nouveau mode de positionnement, introduit via la propriété display, permettant de créer un contexte général d'affichage sur un parent et d'en faire hériter ses enfants :
@@ -64,50 +65,113 @@
 					<ul>
 						<li>Distribution en <b>ligne</b> ou en <b>colonne</b></li>
 						<li>Alignements <b>horizontaux</b> et <b>verticaux</b></li>
-						<li>Gestion des espacements<br>
-							<small>(beat that, table!)</small></li>
+						<li>Gestion des espacements</li>
 						<li>Ordre d'affichage des éléments<br>
 							<small>(indépendamment de leur position dans le DOM)</small></li>
 					</ul>
 				</section>
-				
+
 				<section>
-					<h3 class="code">justify-content</h3><br>
-					<h3 class="code">align-items</h3>
-					<div><img src="images/positionning/flexbox-axes.png" alt=""></div>
+					<p>On définit la règle <code>display: flex;</code> sur <strong>l'élément parent</strong></p>
+					<p class="fragment">Les éléments enfants se positionneront alors comme des <em>flex items</em></p>
+					<div class="r-hstack items-start">
+						<div class="flex-1">
+							<pre><code class="html" data-trim contenteditable spellcheck="false">
+								<div class="parent">
+									<div>flex item 1</div>
+									<div>flex item 2</div>
+									<div>flex item 3</div>
+								</div>
+							</code></pre>
+						</div>
+						<div class="flex-1">
+							<pre><code class="css" data-trim contenteditable spellcheck="false">
+								.parent {
+									display: flex;
+								}
+							</code></pre>
+						</div>
+					</div>
+				</section>
+
+				<section data-auto-animate>
+					<p>Un élément <em>flex</em> peut positionner ses enfants directs sur 2 axes :</p>
+					<ul style="display: block;">
+						<li>l'axe principal</li>
+						<li>l'axe secondaire</li>
+					</ul>
+					<img data-id="flexbox-axes" src="images/positionning/flexbox-axes.png" alt="">
+				</section>
+
+				<section data-auto-animate>
+					<img data-id="flexbox-axes" src="images/positionning/flexbox-axes.png" alt="">
+					<p>Par défaut, l'axe principal est <em>horizontal</em>, et l'axe secondaire est <em>vertical</em></p>
+					<p data-id="can-be-changed" class="fragment">Mais cela peut être changé !</p>
+				</section>
+
+				<section data-auto-animate>
+					<p data-id="can-be-changed">Mais cela peut être changé !</p>
+					<pre><code class="css" data-trim contenteditable spellcheck="false">
+						.parent {
+							flex-direction: column;
+						}
+					</code></pre>
+					<p class="fragment">L'axe principal est maintenant <em>l'axe vertical</em>, et le secondaire est <em>l'axe horizontal</em></p>
 				</section>
 
 				<section>
 					<h3 class="code">justify-content</h3>
-					<div><img src="images/positionning/04.PNG" alt=""></div>
+					<p>Cette propriété définit la disposition des éléments de l'axe <strong>principal</strong></p>
+					<div class="r-hstack items-center">
+						<pre class="flex-1"><code class="css" data-trim contenteditable spellcheck="false" data-line-numbers="3">
+							.parent {
+								display: flex;
+								justify-content: space-between;
+							}
+						</code></pre>
+						<div class="flex-1">
+							<img src="images/positionning/04.PNG" alt="">
+						</div>
+					</div>
 				</section>
 
 				<section>
 					<h3 class="code">align-items</h3>
-					<div><img src="images/positionning/05.PNG" alt=""></div>
+					<p>Cette propriété définit la disposition des éléments de l'axe <strong>secondaire</strong></p>
+					<div class="r-hstack items-center">
+						<pre class="flex-1"><code class="css" data-trim contenteditable spellcheck="false" data-line-numbers="4">
+							.parent {
+								display: flex;
+								justify-content: flex-start;
+								align-items: center;
+							}
+						</code></pre>
+						<div class="flex-1">
+							<img src="images/positionning/05.PNG" alt="">
+						</div>
+					</div>
 				</section>
 
 				<section>
-					<h3 class="code">flex</h3><h3>(sur les enfants)</h3>
+					<h3 class="code"><code>flex: &lt;n&gt;</code></h3>
+					<p>Se place sur les enfants (flex items)</p>
+					<pre><code class="css" data-trim contenteditable spellcheck="false">
+						.parent > * {
+							flex: 1;
+						}
+					</code></pre>
 					<div><img src="images/positionning/06.PNG" alt=""></div>
 				</section>
 
 				<section>
-					<h3 class="code">order</h3><h3>(sur les enfants)</h3>
+					<h3 class="code"><code>order: &lt;n&gt;</code></h3>
+					<p>Définit l'ordre d'affichage</p>
 					<div><img src="images/positionning/07.PNG" alt=""></div>
 				</section>
 
 				<section>
 					<h3>En savoir plus sur le module flexbox</h3>
 					<h4><a target="_blank" href="http://www.alsacreations.com/tuto/lire/1493-css3-flexbox-layout-module.html">CSS3 Flexbox Layout module</a></h4>
-				</section>
-
-				<section>
-					<h2>Can I Use it ?</h2>
-					<p class="ciu_embed" data-feature="flexbox" data-periods="future_1,current,past_1,past_2">
-						<a href="http://caniuse.com/#feat=flexbox">Can I Use Flexbox?</a>
-					</p>
-					<!-- <figure><a href="http://caniuse.com/#feat=flexbox" target="_blank"><img src="images/positionning/caniuse-flex.png" alt="Can I Use Flexbox"></figure></a> -->
 				</section>
 
 				<section>
@@ -183,7 +247,7 @@ flex-wrap: wrap;
 				</section>-->
 			</section>
 
-			<section id="grid" data-background="rgb(41, 207, 244)">
+			<section id="grid">
 				<section>
 					<h2>Grid module</h2>
 					<p>Diviser l'espace en zones sous forme de lignes et colonnes, comme pour un tableau</p>

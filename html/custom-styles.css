@@ -14,3 +14,25 @@
 .reveal .flex-1 {
   flex: 1;
 }
+
+.reveal .w-100 {
+  width: 100%;
+}
+
+.slides .result {
+  background-color: rgba(255,255,255,0.1);
+  border: thin dashed silver;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8em;
+}
+.slides .result :is(
+  input,
+  textarea,
+  button
+) {
+  font-size: 24px;
+}

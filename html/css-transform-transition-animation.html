@@ -16,45 +16,61 @@
 	<link rel="stylesheet" href="custom-styles.css">
 
 	<style>
-		.reveal .slides .blue2green {
+		/**************
+		 * Transitions
+		 **************/
+		
+		.reveal .transition { transition-property: all; transition-duration: 1s; }
+
+		/* Durations */
+		.reveal .transition.sec-2 { transition-duration: 2s; }
+		.reveal .transition.sec-3 { transition-duration: 3s; }
+
+		/* Timing functions */
+		.reveal .transition.ease { transition-timing-function: ease; }
+		.reveal .transition.ease-in { transition-timing-function: ease-in; }
+		.reveal .transition.ease-out { transition-timing-function: ease-out; }
+		.reveal .transition.ease-in-out { transition-timing-function: ease-in-out; }
+		.reveal .transition.linear { transition-timing-function: linear; }
+		.reveal .transition.cubic-bezier { transition-timing-function: cubic-bezier(0.600, -0.280, 0.735, 0.045); }
+
+		/* Delays */
+		.reveal .transition.delay-1 { transition-delay: 1s; }
+		.reveal .transition.delay-2 { transition-delay: 2s; }
+
+		/* Example transitions */
+		.reveal .blue2green {
+			padding: 0.4rem 0.8rem;
 			background-color: rgba(0, 100, 200, .8);
-			color: #000;
+			color: #fff;
 		}
-		.reveal .slides .blue2green:hover {
-			background-color: rgba(0, 200, 100, .8);
-			color: #000;
+		.reveal .blue2green:hover { background-color: rgba(0, 200, 100, .8); }
+		.reveal .white2black { color: white; }
+		.reveal .white2black:hover { color: black; }
+		.reveal .to-right {
+			display: block;
+			text-align: left;
+			transform: translateX(0);
 		}
-		.reveal .slides .blue2green.animate {
-			-webkit-transition: background-color 1s;
-			transition: background-color 1s;
-		}
+		.reveal .to-right:hover { transform: translateX(250px); }
 
-		.reveal .slides .marginleft {
-			-webkit-transition: margin-left 1s;
-			transition: margin-left 1s;
-		}
-		.reveal .slides .marginleft:hover {
-			margin-left: 200px;
-		}
+		/**************
+		 * Animations
+		 **************/
 
-		.reveal .slides .square {
+		.reveal .square {
 			width: 100px;
 			height: 100px;
 			background-color: rgba(0, 100, 255, .7);
-			-webkit-animation: rebond 3s linear infinite;
 			animation: rebond 3s linear infinite;
 		}
 
-		@-webkit-keyframes rebond {
-			0% { margin-left: 0; }
-			50% { margin-left: 900px; }
-			100% { margin-left: 0; }
-		}
 		@keyframes rebond {
 			0% { margin-left: 0; }
 			50% { margin-left: 900px; }
 			100% { margin-left: 0; }
 		}
+
 	</style>
 </head>
 
@@ -75,72 +91,97 @@
 			</section>
 
 			<section>
-				<h1>Transitions</h1>
-				<div><a href="http://www.w3.org/TR/css3-transitions/">http://www.w3.org/TR/css3-transitions/</a></div>
-			</section>
+				<section>
+					<h1>Transitions</h1>
+					<div><a href="https://developer.mozilla.org/fr/docs/Web/CSS/CSS_transitions/Using_CSS_transitions" target="_blank">Utiliser les transitions CSS</a></div>
+				</section>
 
-			<section>
 				<section>
-					<p>Une transition en CSS permet d'interpoler les valeurs de propriétés d'un élément depuis un état 1 vers un état 2</p>
-					<p class="fragment">Pour définir une transition, il faut renseigner les propriétés à animer et la durée de la transition</p><br>
-					<div class="fragment">
-						<p><i>Exemple :</i></p>
-						<a href="#" class="blue2green">Changement de couleur en :hover sans transition</a><br><br>
-						<a href="#" class="blue2green animate">Changement de couleur en :hover AVEC transition</a><br><br>
-					</div>
-					<a href="#" class="fragment marginleft animate">Transition sur le <code>margin-left</code></a>
-				</section>
-				<section>
-					<p>La propriété CSS pour faire des transitions est :<br>
-						<code class="fragment">transition</code></p><br>
-					<div class="fragment">
-						(À préfixer ! <a href="http://shouldiprefix.com/#transitions">http://shouldiprefix.com/#transitions</a>)<br>
-						<code class="align-left">-webkit-transition<br>
-						-moz-transition<br>
-						-ms-transition<br>
-						-o-transition<br>
-						transition</code>
+					<p>Une transition en CSS permet d'interpoler les valeurs de propriétés d'un élément depuis un état A vers un état B</p>
+					<div class="fragment result">
+						<p>Exemple de transition sur <code>background-color</code> lors d'un <code>:hover</code></p>
+						<div class="r-hstack items-start">
+							<a href="#" class="transition blue2green">Hover me!</a>
+						</div>
 					</div>
 				</section>
-				<section>
-					<h2>Syntaxe</h2>
-					<p><code>transition: propriété durée fonctionTiming délai</code></p>
-					<div class="fragment">
-						<a href="https://developer.mozilla.org/fr/docs/CSS/transition">https://developer.mozilla.org/fr/docs/CSS/transition</a>
-					</div>
+				<section data-auto-animate>
+					<p>On utilise la propriété CSS <code>transition</code>,<br>
+						dont voici la syntaxe :</p>
+
+					<pre data-id="transition-prop"><code class="css" data-trim contenteditable spellcheck="false">
+						transition: &lt;propriété&gt; &lt;durée&gt; &lt;timing&gt; &lt;délai&gt;
+					</code></pre>
 				</section>
-				<section>
+				<section data-auto-animate>
+					<pre data-id="transition-prop"><code class="css" data-trim contenteditable spellcheck="false">
+						transition: &lt;propriété&gt; &lt;durée&gt; &lt;timing&gt; &lt;délai&gt;
+					</code></pre>
+					<ul>
+						<li><code>&lt;propriété&gt;</code> : Nom de la propriété à animer</li>
+						<li><code>&lt;durée&gt;</code> : Durée de l'animation (<code>s</code> ou <code>ms</code>)</li>
+						<li><code>&lt;timing&gt;</code><em>*</em> : Fonction de timing</li>
+						<li><code>&lt;délai&gt;</code><em>*</em> : Délai avant déclanchement (<code>s</code> ou <code>ms</code>)</li>
+					</ul>
+					<p class=""><small><em>* (optionnel)</em></small></p>
+				</section>
+
+
+				<section data-auto-animate>
 					<p>Exemple d'utilisation sur un lien :</p>
-					<pre><code class="css" contenteditable data-trim>
+					<pre data-id="transition-all"><code class="css" data-trim contenteditable spellcheck="false" data-line-numbers="4">
 						a {
+							…
 							background-color: rgba(0, 100, 200, .8);
-							color: #000;
-							
-							/* Lorsque l'état de &lt;a&gt; changera,
-								effectuer une transition de 1 seconde
-								sur la propriété "background-color" */
 							transition: background-color 1s;
 						}
 
 						a:hover {
 							background-color: rgba(0, 200, 100, .8);
-							color: #000;
 						}
 					</code></pre>
-					<div class="fragment">
-						<small>Résultat :</small><br>
-						<a href="#" class="blue2green animate">Mon lien</a><br><br>
+					<div class="fragment result">
+						<a href="#" class="transition blue2green">Mon lien</a>
+					</div>
+				</section>
+				<section data-auto-animate>
+					<p>On peut utiliser <code>all</code> pour animer <strong>toutes</strong> les propriétés changeantes</p>
+					<pre data-id="transition-all"><code class="css" data-trim contenteditable spellcheck="false" data-line-numbers="5">
+						a {
+							…
+							background-color: rgba(0, 100, 200, .8);
+							color: white;
+							transition: all 1s;
+						}
+
+						a:hover {
+							color: black;
+							background-color: rgba(0, 200, 100, .8);
+						}
+					</code></pre>
+					<div class="fragment result">
+						<a href="#" class="transition blue2green white2black">Mon lien</a>
+					</div>
+				</section>
+
+				<section>
+					<h3>Fonctions de timing</h3>
+					<img src="images/transforms/easing.png" alt="" height="300">
+
+					<div class="result">
+						<div class="w-100">
+							<a href="#" class="transition to-right sec-2 ease"><code>transition: margin-left 2s <strong>ease</strong>;</code></a>
+							<a href="#" class="transition to-right sec-2 linear"><code>transition: margin-left 2s <strong>linear</strong>;</code></a>
+							<a href="#" class="transition to-right sec-2 ease-in"><code>transition: margin-left 2s <strong>ease-in</strong>;</code></a>
+							<a href="#" class="transition to-right sec-2 ease-out"><code>transition: margin-left 2s <strong>ease-out</strong>;</code></a>
+							<a href="#" class="transition to-right sec-2 ease-in-out"><code>transition: margin-left 2s <strong>ease-in-out</strong>;</code></a>
+						</div>
 					</div>
 				</section>
 				<section>
-					<img src="images/transforms/easing.png" alt="">
-				</section>
-				<section>
 					<h2>Try it yourself !</h2>
-
-					<p>Créez plusieurs liens et essayez de les animer de différentes façons en jouant avec les états :hover, :active, ...</p>
-					<p class="fragment">Les possibilités sont infinies !<br>
-						<code>margin, padding, color, width, font-size, box-shadow, border-radius, ...</code></p>
+					<p>Il est possible d'animer toutes les propriétés interpolables en CSS.</p>
+					<p><code>margin, padding, color, width, font-size, box-shadow, border-radius, …</code></p>
 				</section>
 			</section>
 

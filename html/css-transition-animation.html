@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>CSS - Transitions et animations</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/dracula.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/vs2015.css">
+	<link rel="stylesheet" href="custom-styles.css">
+
+	<style>
+		/**************
+		 * Transitions
+		 **************/
+
+		.reveal .transition { transition-property: all; transition-duration: 1s; }
+
+		/* Durations */
+		.reveal .transition.sec-2 { transition-duration: 2s; }
+		.reveal .transition.sec-3 { transition-duration: 3s; }
+
+		/* Timing functions */
+		.reveal .transition.ease { transition-timing-function: ease; }
+		.reveal .transition.ease-in { transition-timing-function: ease-in; }
+		.reveal .transition.ease-out { transition-timing-function: ease-out; }
+		.reveal .transition.ease-in-out { transition-timing-function: ease-in-out; }
+		.reveal .transition.linear { transition-timing-function: linear; }
+		.reveal .transition.cubic-bezier { transition-timing-function: cubic-bezier(0.600, -0.280, 0.735, 0.045); }
+
+		/* Delays */
+		.reveal .transition.delay-1 { transition-delay: 1s; }
+		.reveal .transition.delay-2 { transition-delay: 2s; }
+
+		/* Example transitions */
+		.reveal .blue2green {
+			padding: 0.4rem 0.8rem;
+			background-color: rgba(0, 100, 200, .8);
+			color: #fff;
+		}
+		.reveal .blue2green:hover { background-color: rgba(0, 200, 100, .8); }
+		.reveal .white2black { color: white; }
+		.reveal .white2black:hover { color: black; }
+		.reveal .to-right {
+			display: block;
+			text-align: left;
+			transform: translateX(0);
+		}
+		.reveal .to-right:hover { transform: translateX(250px); }
+
+		/**************
+		 * Animations
+		 **************/
+
+		.reveal .dancing-square {
+			width: 100px;
+			height: 100px;
+			display: grid;
+			place-content: center;
+			color: black;
+			background-color: black;
+			animation: rebond 6s linear infinite;
+			font-size: 1.5em;
+		}
+
+		.reveal .turning-button {
+			padding: 1rem;
+			background-color: black; 
+			color: white;
+			animation: rotate 3s linear infinite paused;
+		}
+		.reveal .turning-button:hover {
+			animation-play-state: running;
+		}
+		.reveal .turning-button:focus {
+			animation-direction: reverse;
+		}
+
+		@keyframes rebond
+		{
+			0%   { transform: translateX(0); }
+			50%  { transform: translateX(900px); }
+			100% { transform: translateX(0) rotate(-360deg); }
+		}
+
+		@keyframes rotate {
+			from { transform: rotate(0deg); }
+			to   { transform: rotate(360deg); }
+		}
+
+		/**************
+		 * 3D cube
+		 **************/
+
+		.scene-3d {
+			--cube-size: 300px;
+			--distance: 150px;
+
+			perspective: 400px;
+			width: var(--cube-size);
+			height: var(--cube-size);
+			margin-left: auto;
+			margin-right: auto;
+		}
+		.scene-3d:hover .cube-3d {
+			--distance: 220px;
+		}
+
+		.cube-3d {
+			position: relative;
+			width: var(--cube-size);
+			height: var(--cube-size);
+			transform-origin: 50%;
+			transform: translateZ(-300px);
+			animation: rotate-cube 6s linear infinite;
+			transform-style: preserve-3d;
+		}
+		.cube-3d > img {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: var(--cube-size);
+			height: var(--cube-size);
+			transition: all 1s;
+		}
+		.cube-3d > img:nth-child(1) { transform: translateX(var(--distance)) rotateY(90deg); }
+		.cube-3d > img:nth-child(2) { transform: translateX(calc(var(--distance) * -1)) rotateY(90deg); }
+		.cube-3d > img:nth-child(3) { transform: translateY(var(--distance)) rotateX(90deg); }
+		.cube-3d > img:nth-child(4) { transform: translateY(calc(var(--distance) * -1)) rotateX(90deg); }
+		.cube-3d > img:nth-child(5) { transform: translateZ(var(--distance)); }
+		.cube-3d > img:nth-child(6) { transform: translateZ(calc(var(--distance) * -1)); }
+
+		@keyframes rotate-cube {
+			from { transform: translateZ(-300px) rotateX(0) rotateY(0); }
+			to { transform: translateZ(-300px) rotateX(360deg) rotateY(360deg); }
+		}
+
+	</style>
+</head>
+
+<body>
+	<div class="reveal">
+
+		<div class="slides">
+			<section>
+				<h1>
+					CSS<br>
+					<small>Transitions et animations</small>
+				</h1>
+			</section>
+
+			<!-- <section>
+				<h2>Transformations 2D et 3D</h2>
+				<p><a target="_blank" href="https://docs.google.com/presentation/d/10LZt22KD52RqyJuoAX03BOHxp-_xxW_QIG4chojoPnk/edit#slide=id.p">https://docs.google.com/presentation/d/10LZt22KD52RqyJuoAX03BOHxp-_xxW_QIG4chojoPnk/edit#slide=id.p</a></p>
+			</section> -->
+
+			<section>
+				<section>
+					<h1>Transitions</h1>
+					<div><a href="https://developer.mozilla.org/fr/docs/Web/CSS/CSS_transitions/Using_CSS_transitions" target="_blank">Utiliser les transitions CSS</a></div>
+				</section>
+
+				<section>
+					<p>Une transition en CSS permet d'interpoler les valeurs de propriétés d'un élément depuis un état A vers un état B</p>
+					<div class="fragment result">
+						<p>Exemple de transition sur <code>background-color</code> lors d'un <code>:hover</code></p>
+						<div class="r-hstack items-start">
+							<a href="#" class="transition blue2green">Hover me!</a>
+						</div>
+					</div>
+				</section>
+				<section data-auto-animate>
+					<p>On utilise la propriété CSS <code>transition</code>,<br>
+						dont voici la syntaxe :</p>
+
+					<pre data-id="transition-prop"><code class="css" data-trim contenteditable spellcheck="false">
+						transition: &lt;propriété&gt; &lt;durée&gt; &lt;timing&gt; &lt;délai&gt;
+					</code></pre>
+				</section>
+				<section data-auto-animate>
+					<pre data-id="transition-prop"><code class="css" data-trim contenteditable spellcheck="false">
+						transition: &lt;propriété&gt; &lt;durée&gt; &lt;timing&gt; &lt;délai&gt;
+					</code></pre>
+					<ul>
+						<li><code>&lt;propriété&gt;</code> : Nom de la propriété à animer</li>
+						<li><code>&lt;durée&gt;</code> : Durée de l'animation (<code>s</code> ou <code>ms</code>)</li>
+						<li><code>&lt;timing&gt;</code><em>*</em> : Fonction de timing</li>
+						<li><code>&lt;délai&gt;</code><em>*</em> : Délai avant déclanchement (<code>s</code> ou <code>ms</code>)</li>
+					</ul>
+					<p class=""><small><em>* (optionnel)</em></small></p>
+				</section>
+
+
+				<section data-auto-animate>
+					<p>Exemple d'utilisation sur un lien :</p>
+					<pre data-id="transition-all"><code class="css" data-trim contenteditable spellcheck="false" data-line-numbers="4">
+						a {
+							…
+							background-color: rgba(0, 100, 200, .8);
+							transition: background-color 1s;
+						}
+
+						a:hover {
+							background-color: rgba(0, 200, 100, .8);
+						}
+					</code></pre>
+					<div class="fragment result">
+						<a href="#" class="transition blue2green">Mon lien</a>
+					</div>
+				</section>
+				<section data-auto-animate>
+					<p>On peut utiliser <code>all</code> pour animer <strong>toutes</strong> les propriétés changeantes</p>
+					<pre data-id="transition-all"><code class="css" data-trim contenteditable spellcheck="false" data-line-numbers="5">
+						a {
+							…
+							background-color: rgba(0, 100, 200, .8);
+							color: white;
+							transition: all 1s;
+						}
+
+						a:hover {
+							color: black;
+							background-color: rgba(0, 200, 100, .8);
+						}
+					</code></pre>
+					<div class="fragment result">
+						<a href="#" class="transition blue2green white2black">Mon lien</a>
+					</div>
+				</section>
+
+				<section>
+					<h3>Fonctions de timing</h3>
+					<img src="images/transforms/easing.png" alt="" height="300">
+
+					<div class="result">
+						<div class="w-100">
+							<a href="#" class="transition to-right sec-2 ease"><code>transition: margin-left 2s <strong>ease</strong>;</code></a>
+							<a href="#" class="transition to-right sec-2 linear"><code>transition: margin-left 2s <strong>linear</strong>;</code></a>
+							<a href="#" class="transition to-right sec-2 ease-in"><code>transition: margin-left 2s <strong>ease-in</strong>;</code></a>
+							<a href="#" class="transition to-right sec-2 ease-out"><code>transition: margin-left 2s <strong>ease-out</strong>;</code></a>
+							<a href="#" class="transition to-right sec-2 ease-in-out"><code>transition: margin-left 2s <strong>ease-in-out</strong>;</code></a>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h2>Try it yourself !</h2>
+					<p>Il est possible d'animer toutes les propriétés interpolables en CSS.</p>
+					<p><code>margin, padding, color, width, font-size, box-shadow, border-radius, …</code></p>
+				</section>
+			</section>
+
+
+
+
+			<section>
+				<section>
+					<h1>Animations</h1>
+					<div><a href="https://developer.mozilla.org/fr/docs/Web/CSS/CSS_animations/Using_CSS_animations" target="_blank">Utiliser les animations CSS</a></div>
+				</section>
+				<section>
+					<p>Les animations permettent de faire des choses plus poussées que les transitions (comme par exemple <em>répéter plusieurs fois</em>, ou les faire passer par <em>plusieurs étapes</em>)</p>
+				</section>
+				<section>
+					<p>Pour définir une animation, il faut d'abord <em>définir son comportement</em></p>
+					<p class="fragment">Le comportement régit la façon dont va réagir l'objet animé depuis un état <code>0%</code> vers un état <code>100%</code></p>
+				</section>
+
+				<section>
+					<p>Un comportement se définit à l'aide du mot-clé <code>@keyframes</code></p>
+					<pre data-id="anim-keyframes"><code class="css" data-trim contenteditable spellcheck="false">
+						@keyframes rebond
+						{
+							0%   { transform: translateX(0); }
+							50%  { transform: translateX(900px); }
+							100% { transform: translateX(0); }
+						}
+					</code></pre>
+					<p class="fragment">L'animation nommée <code>rebond</code> déclare 3 étapes dans lesquelles on interpole la valeur de <code>transform</code></p>
+				</section>
+
+				<section data-auto-animate>
+					<p>Pour utiliser l'animation sur un élément HTML, on utilise la propriété CSS <code>animation</code>,<br>
+					dont voici la syntaxe :</p>
+
+					<pre data-id="animation-prop"><code class="css" data-trim contenteditable spellcheck="false">
+						animation: &lt;nom&gt; &lt;durée&gt; &lt;timing&gt; &lt;délai&gt; &lt;répétitions&gt; &lt;direction&gt;
+						           &lt;fill-mode&gt; &lt;play-state&gt;
+					</code></pre>
+				</section>
+
+				<section data-auto-animate>
+					<pre data-id="animation-prop"><code class="css" data-trim contenteditable spellcheck="false">
+						animation: &lt;nom&gt; &lt;durée&gt; &lt;timing&gt; &lt;délai&gt; &lt;répétitions&gt; &lt;direction&gt;
+						           &lt;fill-mode&gt; &lt;play-state&gt;
+					</code></pre>
+					<ul style="font-size: 0.8em;">
+						<li><code>&lt;nom&gt;</code> : Nom de l'animation à utiliser</li>
+						<li><code>&lt;durée&gt;</code> : Durée de l'animation (<code>s</code> ou <code>ms</code>)</li>
+						<li><code>&lt;timing&gt;</code><em>*</em> : Fonction de timing</li>
+						<li><code>&lt;délai&gt;</code><em>*</em> : Délai avant déclanchement (<code>s</code> ou <code>ms</code>)</li>
+						<li><code>&lt;répétitions&gt;</code><em>*</em> : Nombre de répétition (nombre, ou <code>infinite</code>)</li>
+						<li><code>&lt;direction&gt;</code><em>*</em> : Sens des cycles de l'animation</li>
+						<li><code>&lt;fill-mode&gt;</code><em>*</em> : Etat initial et final de l'animation</li>
+						<li><code>&lt;play-state&gt;</code><em>*</em> : Etat de l'animation (en pause ou en cours)</li>
+					</ul>
+					<p class=""><small><em>* (optionnel)</em></small></p>
+				</section>
+
+				<section data-auto-animate>
+					<h3>Démo 1</h3>
+				</section>
+
+				<section data-auto-animate>
+					<h3>Démo 1</h3>
+					<pre><code class="css" data-trim contenteditable spellcheck="false">
+						@keyframes rebond
+						{
+							0%   { transform: translateX(0); }
+							50%  { transform: translateX(900px); }
+							100% { transform: translateX(0) rotate(-360deg); }
+						}
+
+						.dancing-square {
+							animation: rebond 6s linear infinite;
+						}
+					</code></pre>
+					<pre><code class="html" data-trim contenteditable spellcheck="false">
+						<div class="dancing-square">🕺</div>
+					</code></pre>
+					<div class="dancing-square">🕺</div>
+				</section>
+
+				<section data-auto-animate>
+					<h3>Démo 2</h3>
+				</section>
+
+				<section data-auto-animate>
+					<h3>Démo 2</h3>
+					<pre><code class="css" data-trim contenteditable spellcheck="false">
+						@keyframes rotate {
+							from { transform: rotate(0deg); }
+							to   { transform: rotate(360deg); }
+						}
+
+						.turning-button {
+							animation-name: rotate 3s linear infinite paused;
+						}
+						.turning-button:hover {
+							animation-play-state: running;
+						}
+						.reveal .turning-button:focus {
+							animation-direction: reverse;
+						}
+					</code></pre>
+					<pre><code class="html" data-trim contenteditable spellcheck="false">
+						<button class="turning-button">Hover me or focus me !</button>
+					</code></pre>
+					<button class="turning-button">Hover me or focus me	 !</button>
+				</section>
+
+				<section data-auto-animate>
+					<h3>Démo 3<em>*</em></h3>
+					<p><small><em>* 3 comme 3D ?</em></small></p>
+				</section>
+
+				<section data-auto-animate data-transition="slide-in fade-out">
+					<h3>Démo 3<em>*</em></h3>
+
+					<div class="scene-3d">
+						<div class="cube-3d">
+							<img src="images/transforms/cube.jpg" alt="🟪">
+							<img src="images/transforms/cube.jpg" alt="🟪">
+							<img src="images/transforms/cube.jpg" alt="🟪">
+							<img src="images/transforms/cube.jpg" alt="🟪">
+							<img src="images/transforms/cube.jpg" alt="🟪">
+							<img src="images/transforms/cube.jpg" alt="🟪">
+						</div>
+					</div>
+				</section>
+
+				<section data-transition="slide-out fade-in">
+					<h3>Démo 3<em>*</em></h3>
+
+					<div class="r-hstack justify-center">
+						<div>
+							<pre style="font-size: 0.8rem; width: 100%"><code style="overflow-x: hidden;" class="html" data-trim contenteditable spellcheck="false">
+								<div class="scene-3d">
+									<div class="cube-3d">
+										<img src="cube.jpg" alt="">
+										<img src="cube.jpg" alt="">
+										<img src="cube.jpg" alt="">
+										<img src="cube.jpg" alt="">
+										<img src="cube.jpg" alt="">
+										<img src="cube.jpg" alt="">
+									</div>
+								</div>
+
+								<style>
+									.scene-3d {
+										--cube-size: 300px;
+										--distance: 150px;
+
+										perspective: 400px;
+										width: var(--cube-size);
+										height: var(--cube-size);
+										margin-left: auto;
+										margin-right: auto;
+									}
+									.scene-3d:hover .cube-3d {
+										--distance: 220px;
+									}
+
+									.cube-3d {
+										position: relative;
+										width: var(--cube-size);
+										height: var(--cube-size);
+										transform-origin: 50%;
+										animation: rotate-cube 6s linear infinite;
+										transform-style: preserve-3d;
+									}
+									.cube-3d > img {
+										position: absolute;
+										top: 0;
+										left: 0;
+										width: var(--cube-size);
+										height: var(--cube-size);
+										transition: all 1s;
+									}
+									.cube-3d > img:nth-child(1) {transform: translateX(var(--distance)) rotateY(90deg); }
+									.cube-3d > img:nth-child(2) {transform: translateX(calc(var(--distance) * -1)) rotateY(90deg); }
+									.cube-3d > img:nth-child(3) {transform: translateY(var(--distance)) rotateX(90deg); }
+									.cube-3d > img:nth-child(4) {transform: translateY(calc(var(--distance) * -1)) rotateX(90deg); }
+									.cube-3d > img:nth-child(5) {transform: translateZ(var(--distance)); }
+									.cube-3d > img:nth-child(6) {transform: translateZ(calc(var(--distance) * -1)); }
+
+									@keyframes rotate-cube {
+										from { transform: translateZ(-300px) rotateX(0) rotateY(0); }
+										to { transform: translateZ(-300px) rotateX(360deg) rotateY(360deg); }
+									}
+								</style>
+							</code></pre>
+						</div>
+
+						<div class="scene-3d" style="width: 200px">
+						<div class="cube-3d">
+							<img src="images/transforms/cube.jpg" alt="🟪">
+							<img src="images/transforms/cube.jpg" alt="🟪">
+							<img src="images/transforms/cube.jpg" alt="🟪">
+							<img src="images/transforms/cube.jpg" alt="🟪">
+							<img src="images/transforms/cube.jpg" alt="🟪">
+							<img src="images/transforms/cube.jpg" alt="🟪">
+						</div>
+						</div>
+					</div>
+				</section>
+			</section>
+
+		</div>
+
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script src="plugin/zoom/zoom.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom]
+		});
+
+		Reveal.configure({
+			pdfSeparateFragments: false,
+		})
+	</script>
+</body>
+
+</html>

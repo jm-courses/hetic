@@ -35,11 +35,12 @@
 		<div class="slides">
 
 			<section>
-				<h1>Responsive Webdesign</h1>
-				<p class="fragment">C'est quoi pour vous ?</p>
-			</section>
-
-			<section>
+				<section>
+					<h1 style="line-height: 0.7;">
+						<small>Intro au</small>
+						Responsive
+					</h1>
+				</section>
 				<section>
 					<p>Le <b>responsive webdesign</b> est un sous-ensemble du concept d'<b>adaptative webdesign</b></p>
 					<aside class="notes">
@@ -60,282 +61,293 @@
 				<section>
 					<figure>
 						<img src="images/responsive/adaptatif.jpg" alt="">
-						<figcaption>
-							<small>Image tirée de l'article <a target="_blank" href="http://www.inpixelitrust.fr/blog/traduction-adaptive-vs-responsive-quelle-est-la-difference/">Adaptive VS Responsive Design : quelle est la différence ?</a></small>
-						</figcaption>
 					</figure>
 				</section>
 
 				<section>
-					<h2>Amélioration progressive</h2>
-					<h3>Progressive enhancement</h3>
-					<p class="fragment">Concept d'accessibilité et de sémantique</p>
-					<p class="fragment">Séparer le fond de la forme</p>
-					<p class="fragment">Proposer au fur et à mesure un enrichissement de la mise en forme, en fonction des capacités des périphériques d'affichage</p>
+					<h3>Amélioration progressive / Progressive enhancement</h3>
+					<ul>
+						<li>Concept d'accessibilité et de sémantique</li>
+						<li>Séparer le fond de la forme</li>
+						<li>Proposer au fur et à mesure un enrichissement de la mise en forme, en fonction des capacités des périphériques d'affichage</li>
+					</ul>
+				</section>
+
+				<section data-auto-animate>
+					<h3 data-id="progressive-enhancement">Compatibilité minimale</h3>
+					<p>Se mettre dans la pire situation</p>
+					<p>Penser à la majorité des cas</p>
+					<p>Device utilisé, rendu navigateur, support CSS/JS, accessibilité, rapidité réseau, etc.</p>
+				</section>
+
+				<section data-auto-animate>
+					<h3 data-id="progressive-enhancement">Enrichi ensuite</h3>
+					<p>Chargement asynchrone (JS, images, contenus, etc.)</p>
+					<p>Stratégie offline, cache</p>
+					<p>Effets visuels avancés / animations</p>
 				</section>
 
 				<section>
-					<div class="ib vt text-left" style="width:50%">
-						<h3>Compatibilité minimale</h3>
-						<p>Se mettre dans la pire situation</p>
-						<p>Penser à la majorité des cas</p>
-						<p>Device utilisé, rendu navigateur, support CSS/JS, accessibilité, rapidité réseau, etc.</p>
-					</div><!--
-			--><div class="ib vt text-left fragment" style="width:50%">
-						<h3>Enrichi ensuite</h3>
-						<p>Chargement asynchrone (JS, images, contenus, etc.)</p>
-						<p>Stratégie offline, cache</p>
-						<p>Effets visuels avancés / animations</p>
-					</div>
+					<figure><img src="images/responsive/responsive-iceberg.jpg" alt="" width="512"></figure>
+				</section>
+			</section>
+
+			<section id="media-queries">
+				<section>
+					<h2>Media-Queries</h2>
 				</section>
 
 				<section>
-					<h2>L'exemple des animations</h2>
+					<p>
+						Les médias queries sont des <em>instructions conditionnelles</em> qui permettent d'appliquer des styles CSS <strong>en fonction de la largeur de l'écran ou de la résolution du périphérique de sortie</strong>
+					</p>
 				</section>
 
 				<section>
-					<h3>Mise en place propre</h3>
-					<p>Pensez amélioration progressive !</p>
-					<p>Que se passe t’il si JS est désactivé ?</p>
-					<p>Ou si en cours de chargement/exécution ?</p>
-					<p>Si pas d’animations, l’état initial et l’état final doivent être «OK»</p>
+					<h3>Syntaxe</h3>
+					<p>Une requête média se compose d'un <strong>type de média</strong> optionnel et d'une ou plusieurs expressions de <strong>caractéristiques de média</strong></p>
+					<p class="fragment">Plusieurs requêtes peuvent être combinées entre elles grâce à des <strong>opérateurs logiques</strong></p>
 				</section>
 
 				<section>
-					<h3>Mise en place raisonnée</h3>
-					<p>Est-ce que l’animation est utile (nécessaire) ?</p>
-					<p>Apporte t’elle du sens à l’interface ?</p>
-					<p>Aide t’elle la compréhension de l’utilisateur ?</p>
-					<p>Ne pas surcharger inutilement</p>
+					<h3>Types de medias</h3>
+					<p>Un type de média définit une catégorie générale d'appareil</p>
+					<p>Il en existe 4 :</p>
+					<ul>
+						<li class="fragment"><code>screen</code> : appareils dotés d'un écran</li>
+						<li class="fragment"><code>print</code> : documents en aperçu avant impression</li>
+						<li class="fragment"><code>speech</code> : outils de synthèse vocale</li>
+						<li class="fragment"><code>all</code> : tous les appareils</li>
+					</ul>
+				</section>
+
+				<section data-auto-animate>
+					<h3>Caractéristiques de média</h3>
+					<p>Elles décrivent certaines caractéristiques spécifiques de l'agent utilisateur, de l'appareil d'affichage ou de l'environnement</p>
+					<p>En voici quelques-unes couramment utilisées :</p>
+				</section>
+				<section data-auto-animate>
+					<p>En voici quelques-unes couramment utilisées :<br><br></p>
+					<ul style="font-size: 0.8em;">
+						<li class="fragment" data-fragment-index="1"><code>min-width</code> / <code>max-width</code>: Largeur de la viewport<em>*</em></li>
+						<li class="fragment"><code>min-height</code> / <code>max-height</code>: Hauteur de la viewport<em>*</em></li>
+						<li class="fragment"><code>aspect-ratio</code>: Rapport largeur/hauteur de la viewport<em>*</em></li>
+						<li class="fragment"><code>orientation</code>: Orientation la viewport<em>*</em></li>
+						<li class="fragment"><code>resolution</code>:	Densité de pixel pour l'appareil d'affichage</li>
+						<li class="fragment"><code>prefers-color-scheme</code>: Préférence de theme de l'utilisateur</li>
+					</ul>
+					<p class="fragment" data-fragment-index="1"><small><em>* zone d'affichage</em></small></p>
+				</section>
+				<section data-auto-animate>
+					<p>Depuis récemment, on peut simplifier <code>min-width</code> et <code>min-height</code> :</p>
+					<ul style="font-size: 0.8em;">
+						<li><code>width</code>: Largeur de la viewport<em>*</em></li>
+						<li><code>height</code>: Hauteur de la viewport<em>*</em></li>
+						<li><code>aspect-ratio</code>: Rapport largeur/hauteur de la viewport<em>*</em></li>
+						<li><code>orientation</code>: Orientation la viewport<em>*</em></li>
+						<li><code>resolution</code>:	Densité de pixel pour l'appareil d'affichage</li>
+						<li><code>prefers-color-scheme</code>: Préférence de theme de l'utilisateur</li>
+					</ul>
+					<p><small><em>* zone d'affichage</em></small></p>
+				</section>
+
+				<!-- @TODO -->
+
+				<section data-auto-animate>
+					<h3>Exemple de disposition</h3>
+					<p>Un menu en <em>flexbox</em> qui va changer de direction</p>
+					<pre data-id="media-query"><code class="css" data-trim contenteditable spellcheck="false" data-line-numbers="6-10">
+						nav {
+							display: flex;
+							flex-direction: row;
+						}
+
+						@media screen and (max-width: 480px) {
+							nav {
+								flex-direction: column;
+							}
+						}
+					</code></pre>
+				</section>
+				<section data-auto-animate>
+					<h3>Exemple de disposition</h3>
+					<p>Un menu en <em>flexbox</em> qui va changer de direction</p>
+					<pre data-id="media-query"><code class="css" data-trim contenteditable spellcheck="false" data-line-numbers="6-10">
+						nav {
+							display: flex;
+							flex-direction: row;
+						}
+
+						@media (width <= 480px) {
+							nav {
+								flex-direction: column;
+							}
+						}
+					</code></pre>
 				</section>
 
 				<section>
-					<div class="ib vt" style="width:50%">
-						<img src="images/responsive/animation-good.gif" alt="">
-					</div><!--
-				--><div class="ib vt" style="width:50%">
-						<img src="images/responsive/animation-bad.gif" alt="">
-					</div>
+					<h3>Exemple d'orientation</h3>
+					<p>Une navbar qui sera positionnée en <em>sticky</em> en fonction de l'orientation</p>
+					<pre><code class="css" data-trim contenteditable spellcheck="false" data-line-numbers="6-11">
+						nav {
+							display: flex;
+							justify-content: : space-evenly;
+						}
+
+						@media (orientation: portrait) {
+							nav {
+								position: sticky;
+								top: 0;
+							}
+						}
+					</code></pre>
 				</section>
 
 				<section>
-					<h2>Design</h2>
-					<h3>Statique ? &nbsp; Fluide ? &nbsp; Adaptatif ? &nbsp; Responsive ?</h3>
-					<p class="fragment">Techniquement, il faut bien faire la distinction</p>
-					<p class="fragment">Le site <a href="http://liquidapsive.com" target="_blank">liquidapsive.com</a> propose de tester visuellement ces différents types de design</p>
-					<aside class="notes">
-						<p>Un design statique (ou fixe) se réfère à des <b>dimensions figées</b> (par exemple 960px) quelle que soit la surface de l'écran. La grande majorité des sites web était construite sur cette base avant l'arrivée du Responsive Web Design dans les années 2010.</p>
-						<p>Un site web fluide est un site web dont toutes les largeurs de colonnes sont exprimées en <b>unités variables</b> (pourcentages, em, vw, etc.) et qui s'adapte généralement automatiquement à la taille de fenêtre, jusqu'à une certaine mesure.</p>
-						<p>Un design Adaptatif est une <b>amélioration du design statique</b> : les unités de largeur sont fixes, mais différentes selon la taille de l'écran, qui est détectée via CSS3 Media Queries.<br>
-							Un tel design tient uniquement compte des principaux points de rupture (320px, 480px, 768px, 1024px, etc.) et adapte le gabarit en conséquence. Au final, on se retrouve avec autant de gabarits fixes que de points de ruptures.</p>
-						<p>Un site web Responsive est une <b>amélioration du design fluide</b> associé à des méthodes CSS3 Media Queries permettant de modifier les styles (ré-organisation de la page par exemple) selon certains critères, pour s'adapter complètement à la taille d'écran, quel que soit le point de rupture.</p>
-					</aside>
+					<h3>Exemple de thème</h3>
+					<p>Un site qui sera affiché en <em>darkmode</em> suivant la préférence de l'utilisateur sur son système (Windows / macOS / Linux)</p>
+					<pre><code class="css" data-trim contenteditable spellcheck="false" data-line-numbers="6-11">
+						body {
+							background-color: white;
+							color: black;
+						}
+
+						@media (prefers-color-scheme: dark) {
+							body {
+								background-color: black;
+								color: white;
+							}
+						}
+					</code></pre>
 				</section>
 
 				<section>
-					<h2>Ressources</h2>
-					<p class="fragment"><a href="http://www.mediaqueri.es/" target="_blank">mediaqueri.es</a><br>
-						<small>Annuaire de sites responsives</small></p>
-					<p class="fragment"><a href="http://www.alsacreations.com/article/lire/1615-cest-quoi-le-responsive-web-design.html" target="_blank">C'est quoi le RWD ?</a><br>
-						<small>Article de <a href="http://www.alsacreations.com/profil/lire/1-raphael.html" target="_blank">Raphael Goetter</a>, sur <a href="http://alsacreations.com" target="_blank">Alsacréations</a></small></p>
-					<p class="fragment"><a href="http://slides.iamvdo.me/experiences16" target="_blank">CSS, c'est pas de la science-fiction !</a><br>
-						<small>Slides de <a href="http://iamvdo.me" target="_blank">Vincent de Oliveira</a>, aux <a href="https://experiences.microsoft.fr/Home/Event" target="_blank">Microsoft Experiences'16</a></small></p>
+					<p>Il existe de nombreuses combinaisons de règles Media queries, en utilisant les opérateurs logiques</p>
+
+					<pre><code class="css" data-trim contenteditable spellcheck="false">
+						@media screen and (max-width: 650px) {}
+
+						@media (min-width: 700px) and (orientation: landscape) {}
+
+						@media print and (aspect-ratio: 16/9) {}
+					</code></pre>
+				</section>
+
+				<section>
+					<p>La page de la documentation MDN à ce sujet est très complète :</p>
+					<p><a href="https://developer.mozilla.org/fr/docs/Web/CSS/CSS_media_queries/Using_media_queries" target="_blank">Utiliser les Media queries</a></p>
+				</section>
+
+				<section>
+					<p>Connaître les caractéristiques de la plupart des devices mobiles :</p>
+					<p><a href="https://screensiz.es/" target="_blank" rel="noopener noreferrer">screensiz.es</a></p>
+					<p><small>Un outil intéressant à garder dans ses favoris</small></p>
 				</section>
 			</section>
 
 			<section>
 				<section>
-					<h2>Le RWD ? Pas si évident</h2>
-					<figure class="fragment"><img src="images/responsive/responsive-iceberg.jpg" alt="" width="512"></figure>
+					<h2>Optimiser les images</h2>
 				</section>
 
 				<section>
-					<h3>Images</h3>
-					<figure><img src="images/responsive/pictureelement.jpg" alt="" height="400"></figure>
-					<p>Poids ? Dimensions ? Performances ? Plusieurs versions ?</p>
-					<p class="fragment"><small><a href="http://screensiz.es/" target="_blank">Screensiz.es</a> : Caractéristiques des devices actuels</small></p>
+					<p>Des images optimisées sont essentielles pour une bonne expérience utilisateur, pour des raisons de <strong>performance</strong>, mais aussi de <strong>confort visuel</strong></p>
 				</section>
 
 				<section>
-				<h2>Attributs &laquo;srcset&raquo; &amp; &laquo;sizes&raquo;</h2>
-					<pre class="big"><code class="html" data-trim data-noescape spellcheck="false" contenteditable>
-						&lt;img src="images/photo.jpg"
-	srcset="images/photo_big.jpg 2x,
-					images/photo_HD.jpg 3x"
-	sizes="(min-width: 960px) 33.3vw,
-					100vw"
-	alt="Photo">
+					<p>Pour optimiser le poids, des outils existent comme <a href="https://compressor.io" target="_blank" rel="noopener noreferrer">compressor.io</a></p>
+					<p class="fragment">Mais au dela de l'optimisation, quelle utilité par exemple pour une image de fond d'avoir une résolution de 3000x1500 alors que la fenêtre du navigateur Web ne fait que 1200px de large ?</p>
+				</section>
+
+				<section>
+					<p>De plus, des pages HTML peuvent demander à charger de nombreuses images, dont la plupart ne seront pas visibles immédiatement par l'utilisateur (qui ne voit que le haut de la page lors du chargement)</p>
+				</section>
+
+				<section>
+					<p>Sans compter la complexité de gestion de la qualité en fonction des différents écrans et densités de pixels (Rétina, OLED, …) sur tous les devices (ordinateurs, tablettes, smartphones, …)</p>
+				</section>
+
+				<section>
+					<p>Aujourd'hui, HTML propose des solutions natives et faciles à mettre-en-place pour gérer ces problématiques</p>
+				</section>
+
+				<section>
+					<h3>Lazy loading</h3>
+					<pre><code class="html" data-trim contenteditable spellcheck="false">
+						<img src="image.jpg" loading="lazy">
+					</code></pre>
+					<p>Cet attribut indique au navigateur de ne pas charger l'image tant qu'elle n'est pas visible dans la viewport</p>
+				</section>
+
+				<section>
+					<h3><code>srcset</code></h3>
+					<p>Cet attribut  va permettre de définir une image adaptée au terminal de consultation en ciblant à la fois la <strong>taille de l'écran et la densité de pixels</strong></p>
+					<p class="fragment">Il utilise des <em>descripteurs de source</em> :</p>
+					<ul>
+						<li class="fragment"><code>w</code> : descripteur de largeur</li>
+						<li class="fragment"><code>x</code> : descripteur de densité de pixels</li>
+					</ul>
+				</section>
+
+				<section data-auto-animate>
+					<p>Admettons que nous disposons d'une même image en 2 tailles différentes : 300px et 600px</p>
+					<pre data-id="snippet-srcset"><code class="html" data-trim contenteditable spellcheck="false">
+						<img srcset="image-300.jpg 300w, image-600.jpg 600w">
 					</code></pre>
 				</section>
 
-				<section>
-					<h3>Eléments d'interface</h3>
-					<div class="fragment">
-						<h4>Exemple : le datepicker</h4>
-						<figure><img src="images/responsive/datepicker-jquery.jpg" alt=""></figure>
-					</div>
-					<p class="fragment">Pratique uniquement pour grands écrans et périphériques dotés d'un pointeur</p>
-					<aside class="notes">
-						Nous avons longtemps mis en place des datepickers (calendriers) en JavaScript, facilement utilisables sur navigateur de bureau, mais très difficiles à manier pour un appareil tactile. Appuyer sur la bonne date avec un doigt peut s'avérer assez difficile voire impossible si les zones sont très petites.
-					</aside>
-				</section>
-
-				<section>
-					<pre class="big"><code class="html" data-trim data-noescape spellcheck="false" contenteditable>&lt;input type="date"></code></pre>
-					<figure><img src="images/responsive/mobile-input-type-date.jpg" alt="" height="400"></figure>
-					<p class="fragment">Petits écrans : fallback vers les éléments natifs du périphérique</p>
-					<aside class="notes">
-						<p>Gros avantage : le rendu visuel est contrôlé par le navigateur et le système. De cette manière, leur UI (apparence graphique pour l'utilisateur) est automatiquement optimisée au mieux pour le périphérique utilisé.</p>
-						<p>Peut également gérer la langue</p>
-					</aside>
-				</section>
-
-				<section>
-					<h4><a href="http://demo.mobiscroll.com/calendar/basic/" target="_blank">Mobiscroll</a></h4>
-					<figure><img src="images/responsive/mobiscroll.png" alt="" height="450"></figure>
-					<p>Le <b>polyfill</b> qui propose la simulation d'une multitude d'éléments d'interface </p>
-				</section>
-
-				<section>
-					<h3>Gestion des tableaux</h3>
-					<figure class="ib vm" style="width:50%"><img src="images/responsive/tableaux-responsive.jpg" alt=""></figure><!--
-				--><figure class="ib vm" style="width:50%"><img src="images/responsive/tableaux-responsive-2.jpg" alt=""></figure>
-					<p>Utiliser des <b>cases à cocher ?</b> Garder un tableau <b>scrollable</b> ?</p>
-				</section>
-
-				<section>
-					<h3>Eléments de navigation</h3>
-					<figure><img src="images/responsive/navigations-mobile.jpg" alt=""></figure>
-					<p><a href="http://codepen.io/bradfrost/full/sHvaz" target="_blank">Verticale</a> ? <a href="http://codepen.io/sturobson/full/rAoBh" target="_blank">Off-canvas</a> ?</p>
-				</section>
-
-				<section>
-					<h3>Mobiles : zone de confort</h3>
-					<figure><img src="images/responsive/touchaccess.jpg" alt=""></figure>
-					<p class="fragment"><a href="http://jasonweaver.name/lab/touchnav/v2/" target="_blank">Exemple de navigation en pied de page</a></p>
-					<aside class="notes">
-						<p>Le "problème" de ces techniques est que la navigation reste en haut de l'écran.</p>
-						<p>Il n'existe pas de solution idéale et cela va là encore dépendre non seulement de votre projet, mais également du niveau de profondeur de votre navigation.<br>
-							Heureusement qu'il existe des gens comme Brad Frost, qui expérimentent et partagent les expériences avec la communauté.</p>
-					</aside>
-				</section>
-
-				<section>
-					<h3><a href="http://bradfrost.github.io/this-is-responsive/patterns.html" target="_blank">This is responsive</a></h3>
-					<p>Une collection de <b>patterns</b> et <b>modules</b> pour<br>
-						le responsive web design</p>
-					<div class="fragment">
-						<h3><a href="http://navnav.co/" target="_blank">Navnav.co</a></h3>
-						<p>Dans le même style, mais axé sur les navigations.</p>
-					</div>
-				</section>
-
-				<section>
-					<p><q>Écrire un contenu orienté vers une seule et unique plateforme n'est plus une option.</q></p>
-					<aside class="notes">
-						<p>Qui sait sur quels appareils votre contenu sera affiché demain ? Dans 6 mois ? Dans un an ? Il nous faut préparer ce contenu pour l'inattendu</p>
-						<p>Il faut <b>explorer</b> et <b>expérimenter</b></p>
-					</aside>
-				</section>
-
-				<section>
-					<h4>Conclusion</h4>
-					<div><img src="images/responsive/Content_is_like_water.png" alt=""></div>
-				</section>
-
-				<section>
-					<h4><q>Be water my friend</q></h4>
-					<div><img src="images/responsive/bruce_lee_water.jpg" alt=""></div>
-				</section>
-
-				<section>
-					<h2>Ressources</h2>
-					<p class="fragment"><a href="http://www.alsacreations.com/article/lire/1559-responsive-web-design-present-futur-adaptation-mobile.html" target="_blank">Responsive Webdesign – présent et futur<br>de l’adaptation mobile</a><br>
-						<small>par <a href="http://www.alsacreations.com/profil/lire/29058-stphanie-w.html" target="_blank">Stéphanie Walter</a>, sur <a href="http://alsacreations.com" target="_blank">Alsacréations</a></small></p>
-					<p class="fragment"><a href="http://www.lifeishao.com/rwdwire/" target="_blank">RWD Wireframe</a><br>
-						<small>Outil pour créer des wireframes responsive</small></p>
-				</section>
-			</section>
-
-			<!-- ... -->
-
-			<section id="media-queries">
-				<section>
-					<h1>Media-Queries</h1>
-					<p>Application de feuilles de style en fonction des périphériques</p>
-				</section>
-
-				<section>
-					<h3>Types de medias</h3>
-					<pre><code class="javascript" data-trim data-noescape="true" spellcheck="false" contenteditable>
-	'screen'     // Écrans
-	'handheld'   // Périphériques mobiles ou de petite taille
-	'print'      // Impression
-	'aural'      // Synthèses vocales
-	'braille'    // Plages braille
-	'embossed'   // Imprimantes braille
-	'projection' // Projecteurs
-	'tty'        // Terminal/police à pas fixe
-	'tv'         // Téléviseur
-	'all'        // Tous les précédents
+				<section data-auto-animate>
+					<pre data-id="snippet-srcset"><code class="html" data-trim contenteditable spellcheck="false">
+						<img srcset="image-300.jpg 300w, image-600.jpg 600w">
 					</code></pre>
-
-					<div class="fragment">
-						<h3>Dans le HTML</h3>
-						<pre class="big"><code class="html" data-trim data-noescape spellcheck="false" contenteditable>
-	&lt;link rel="stylesheet" <u>media="screen"</u> href="style.css">
-	<span class="fragment">&lt;link rel="stylesheet" <u>media="print"</u> href="print.css"></span>
-	<span class="fragment">...</span>
-						</code></pre>
-					</div>
+					<p>Ici, on indique explicitement au navigateur que l'on dispose de deux images (300px et 600px grâce au descripteur <code>w</code>) et que l'on souhaite qu'il choisisse la plus adaptée en fonction de la taille de la viewport (qu'il connaît)</p>
+					<p class="fragment"><strong>C'est ensuite au navigateur de faire le choix de la meilleure image à charger</strong></p>
 				</section>
 
 				<section>
-					<h3>Dans le CSS</h3>
-					<pre class="big"><code class="css" data-trim data-noescape="true" spellcheck="false" contenteditable>
-	@media print {
-	html {
-	background-color: white;
-	}
-	body {
-	color: black;
-	}
-	}
+					<h3><code>sizes</code></h3>
+					<p>Cet attribut <strong>vient en complément de <code>srcset</code></strong>, est n'est valable que si on a choisi le descripteur <code>w</code></p>
+					<p class="fragment">Il permet d'indiquer au navigateur différentes tailles de viewport pour lesquelles on dispose d'une image adaptée</p>
+				</section>
+
+				<section data-auto-animate>
+					<pre data-id="snippet-sizes"><code class="html" data-trim contenteditable spellcheck="false">
+						&lt;img srcset="/image-300.jpg 300w, /image-600.jpg 600w"
+								 sizes="(max-width: 400px) 200px, (max-width: 800px) 100vw, 50vw"&gt;
 					</code></pre>
-					<p>Les lecteurs s'identifiants comme des médias d'impression implémenteront ces styles</p>
+					<p class="fragment" data-id="sizes-desc">Dans cet exemple, le navigateur est informé que :</p>
+
+					<blockquote style="font-size: 0.8em" class="fragment">Pour une taille de viewport inférieure ou égale à 400px, l'image devra s'afficher en 200px de large. Il prendra donc la valeur la plus proche, à savoir : image-300.jpg. Cependant, si la densité de pixels vaut 3 (= écrans super Rétina), alors il multipliera les 200px attendus par 3, et prendra donc l'image de 600px de large pour une meilleure qualité d'affichage.</blockquote>
+				</section>
+
+				<section data-auto-animate>
+					<pre data-id="snippet-sizes"><code class="html" data-trim contenteditable spellcheck="false" data-noescape>
+						&lt;img srcset="/image-300.jpg 300w, /image-600.jpg 600w"
+								 sizes="(max-width: 400px) 200px, (max-width: 800px) 100vw, 50vw"&gt;
+					</code></pre>
+					<p data-id="sizes-desc">Dans cet exemple, le navigateur est informé que :</p>
+					<blockquote style="font-size: 0.8em">Pour une taille de viewport inférieure ou égale à 800px, l'image devra s'afficher à 100% de la largeur de la viewport (c'est-à-dire 800px). Il choisira donc systématiquement image-600.jpg.</blockquote>
+				</section>
+
+				<section data-auto-animate>
+					<pre data-id="snippet-sizes"><code class="html" data-trim contenteditable spellcheck="false">
+						&lt;img srcset="/image-300.jpg 300w, /image-600.jpg 600w"
+								 sizes="(max-width: 400px) 200px, (max-width: 800px) 100vw, 50vw"&gt;
+					</code></pre>
+					<p data-id="sizes-desc">Dans cet exemple, le navigateur est informé que :</p>
+					<blockquote style="font-size: 0.8em">Si aucune des conditions précédentes n'est remplie, l'image devra s'afficher à 50% de la largeur de la viewport. C'est-à-dire que si on dispose d'une viewport faisant 820px, l'image s'affichera à 410px de large (= 50% de la viewport). Le navigateur choisira donc l'image de 300px de large car c'est la valeur la plus proche de 410px (pour un écran de 1x).</blockquote>
 				</section>
 
 				<section>
-					<h3>Des règles plus précises</h3>
-					<h4>Les Medias-Queries</h4>
+					<p>Il est important de comprendre que toutes ces possibilités ont pour but de donner un maximum d'information au navigateur pour qu'il puisse charger les images de la meilleure façon possible</p>
 
-					<pre class="big fragment"><code class="css" data-trim data-noescape spellcheck="false" contenteditable>
-	@media screen and (max-width: 650px) {}
-	@media (min-width: 700px) and (orientation: landscape) {}
-	@media screen and (aspect-ratio: 16/9) {}
-				</code></pre>
-
-					<div class="fragment">
-						<h4>Types de règles</h4>
-						<pre><code class="javascript" data-trim data-noescape="true" spellcheck="false" contenteditable>
-	'width'               // dimension en largeur de la zone d'affichage
-	'height'              // dimension en hauteur de la zone d'affichage
-	'device-width'        // dimension en largeur du périphérique
-	'device-height'       // dimension en hauteur du périphérique
-	'orientation'         // orientation du périphérique (portait ou landscape)
-	'device-aspect-ratio' // ratio du périphérique de sortie (par exemple 16/9)
-	'resolution'          // résolution du périphérique (en dpi, dppx, ou dpcm)
-	// ...
-						</code></pre>
-					</div>
+					<p class="fragment">Mais le navigateur est libre de choisir la méthode qu'il souhaite et vous ne serez pas forcément sûr de voir les images charger de la manière que vous avez définie</p>
 				</section>
 
 				<section>
-					<div><img src="images/responsive/css-media-queries-juslisen.jpg" alt=""></div>
-				</section>
-
-				<section>
-					<h3><a target="_blank" href="http://www.alsacreations.com/xmedia/tuto/exemples/mediaqueries/index.html">Démonstration</a></h3>
+					<p>L'article suivant reprend en détails les notions vues dans ce chapitre :<br>
+					<a href="https://www.builder.io/blog/fast-images#async-image-decoding" target="_blank" rel="noopener noreferrer">Optimal Images in HTML.</a></p>
 				</section>
 			</section>
 		</div>
